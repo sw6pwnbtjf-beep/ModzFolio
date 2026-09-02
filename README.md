@@ -1,2 +1,2 @@
 # ModzFolio
-“Your build, your mods, one place”
+“Your build, your modz, one place”
