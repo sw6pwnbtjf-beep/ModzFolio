@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Modzfolio Garage</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #9BF404;
+      --black: #070707;
+      --panel: #111111;
+      --panel-2: #181818;
+      --border: #2a2a2a;
+      --text: #ffffff;
+      --muted: #9a9a9a;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top, #1b1b1b 0%, #0c0c0c 45%, #050505 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    .app {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--green);
+    }
+
+    .profile {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 7vw, 64px);
+      line-height: 0.95;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+      max-width: 620px;
+    }
+
+    .garage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .garage-title {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .add-btn {
+      border: none;
+      background: var(--green);
+      color: #050505;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .vehicle-card {
+      background: linear-gradient(145deg, #171717, #0d0d0d);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+    }
+
+    .vehicle-photo {
+      position: relative;
+      min-height: 320px;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.08)),
+        url("https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1400&q=85")
+        center/cover;
+    }
+
+    .vehicle-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(5,5,5,0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .vehicle-info {
+      padding: 22px;
+    }
+
+    .vehicle-name-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .nickname {
+      color: var(--green);
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .vehicle-model {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .status {
+      color: var(--green);
+      border: 1px solid rgba(155, 244, 4, 0.35);
+      background: rgba(155, 244, 4, 0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .action {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .primary {
+      background: var(--green);
+      color: #050505;
+    }
+
+    .secondary {
+      background: #202020;
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .quick-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .quick-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .quick-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .quick-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .bottom-nav {
+      margin-top: 28px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(12,12,12,0.88);
+      display: flex;
+      justify-content: space-around;
+      position: sticky;
+      bottom: 14px;
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-item {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-item.active {
+      color: var(--green);
+    }
+
+    @media (max-width: 700px) {
+      .app {
+        padding: 18px;
+      }
+
+      .vehicle-photo {
+        min-height: 240px;
+      }
+
+      .stats,
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .vehicle-name-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        MODZ<span>FOLIO</span>
+      </div>
+
+      <div class="profile">
+        K
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">My Garage</div>
+
+      <h1>Your builds.<br>Your story.</h1>
+
+      <p class="sub">
+        Track every mod, every dollar, and every stage of your build in one place.
+      </p>
+    </section>
+
+    <section>
+
+      <div class="garage-header">
+        <div class="garage-title">Garage</div>
+
+        <button class="add-btn">
+          + Add Vehicle
+        </button>
+      </div>
+
+      <article class="vehicle-card">
+
+        <div class="vehicle-photo">
+          <div class="vehicle-badge">
+            FEATURED BUILD
+          </div>
+        </div>
+
+        <div class="vehicle-info">
+
+          <div class="vehicle-name-row">
+            <div>
+              <div class="nickname">GHOST</div>
+              <div class="vehicle-model">
+                2025 Subaru Impreza RS
+              </div>
+            </div>
+
+            <div class="status">
+              ACTIVE BUILD
+            </div>
+          </div>
+
+          <div class="stats">
+
+            <div class="stat">
+              <div class="stat-value">14</div>
+              <div class="stat-label">Mods</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-value">$4,826</div>
+              <div class="stat-label">Invested</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-value">8K</div>
+              <div class="stat-label">Miles</div>
+            </div>
+
+          </div>
+
+          <div class="actions">
+
+            <a class="action primary" href="build.html">
+              View Build
+            </a>
+
+            <a class="action secondary" href="add-mod.html">
+              + Add Mod
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <div class="quick-grid">
+
+        <div class="quick-card">
+          <div class="quick-icon">📸</div>
+          <h3>Show Mode</h3>
+          <p>Create a clean public build page for meets and shows.</p>
+        </div>
+
+        <div class="quick-card">
+          <div class="quick-icon">💸</div>
+          <h3>Build Cost</h3>
+          <p>Track how much you have invested in parts and labor.</p>
+        </div>
+
+        <div class="quick-card">
+          <div class="quick-icon">🔧</div>
+          <h3>Mod History</h3>
+          <p>Keep every install and upgrade organized by date.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <nav class="bottom-nav">
+      <a class="nav-item active" href="#">Garage</a>
+      <a class="nav-item" href="#">Explore</a>
+      <a class="nav-item" href="#">Profile</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>
