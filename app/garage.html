@@ -125,13 +125,17 @@
       box-shadow: 0 22px 60px rgba(0,0,0,0.35);
     }
 
-    .vehicle-photo {
-      position: relative;
-      min-height: 320px;
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.08)),
-        url("ghost-booty.jpg")
-        center/cover;
+   .vehicle-photo {
+  position: relative;
+  min-height: 320px;
+
+  background:
+    linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.08)),
+    url("ghost-booty.jpg");
+
+  background-size: cover;
+  background-position: var(--photo-x, 50%) var(--photo-y, 50%);
+  background-repeat: no-repeat;
     }
 
     .vehicle-badge {
@@ -288,7 +292,28 @@
     .nav-item.active {
       color: var(--green);
     }
+.photo-editor {
+  margin-top: 14px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: grid;
+  gap: 14px;
+}
 
+.photo-editor label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.photo-editor input {
+  width: 100%;
+  accent-color: var(--green);
+}
     @media (max-width: 700px) {
       .app {
         padding: 18px;
@@ -405,7 +430,17 @@
         </div>
 
       </article>
+ <div class="photo-editor">
+        <label>
+          Left / Right
+          <input id="photoX" type="range" min="0" max="100" value="50">
+        </label>
 
+        <label>
+          Up / Down
+          <input id="photoY" type="range" min="0" max="100" value="50">
+        </label>
+      </div>
       <div class="quick-grid">
 
         <div class="quick-card">
@@ -437,6 +472,18 @@
     </nav>
 
   </div>
+<script>
+  const photo = document.querySelector(".vehicle-photo");
+  const photoX = document.getElementById("photoX");
+  const photoY = document.getElementById("photoY");
 
+  function updatePhotoPosition() {
+    photo.style.setProperty("--photo-x", photoX.value + "%");
+    photo.style.setProperty("--photo-y", photoY.value + "%");
+  }
+
+  photoX.addEventListener("input", updatePhotoPosition);
+  photoY.addEventListener("input", updatePhotoPosition);
+</script>
 </body>
 </html>
