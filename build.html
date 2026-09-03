@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Ghost Build | Modzfolio</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #9BF404;
+      --black: #070707;
+      --panel: #111111;
+      --panel-2: #181818;
+      --border: #2a2a2a;
+      --text: #ffffff;
+      --muted: #9a9a9a;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #1b1b1b 0%,
+          #0c0c0c 45%,
+          #050505 100%
+        );
+
+      color: var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .app {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* TOP BAR */
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .brand-logo {
+      width: 220px;
+      max-width: 55vw;
+      height: auto;
+      display: block;
+    }
+
+    .back-button {
+      text-decoration: none;
+
+      color: var(--muted);
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(17,17,17,0.85);
+
+      padding: 10px 14px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* BUILD HEADER */
+
+    .build-header {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+
+      text-transform: uppercase;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 8px;
+    }
+
+    .build-name {
+      color: var(--green);
+
+      font-size:
+        clamp(38px, 8vw, 70px);
+
+      font-weight: 950;
+
+      line-height: 0.95;
+
+      margin-bottom: 8px;
+    }
+
+    .build-model {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .build-summary {
+      margin-top: 18px;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .summary-chip {
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 999px;
+
+      padding: 10px 14px;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .summary-chip span {
+      color: var(--green);
+    }
+
+    /* CATEGORY */
+
+    .category {
+      margin-bottom: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #151515,
+          #0d0d0d
+        );
+
+      border: 1px solid var(--border);
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 18px;
+    }
+
+    .category-heading {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .category-icon {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 12px;
+
+      background:
+        rgba(155,244,4,0.08);
+
+      font-size: 21px;
+    }
+
+    .category-name {
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .category-count {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-top: 3px;
+    }
+
+    .add-mod-button {
+      border: none;
+
+      background: var(--green);
+      color: #050505;
+
+      padding: 10px 15px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+    /* MOD CARDS */
+
+    .mod-list {
+      display: grid;
+
+      gap: 12px;
+
+      padding:
+        0 18px 18px;
+    }
+
+    .empty-message {
+      color: var(--muted);
+
+      background:
+        rgba(255,255,255,0.025);
+
+      border:
+        1px dashed #333;
+
+      border-radius: 14px;
+
+      padding: 18px;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+    .mod-card {
+      display: grid;
+
+      grid-template-columns:
+        110px 1fr auto;
+
+      gap: 16px;
+
+      align-items: center;
+
+      padding: 12px;
+
+      background: var(--panel-2);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+    }
+
+    .mod-image {
+      width: 110px;
+      height: 85px;
+
+      object-fit: cover;
+
+      border-radius: 12px;
+
+      background: #0b0b0b;
+
+      border: 1px solid #2a2a2a;
+    }
+
+    .mod-image-placeholder {
+      width: 110px;
+      height: 85px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 12px;
+
+      background: #0b0b0b;
+
+      border: 1px solid #2a2a2a;
+
+      color: #555;
+
+      font-size: 24px;
+    }
+
+    .mod-brand {
+      color: var(--green);
+
+      text-transform: uppercase;
+
+      font-size: 11px;
+      font-weight: 900;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 4px;
+    }
+
+    .mod-name {
+      font-size: 17px;
+      font-weight: 900;
+
+      margin-bottom: 5px;
+    }
+
+    .mod-notes {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.45;
+    }
+
+    .mod-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .edit-mod,
+    .delete-mod {
+      width: 38px;
+      height: 38px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(0,0,0,0.25);
+
+      color: var(--muted);
+
+      cursor: pointer;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .edit-mod:hover {
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .delete-mod:hover {
+      color: #ff5757;
+      border-color: #ff5757;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      padding: 20px;
+
+      background:
+        rgba(0,0,0,0.78);
+
+      backdrop-filter:
+        blur(10px);
+
+      display: none;
+
+      place-items: center;
+
+      z-index: 100;
+    }
+
+    .modal-overlay.open {
+      display: grid;
+    }
+
+    .modal {
+      width:
+        min(100%, 520px);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: #101010;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 22px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      font-size: 24px;
+    }
+
+    .close-modal {
+      width: 40px;
+      height: 40px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid var(--border);
+
+      background: #191919;
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: var(--muted);
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+
+      color: white;
+
+      background: #191919;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 13px;
+
+      outline: none;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--green);
+    }
+
+    .photo-preview {
+      display: none;
+
+      width: 100%;
+
+      max-height: 220px;
+
+      object-fit: cover;
+
+      border-radius: 14px;
+
+      border:
+        1px solid var(--border);
+    }
+
+    .photo-preview.visible {
+      display: block;
+    }
+
+    .photo-helper {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      line-height: 1.4;
+    }
+
+    .remove-photo {
+      display: none;
+
+      border:
+        1px solid var(--border);
+
+      background: transparent;
+
+      color: var(--muted);
+
+      padding: 10px 14px;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+    }
+
+    .remove-photo.visible {
+      display: block;
+    }
+
+    .save-mod {
+      margin-top: 6px;
+
+      border: none;
+
+      width: 100%;
+
+      background: var(--green);
+
+      color: #050505;
+
+      padding: 14px 18px;
+
+      border-radius: 14px;
+
+      font-weight: 950;
+
+      cursor: pointer;
+    }
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      margin-top: 28px;
+
+      padding: 14px;
+
+      border-radius: 18px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(12,12,12,0.88);
+
+      display: flex;
+      justify-content: space-around;
+
+      position: sticky;
+
+      bottom: 14px;
+
+      backdrop-filter:
+        blur(16px);
+    }
+
+    .nav-item {
+      color: var(--muted);
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-item.active {
+      color: var(--green);
+    }
+
+    @media (max-width: 650px) {
+
+      .app {
+        padding: 18px;
+      }
+
+      .brand-logo {
+        width: 180px;
+      }
+
+      .category-header {
+        align-items: flex-start;
+      }
+
+      .mod-card {
+        grid-template-columns:
+          85px 1fr;
+
+        position: relative;
+      }
+
+      .mod-image,
+      .mod-image-placeholder {
+        width: 85px;
+        height: 75px;
+      }
+
+      .mod-controls {
+        position: absolute;
+
+        top: 8px;
+        right: 8px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="app">
+
+    <header class="topbar">
+
+      <a
+        href="garage.html"
+        class="back-button"
+      >
+        ← Garage
+      </a>
+
+      <img
+        src="modzfolio-wordmark-green.png"
+        alt="Modzfolio"
+        class="brand-logo"
+      >
+
+    </header>
+
+
+    <section class="build-header">
+
+      <div class="eyebrow">
+        Build Profile
+      </div>
+
+      <div class="build-name">
+        GHOST
+      </div>
+
+      <div class="build-model">
+        2025 Subaru Impreza RS
+      </div>
+
+      <div class="build-summary">
+
+        <div class="summary-chip">
+          <span id="totalMods">0</span>
+          Mods
+        </div>
+
+        <div class="summary-chip">
+          Active Build
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <main id="categories"></main>
+
+
+    <nav class="bottom-nav">
+
+      <a
+        class="nav-item"
+        href="garage.html"
+      >
+        Garage
+      </a>
+
+      <a
+        class="nav-item active"
+        href="#"
+      >
+        Build
+      </a>
+
+      <a
+        class="nav-item"
+        href="#"
+      >
+        Profile
+      </a>
+
+    </nav>
+
+  </div>
+
+
+  <!-- ADD / EDIT MOD WINDOW -->
+
+  <div
+    class="modal-overlay"
+    id="modalOverlay"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2 id="modalTitle">
+          Add Mod
+        </h2>
+
+        <button
+          class="close-modal"
+          id="closeModal"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form
+        class="form-grid"
+        id="modForm"
+      >
+
+        <div class="field">
+
+          <label for="modCategory">
+            Category
+          </label>
+
+          <select id="modCategory">
+
+            <option value="engine">
+              Engine
+            </option>
+
+            <option value="handling">
+              Handling
+            </option>
+
+            <option value="exterior">
+              Exterior
+            </option>
+
+            <option value="interior">
+              Interior
+            </option>
+
+            <option value="utility">
+              Utility
+            </option>
+
+            <option value="other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="modName">
+            Part / Mod Name
+          </label>
+
+          <input
+            id="modName"
+            type="text"
+            placeholder="Example: Quad Exit Axle-Back"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="modBrand">
+            Brand
+          </label>
+
+          <input
+            id="modBrand"
+            type="text"
+            placeholder="Example: Nameless Performance"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="modNotes">
+            Notes
+          </label>
+
+          <textarea
+            id="modNotes"
+            placeholder="Optional details about the mod..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="modPhoto">
+            Mod Photo
+          </label>
+
+          <input
+            id="modPhoto"
+            type="file"
+            accept="image/*"
+          >
+
+          <div class="photo-helper">
+            When editing a mod, leave this alone to keep the current photo.
+          </div>
+
+        </div>
+
+
+        <img
+          id="photoPreview"
+          class="photo-preview"
+          alt="Mod preview"
+        >
+
+
+        <button
+          class="remove-photo"
+          id="removePhoto"
+          type="button"
+        >
+          Remove Photo
+        </button>
+
+
+        <button
+          class="save-mod"
+          id="saveModButton"
+          type="submit"
+        >
+          Add to Build
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const categories = [
+
+      {
+        id: "engine",
+        name: "Engine",
+        icon: "⚙️"
+      },
+
+      {
+        id: "handling",
+        name: "Handling",
+        icon: "🏁"
+      },
+
+      {
+        id: "exterior",
+        name: "Exterior",
+        icon: "🚗"
+      },
+
+      {
+        id: "interior",
+        name: "Interior",
+        icon: "💺"
+      },
+
+      {
+        id: "utility",
+        name: "Utility",
+        icon: "🧰"
+      },
+
+      {
+        id: "other",
+        name: "Other",
+        icon: "➕"
+      }
+
+    ];
+
+
+    let mods = [];
+
+    try {
+
+      mods =
+        JSON.parse(
+          localStorage.getItem(
+            "ghostMods"
+          )
+        ) || [];
+
+    }
+
+    catch {
+
+      mods = [];
+
+    }
+
+
+    const categoriesContainer =
+      document.getElementById(
+        "categories"
+      );
+
+    const modalOverlay =
+      document.getElementById(
+        "modalOverlay"
+      );
+
+    const modalTitle =
+      document.getElementById(
+        "modalTitle"
+      );
+
+    const closeModal =
+      document.getElementById(
+        "closeModal"
+      );
+
+    const modForm =
+      document.getElementById(
+        "modForm"
+      );
+
+    const modCategory =
+      document.getElementById(
+        "modCategory"
+      );
+
+    const modName =
+      document.getElementById(
+        "modName"
+      );
+
+    const modBrand =
+      document.getElementById(
+        "modBrand"
+      );
+
+    const modNotes =
+      document.getElementById(
+        "modNotes"
+      );
+
+    const modPhoto =
+      document.getElementById(
+        "modPhoto"
+      );
+
+    const photoPreview =
+      document.getElementById(
+        "photoPreview"
+      );
+
+    const removePhoto =
+      document.getElementById(
+        "removePhoto"
+      );
+
+    const saveModButton =
+      document.getElementById(
+        "saveModButton"
+      );
+
+    const totalMods =
+      document.getElementById(
+        "totalMods"
+      );
+
+
+    let pendingPhoto = "";
+
+    let editingModId = null;
+
+
+    function saveMods() {
+
+      try {
+
+        localStorage.setItem(
+          "ghostMods",
+          JSON.stringify(mods)
+        );
+
+        return true;
+
+      }
+
+      catch (error) {
+
+        alert(
+          "This photo is too large to save in the browser prototype. Try a smaller image."
+        );
+
+        return false;
+
+      }
+
+    }
+
+
+    function escapeHTML(text) {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+      div.textContent =
+        text || "";
+
+      return div.innerHTML;
+
+    }
+
+
+    function renderCategories() {
+
+      categoriesContainer.innerHTML =
+        "";
+
+      totalMods.textContent =
+        mods.length;
+
+
+      categories.forEach(
+        category => {
+
+          const categoryMods =
+            mods.filter(
+              mod =>
+                mod.category ===
+                category.id
+            );
+
+
+          const section =
+            document.createElement(
+              "section"
+            );
+
+          section.className =
+            "category";
+
+
+          let modHTML = "";
+
+
+          if (
+            categoryMods.length === 0
+          ) {
+
+            modHTML = `
+              <div class="empty-message">
+                No ${category.name.toLowerCase()}
+                mods added yet.
+              </div>
+            `;
+
+          }
+
+          else {
+
+            modHTML =
+              categoryMods
+                .map(
+                  mod => {
+
+                    const imageHTML =
+                      mod.photo
+
+                      ? `
+                        <img
+                          class="mod-image"
+                          src="${mod.photo}"
+                          alt="${escapeHTML(mod.name)}"
+                        >
+                      `
+
+                      : `
+                        <div class="mod-image-placeholder">
+                          📷
+                        </div>
+                      `;
+
+
+                    return `
+                      <article class="mod-card">
+
+                        ${imageHTML}
+
+
+                        <div>
+
+                          <div class="mod-brand">
+                            ${escapeHTML(mod.brand)}
+                          </div>
+
+                          <div class="mod-name">
+                            ${escapeHTML(mod.name)}
+                          </div>
+
+                          ${
+                            mod.notes
+
+                            ? `
+                              <div class="mod-notes">
+                                ${escapeHTML(mod.notes)}
+                              </div>
+                            `
+
+                            : ""
+                          }
+
+                        </div>
+
+
+                        <div class="mod-controls">
+
+                          <button
+                            class="edit-mod"
+                            data-id="${mod.id}"
+                            type="button"
+                            aria-label="Edit mod"
+                          >
+                            ✎
+                          </button>
+
+                          <button
+                            class="delete-mod"
+                            data-id="${mod.id}"
+                            type="button"
+                            aria-label="Delete mod"
+                          >
+                            ×
+                          </button>
+
+                        </div>
+
+                      </article>
+                    `;
+
+                  }
+                )
+                .join("");
+
+          }
+
+
+          section.innerHTML = `
+
+            <div class="category-header">
+
+              <div class="category-heading">
+
+                <div class="category-icon">
+                  ${category.icon}
+                </div>
+
+                <div>
+
+                  <div class="category-name">
+                    ${category.name}
+                  </div>
+
+                  <div class="category-count">
+                    ${categoryMods.length}
+                    ${
+                      categoryMods.length === 1
+                      ? "mod"
+                      : "mods"
+                    }
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="add-mod-button"
+                data-category="${category.id}"
+                type="button"
+              >
+                + Add
+              </button>
+
+            </div>
+
+
+            <div class="mod-list">
+              ${modHTML}
+            </div>
+
+          `;
+
+
+          categoriesContainer.appendChild(
+            section
+          );
+
+        }
+      );
+
+
+      /*
+        ADD BUTTONS
+      */
+
+      document
+        .querySelectorAll(
+          ".add-mod-button"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                openAddModal(
+                  button.dataset.category
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+      /*
+        EDIT PENCILS
+      */
+
+      document
+        .querySelectorAll(
+          ".edit-mod"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                openEditModal(
+                  button.dataset.id
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+      /*
+        DELETE BUTTONS
+      */
+
+      document
+        .querySelectorAll(
+          ".delete-mod"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                const modID =
+                  button.dataset.id;
+
+
+                const modToDelete =
+                  mods.find(
+                    mod =>
+                      String(mod.id) ===
+                      String(modID)
+                  );
+
+
+                const confirmed =
+                  confirm(
+                    `Delete ${
+                      modToDelete
+                        ? modToDelete.name
+                        : "this mod"
+                    }?`
+                  );
+
+
+                if (!confirmed) {
+                  return;
+                }
+
+
+                mods =
+                  mods.filter(
+                    mod =>
+                      String(mod.id) !==
+                      String(modID)
+                  );
+
+
+                saveMods();
+
+                renderCategories();
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /*
+      ADD NEW MOD
+    */
+
+    function openAddModal(
+      category
+    ) {
+
+      editingModId = null;
+
+      modForm.reset();
+
+      pendingPhoto = "";
+
+      modCategory.value =
+        category;
+
+      photoPreview.src =
+        "";
+
+      photoPreview.classList.remove(
+        "visible"
+      );
+
+      removePhoto.classList.remove(
+        "visible"
+      );
+
+      modalTitle.textContent =
+        "Add Mod";
+
+      saveModButton.textContent =
+        "Add to Build";
+
+      modalOverlay.classList.add(
+        "open"
+      );
+
+    }
+
+
+    /*
+      EDIT EXISTING MOD
+    */
+
+    function openEditModal(
+      modID
+    ) {
+
+      const mod =
+        mods.find(
+          item =>
+            String(item.id) ===
+            String(modID)
+        );
+
+
+      if (!mod) {
+        return;
+      }
+
+
+      editingModId =
+        mod.id;
+
+
+      modCategory.value =
+        mod.category;
+
+      modName.value =
+        mod.name;
+
+      modBrand.value =
+        mod.brand;
+
+      modNotes.value =
+        mod.notes || "";
+
+
+      /*
+        Keep the current photo unless
+        the user chooses another one.
+      */
+
+      pendingPhoto =
+        mod.photo || "";
+
+
+      modPhoto.value =
+        "";
+
+
+      if (pendingPhoto) {
+
+        photoPreview.src =
+          pendingPhoto;
+
+        photoPreview.classList.add(
+          "visible"
+        );
+
+        removePhoto.classList.add(
+          "visible"
+        );
+
+      }
+
+      else {
+
+        photoPreview.src =
+          "";
+
+        photoPreview.classList.remove(
+          "visible"
+        );
+
+        removePhoto.classList.remove(
+          "visible"
+        );
+
+      }
+
+
+      modalTitle.textContent =
+        "Edit Mod";
+
+      saveModButton.textContent =
+        "Save Changes";
+
+
+      modalOverlay.classList.add(
+        "open"
+      );
+
+    }
+
+
+    function closeModalWindow() {
+
+      modalOverlay.classList.remove(
+        "open"
+      );
+
+      editingModId =
+        null;
+
+    }
+
+
+    closeModal.addEventListener(
+      "click",
+      closeModalWindow
+    );
+
+
+    modalOverlay.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          modalOverlay
+        ) {
+
+          closeModalWindow();
+
+        }
+
+      }
+    );
+
+
+    /*
+      CHOOSE / CHANGE PHOTO
+    */
+
+    modPhoto.addEventListener(
+      "change",
+      event => {
+
+        const file =
+          event.target.files[0];
+
+
+        if (!file) {
+          return;
+        }
+
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload =
+          () => {
+
+            pendingPhoto =
+              reader.result;
+
+
+            photoPreview.src =
+              pendingPhoto;
+
+
+            photoPreview.classList.add(
+              "visible"
+            );
+
+
+            removePhoto.classList.add(
+              "visible"
+            );
+
+          };
+
+
+        reader.readAsDataURL(
+          file
+        );
+
+      }
+    );
+
+
+    /*
+      REMOVE MOD PHOTO
+    */
+
+    removePhoto.addEventListener(
+      "click",
+      () => {
+
+        pendingPhoto =
+          "";
+
+        modPhoto.value =
+          "";
+
+        photoPreview.src =
+          "";
+
+        photoPreview.classList.remove(
+          "visible"
+        );
+
+        removePhoto.classList.remove(
+          "visible"
+        );
+
+      }
+    );
+
+
+    /*
+      ADD OR SAVE EDIT
+    */
+
+    modForm.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        const modData = {
+
+          category:
+            modCategory.value,
+
+          name:
+            modName.value.trim(),
+
+          brand:
+            modBrand.value.trim(),
+
+          notes:
+            modNotes.value.trim(),
+
+          photo:
+            pendingPhoto
+
+        };
+
+
+        /*
+          EDITING EXISTING MOD
+        */
+
+        if (
+          editingModId !== null
+        ) {
+
+          const index =
+            mods.findIndex(
+              mod =>
+                String(mod.id) ===
+                String(editingModId)
+            );
+
+
+          if (index !== -1) {
+
+            mods[index] = {
+
+              ...mods[index],
+
+              ...modData
+
+            };
+
+          }
+
+        }
+
+
+        /*
+          ADDING NEW MOD
+        */
+
+        else {
+
+          mods.push({
+
+            id:
+              Date.now(),
+
+            ...modData
+
+          });
+
+        }
+
+
+        const saved =
+          saveMods();
+
+
+        if (!saved) {
+          return;
+        }
+
+
+        renderCategories();
+
+        closeModalWindow();
+
+      }
+    );
+
+
+    renderCategories();
+
+  </script>
+
+</body>
+
+</html>
