@@ -63,20 +63,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 34px;
+      margin-bottom: 24px;
     }
 
 
-    .brand {
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      text-transform: uppercase;
-    }
-
-
-    .brand span {
-      color: var(--green);
+    .brand-logo {
+      width: 220px;
+      max-width: 55vw;
+      height: auto;
+      display: block;
     }
 
 
@@ -94,41 +89,6 @@
 
       font-weight: 800;
       color: var(--green);
-    }
-
-
-    .hero {
-      margin-bottom: 28px;
-    }
-
-
-    .eyebrow {
-      color: var(--green);
-
-      font-size: 13px;
-      font-weight: 800;
-
-      letter-spacing: 2px;
-      text-transform: uppercase;
-
-      margin-bottom: 8px;
-    }
-
-
-    h1 {
-      font-size: clamp(36px, 7vw, 64px);
-      line-height: 0.95;
-      margin-bottom: 12px;
-    }
-
-
-    .sub {
-      color: var(--muted);
-
-      font-size: 17px;
-      line-height: 1.5;
-
-      max-width: 620px;
     }
 
 
@@ -442,10 +402,6 @@
     }
 
 
-    /*
-      PHOTO EDITOR
-    */
-
     .photo-editor {
       display: none;
 
@@ -700,9 +656,11 @@
 
     <header class="topbar">
 
-      <div class="brand">
-        MODZ<span>FOLIO</span>
-      </div>
+      <img
+        src="modzfolio-wordmark-green.png"
+        alt="Modzfolio"
+        class="brand-logo"
+      >
 
 
       <div class="profile">
@@ -710,32 +668,6 @@
       </div>
 
     </header>
-
-
-
-    <section class="hero">
-
-      <div class="eyebrow">
-        My Garage
-      </div>
-
-
-      <h1>
-        Your builds.<br>
-        Your story.
-      </h1>
-
-
-      <p class="sub">
-        Track every mod,
-        every dollar,
-        and every stage
-        of your build
-        in one place.
-      </p>
-
-    </section>
-
 
 
     <section>
@@ -1122,10 +1054,6 @@
 
 
 
-    /*
-      LOAD SAVED POSITION
-    */
-
     let x =
       Number(
         localStorage.getItem(
@@ -1210,10 +1138,6 @@
 
 
 
-    /*
-      EDIT MODE BUTTON
-    */
-
     editButton.addEventListener(
       "click",
       () => {
@@ -1255,10 +1179,6 @@
 
 
 
-    /*
-      SLIDERS
-    */
-
     photoX.addEventListener(
       "input",
       () => {
@@ -1297,10 +1217,6 @@
 
 
 
-    /*
-      DRAG PHOTO
-    */
-
     photo.addEventListener(
       "pointerdown",
       (event) => {
@@ -1309,11 +1225,6 @@
           return;
         }
 
-
-        /*
-          Do not start dragging
-          if pencil button was clicked.
-        */
 
         if (
           event.target.closest(
@@ -1453,19 +1364,6 @@
 
 
 
-    /*
-      CHOOSE PHOTO
-
-      This previews a photo
-      from the device.
-
-      Because this prototype
-      is hosted on GitHub Pages,
-      the new uploaded image
-      is not permanently stored
-      on the server yet.
-    */
-
     photoUpload.addEventListener(
       "change",
       (event) => {
@@ -1508,10 +1406,6 @@
 
 
 
-    /*
-      RESET POSITION
-    */
-
     resetPhoto.addEventListener(
       "click",
       () => {
@@ -1529,10 +1423,6 @@
     );
 
 
-
-    /*
-      INITIALIZE
-    */
 
     updatePhotoPosition();
 
