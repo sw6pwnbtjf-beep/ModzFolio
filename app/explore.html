@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>Explore | Modzfolio</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #9BF404;
+      --black: #050505;
+      --panel: #111111;
+      --border: rgba(255,255,255,0.12);
+      --text: #ffffff;
+      --muted: #a5a5a5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: white;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      min-height: 100vh;
+    }
+
+    button {
+      font: inherit;
+    }
+
+
+    /* HEADER */
+
+    .topbar {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 74px;
+
+      padding:
+        env(safe-area-inset-top)
+        18px
+        0;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      z-index: 50;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.9),
+          rgba(0,0,0,0)
+        );
+
+      pointer-events: none;
+    }
+
+    .topbar > * {
+      pointer-events: auto;
+    }
+
+    .brand-logo {
+      width: 180px;
+      max-width: 48vw;
+      height: auto;
+      display: block;
+    }
+
+    .brand-fallback {
+      display: none;
+
+      font-size: 23px;
+      font-weight: 950;
+
+      font-style: italic;
+      letter-spacing: -1px;
+    }
+
+    .brand-fallback span {
+      color: var(--green);
+    }
+
+    .feed-toggle {
+      display: flex;
+
+      gap: 4px;
+
+      padding: 4px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(15,15,15,0.7);
+
+      border:
+        1px solid var(--border);
+
+      backdrop-filter: blur(14px);
+    }
+
+    .feed-toggle button {
+      border: none;
+      background: transparent;
+
+      color: var(--muted);
+
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .feed-toggle button.active {
+      color: #050505;
+      background: var(--green);
+    }
+
+
+    /* FEED */
+
+    .feed {
+      height: 100vh;
+
+      overflow-y: scroll;
+
+      scroll-snap-type: y mandatory;
+
+      scrollbar-width: none;
+    }
+
+    .feed::-webkit-scrollbar {
+      display: none;
+    }
+
+    .post {
+      position: relative;
+
+      height: 100vh;
+      min-height: 650px;
+
+      scroll-snap-align: start;
+
+      background-size: cover;
+      background-position: center;
+
+      overflow: hidden;
+    }
+
+    .post::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.12) 0%,
+          rgba(0,0,0,0.03) 30%,
+          rgba(0,0,0,0.30) 58%,
+          rgba(0,0,0,0.92) 100%
+        );
+    }
+
+    .post::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      box-shadow:
+        inset 0 0 100px rgba(0,0,0,0.25);
+
+      pointer-events: none;
+    }
+
+
+    /* PROFILE STRIP */
+
+    .profile-strip {
+      position: absolute;
+
+      top: 86px;
+      left: 18px;
+      right: 18px;
+
+      z-index: 3;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 12px;
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+
+      gap: 11px;
+    }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        rgba(0,0,0,0.65);
+
+      border:
+        1px solid rgba(255,255,255,0.28);
+
+      backdrop-filter: blur(14px);
+
+      color: var(--green);
+
+      font-weight: 950;
+    }
+
+    .username {
+      font-size: 14px;
+      font-weight: 900;
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .garage-count {
+      color: #d0d0d0;
+
+      font-size: 11px;
+
+      margin-top: 2px;
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .follow-button {
+      border:
+        1px solid rgba(255,255,255,0.25);
+
+      background:
+        rgba(0,0,0,0.45);
+
+      color: white;
+
+      padding: 9px 14px;
+
+      border-radius: 999px;
+
+      backdrop-filter: blur(14px);
+
+      font-size: 12px;
+      font-weight: 850;
+
+      cursor: pointer;
+    }
+
+    .follow-button.following {
+      color: var(--green);
+
+      border-color:
+        rgba(155,244,4,0.55);
+    }
+
+
+    /* POST CONTENT */
+
+    .post-content {
+      position: absolute;
+
+      left: 18px;
+      right: 86px;
+
+      bottom: 102px;
+
+      z-index: 3;
+    }
+
+    .car-nickname {
+      color: var(--green);
+
+      font-size:
+        clamp(34px, 8vw, 58px);
+
+      font-weight: 950;
+
+      letter-spacing: -2px;
+
+      line-height: 0.95;
+
+      text-shadow:
+        0 3px 18px rgba(0,0,0,0.8);
+    }
+
+    .car-model {
+      margin-top: 7px;
+
+      font-size: 15px;
+      font-weight: 750;
+
+      text-shadow:
+        0 2px 12px rgba(0,0,0,0.9);
+    }
+
+    .caption {
+      color: #d3d3d3;
+
+      font-size: 13px;
+      line-height: 1.45;
+
+      max-width: 520px;
+
+      margin-top: 9px;
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .post-tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(0,0,0,0.45);
+
+      border:
+        1px solid rgba(255,255,255,0.14);
+
+      backdrop-filter: blur(12px);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    /* KLEEN */
+
+    .kleen-card {
+      margin-top: 16px;
+
+      width:
+        min(100%, 410px);
+
+      padding: 12px;
+
+      border-radius: 15px;
+
+      background:
+        rgba(7,7,7,0.68);
+
+      border:
+        1px solid rgba(255,255,255,0.14);
+
+      backdrop-filter: blur(16px);
+    }
+
+    .kleen-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 12px;
+
+      margin-bottom: 8px;
+    }
+
+    .kleen-label {
+      font-size: 11px;
+      font-weight: 950;
+
+      letter-spacing: 1.5px;
+    }
+
+    .kleen-tier {
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 950;
+
+      text-transform: uppercase;
+    }
+
+    .kleen-track {
+      position: relative;
+
+      height: 8px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.10);
+
+      overflow: hidden;
+    }
+
+    .kleen-fill {
+      height: 100%;
+
+      width:
+        var(--kleen-score);
+
+      border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #5d9000,
+          var(--green)
+        );
+
+      box-shadow:
+        0 0 16px rgba(155,244,4,0.55);
+
+      transition:
+        width 0.45s ease;
+    }
+
+    .kleen-bottom {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 7px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+
+    /* SIDE BUTTONS */
+
+    .action-rail {
+      position: absolute;
+
+      right: 16px;
+      bottom: 111px;
+
+      z-index: 4;
+
+      display: grid;
+
+      gap: 16px;
+    }
+
+    .rail-action {
+      display: grid;
+
+      place-items: center;
+
+      gap: 4px;
+
+      color: white;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .rail-button {
+      width: 49px;
+      height: 49px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid rgba(255,255,255,0.18);
+
+      background:
+        rgba(0,0,0,0.48);
+
+      color: white;
+
+      display: grid;
+      place-items: center;
+
+      backdrop-filter: blur(14px);
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.16s ease,
+        color 0.16s ease,
+        border-color 0.16s ease;
+    }
+
+    .rail-button:active {
+      transform: scale(0.9);
+    }
+
+    .kleen-vote.active {
+      color: var(--green);
+
+      border-color:
+        rgba(155,244,4,0.7);
+
+      box-shadow:
+        0 0 18px rgba(155,244,4,0.2);
+    }
+
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      position: fixed;
+
+      left: 14px;
+      right: 14px;
+
+      bottom:
+        max(
+          12px,
+          env(safe-area-inset-bottom)
+        );
+
+      z-index: 50;
+
+      height: 60px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background:
+        rgba(8,8,8,0.82);
+
+      border:
+        1px solid rgba(255,255,255,0.12);
+
+      border-radius: 20px;
+
+      backdrop-filter:
+        blur(18px);
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.45);
+    }
+
+    .nav-item {
+      color: #949494;
+
+      text-decoration: none;
+
+      display: grid;
+      place-items: center;
+
+      gap: 3px;
+
+      min-width: 70px;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .nav-icon {
+      font-size: 18px;
+    }
+
+    .nav-item.active {
+      color: var(--green);
+    }
+
+
+    @media (min-width: 850px) {
+
+      .post {
+        width:
+          min(100%, 760px);
+
+        margin: auto;
+
+        border-left:
+          1px solid rgba(255,255,255,0.08);
+
+        border-right:
+          1px solid rgba(255,255,255,0.08);
+      }
+
+      .topbar {
+        width:
+          min(100%, 760px);
+
+        margin:
+          0 auto;
+      }
+
+      .bottom-nav {
+        width: 730px;
+        left: 50%;
+
+        transform:
+          translateX(-50%);
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- TOP BAR -->
+
+  <header class="topbar">
+
+    <div>
+
+      <img
+        src="modzfolio-wordmark-green.png.PNG"
+        alt="Modzfolio"
+        class="brand-logo"
+        onerror="
+          this.style.display='none';
+          document.getElementById('brandFallback').style.display='block';
+        "
+      >
+
+      <div
+        class="brand-fallback"
+        id="brandFallback"
+      >
+        MODZ<span>FOLIO</span>
+      </div>
+
+    </div>
+
+
+    <div class="feed-toggle">
+
+      <button
+        class="active"
+        type="button"
+      >
+        For You
+      </button>
+
+      <button
+        type="button"
+      >
+        Following
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- FEED -->
+
+  <main class="feed">
+
+
+    <!-- POST 1 -->
+
+    <article
+      class="post"
+      data-post="ghost"
+      data-score="86"
+      style="
+        background-image:
+        url('ghost-booty.jpg');
+      "
+    >
+
+      <div class="profile-strip">
+
+        <div class="profile-info">
+
+          <div class="avatar">
+            K
+          </div>
+
+          <div>
+
+            <div class="username">
+              @krzly
+            </div>
+
+            <div class="garage-count">
+              1 car in garage
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="follow-button"
+          type="button"
+        >
+          Follow
+        </button>
+
+      </div>
+
+
+
+      <div class="post-content">
+
+        <div class="car-nickname">
+          GHOST
+        </div>
+
+        <div class="car-model">
+          2025 Subaru Impreza RS
+        </div>
+
+        <div class="caption">
+          Daily driven. Slowly becoming exactly
+          what I pictured when I bought it.
+        </div>
+
+
+        <div class="post-tags">
+
+          <span class="tag">
+            14 MODS
+          </span>
+
+          <span class="tag">
+            ACTIVE BUILD
+          </span>
+
+          <span class="tag">
+            SUBARU
+          </span>
+
+        </div>
+
+
+        <div
+          class="kleen-card"
+          style="--kleen-score: 86%;"
+        >
+
+          <div class="kleen-top">
+
+            <div class="kleen-label">
+              KLEEN METER
+            </div>
+
+            <div class="kleen-tier">
+              Show Ready
+            </div>
+
+          </div>
+
+
+          <div class="kleen-track">
+
+            <div class="kleen-fill"></div>
+
+          </div>
+
+
+          <div class="kleen-bottom">
+
+            <span>
+              Community Rating
+            </span>
+
+            <span class="kleen-score-text">
+              86
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="action-rail">
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button kleen-vote"
+            type="button"
+          >
+            ✦
+          </button>
+
+          <span class="vote-count">
+            1.2K
+          </span>
+
+        </div>
+
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button"
+            type="button"
+          >
+            💬
+          </button>
+
+          <span>
+            84
+          </span>
+
+        </div>
+
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button"
+            type="button"
+          >
+            ↗
+          </button>
+
+          <span>
+            Share
+          </span>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- POST 2 -->
+
+    <article
+      class="post"
+      data-post="midnight"
+      data-score="74"
+      style="
+        background-image:
+        url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=90');
+      "
+    >
+
+      <div class="profile-strip">
+
+        <div class="profile-info">
+
+          <div class="avatar">
+            J
+          </div>
+
+          <div>
+
+            <div class="username">
+              @jdmjay
+            </div>
+
+            <div class="garage-count">
+              3 cars in garage
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="follow-button"
+          type="button"
+        >
+          Follow
+        </button>
+
+      </div>
+
+
+
+      <div class="post-content">
+
+        <div class="car-nickname">
+          MIDNIGHT
+        </div>
+
+        <div class="car-model">
+          2018 Honda Civic Si
+        </div>
+
+        <div class="caption">
+          Built for canyon nights and questionable
+          financial decisions.
+        </div>
+
+
+        <div class="post-tags">
+
+          <span class="tag">
+            22 MODS
+          </span>
+
+          <span class="tag">
+            STREET BUILD
+          </span>
+
+          <span class="tag">
+            HONDA
+          </span>
+
+        </div>
+
+
+        <div
+          class="kleen-card"
+          style="--kleen-score: 74%;"
+        >
+
+          <div class="kleen-top">
+
+            <div class="kleen-label">
+              KLEEN METER
+            </div>
+
+            <div class="kleen-tier">
+              Meet Ready
+            </div>
+
+          </div>
+
+
+          <div class="kleen-track">
+
+            <div class="kleen-fill"></div>
+
+          </div>
+
+
+          <div class="kleen-bottom">
+
+            <span>
+              Community Rating
+            </span>
+
+            <span class="kleen-score-text">
+              74
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="action-rail">
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button kleen-vote"
+            type="button"
+          >
+            ✦
+          </button>
+
+          <span class="vote-count">
+            642
+          </span>
+
+        </div>
+
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button"
+            type="button"
+          >
+            💬
+          </button>
+
+          <span>
+            31
+          </span>
+
+        </div>
+
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button"
+            type="button"
+          >
+            ↗
+          </button>
+
+          <span>
+            Share
+          </span>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- POST 3 -->
+
+    <article
+      class="post"
+      data-post="static"
+      data-score="94"
+      style="
+        background-image:
+        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=90');
+      "
+    >
+
+      <div class="profile-strip">
+
+        <div class="profile-info">
+
+          <div class="avatar">
+            M
+          </div>
+
+          <div>
+
+            <div class="username">
+              @mika.builds
+            </div>
+
+            <div class="garage-count">
+              2 cars in garage
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="follow-button"
+          type="button"
+        >
+          Follow
+        </button>
+
+      </div>
+
+
+
+      <div class="post-content">
+
+        <div class="car-nickname">
+          STATIC
+        </div>
+
+        <div class="car-model">
+          2021 Toyota GR86
+        </div>
+
+        <div class="caption">
+          Simple, low and intentional.
+          Nothing on the car is there by accident.
+        </div>
+
+
+        <div class="post-tags">
+
+          <span class="tag">
+            31 MODS
+          </span>
+
+          <span class="tag">
+            FEATURED
+          </span>
+
+          <span class="tag">
+            TOYOTA
+          </span>
+
+        </div>
+
+
+        <div
+          class="kleen-card"
+          style="--kleen-score: 94%;"
+        >
+
+          <div class="kleen-top">
+
+            <div class="kleen-label">
+              KLEEN METER
+            </div>
+
+            <div class="kleen-tier">
+              Exhibition
+            </div>
+
+          </div>
+
+
+          <div class="kleen-track">
+
+            <div class="kleen-fill"></div>
+
+          </div>
+
+
+          <div class="kleen-bottom">
+
+            <span>
+              Community Rating
+            </span>
+
+            <span class="kleen-score-text">
+              94
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="action-rail">
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button kleen-vote"
+            type="button"
+          >
+            ✦
+          </button>
+
+          <span class="vote-count">
+            3.4K
+          </span>
+
+        </div>
+
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button"
+            type="button"
+          >
+            💬
+          </button>
+
+          <span>
+            219
+          </span>
+
+        </div>
+
+
+        <div class="rail-action">
+
+          <button
+            class="rail-button"
+            type="button"
+          >
+            ↗
+          </button>
+
+          <span>
+            Share
+          </span>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+  </main>
+
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="bottom-nav">
+
+    <a
+      class="nav-item"
+      href="garage.html"
+    >
+      <span class="nav-icon">
+        ◉
+      </span>
+
+      <span>
+        Garage
+      </span>
+    </a>
+
+
+    <a
+      class="nav-item active"
+      href="explore.html"
+    >
+      <span class="nav-icon">
+        ◈
+      </span>
+
+      <span>
+        Explore
+      </span>
+    </a>
+
+
+    <a
+      class="nav-item"
+      href="#"
+    >
+      <span class="nav-icon">
+        ◯
+      </span>
+
+      <span>
+        Profile
+      </span>
+    </a>
+
+  </nav>
+
+
+
+  <script>
+
+    /*
+      FOR YOU / FOLLOWING
+    */
+
+    document
+      .querySelectorAll(
+        ".feed-toggle button"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              document
+                .querySelectorAll(
+                  ".feed-toggle button"
+                )
+                .forEach(
+                  item =>
+                    item.classList.remove(
+                      "active"
+                    )
+                );
+
+              button.classList.add(
+                "active"
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    /*
+      FOLLOW BUTTONS
+    */
+
+    document
+      .querySelectorAll(
+        ".follow-button"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              const following =
+                button.classList.toggle(
+                  "following"
+                );
+
+              button.textContent =
+                following
+                ? "Following"
+                : "Follow";
+
+            }
+          );
+
+        }
+      );
+
+
+    /*
+      KLEEN VOTES
+
+      Prototype only.
+
+      Later this comes from
+      the backend/community.
+    */
+
+    document
+      .querySelectorAll(
+        ".kleen-vote"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              const post =
+                button.closest(
+                  ".post"
+                );
+
+              const active =
+                button.classList.toggle(
+                  "active"
+                );
+
+
+              let score =
+                Number(
+                  post.dataset.score
+                );
+
+
+              score +=
+                active
+                ? 1
+                : -1;
+
+
+              score =
+                Math.max(
+                  0,
+                  Math.min(
+                    100,
+                    score
+                  )
+                );
+
+
+              post.dataset.score =
+                score;
+
+
+              post
+                .querySelector(
+                  ".kleen-fill"
+                )
+                .style
+                .width =
+                  score + "%";
+
+
+              post
+                .querySelector(
+                  ".kleen-score-text"
+                )
+                .textContent =
+                  score;
+
+
+              const tier =
+                post.querySelector(
+                  ".kleen-tier"
+                );
+
+
+              if (score >= 98) {
+
+                tier.textContent =
+                  "Hall of KLEEN";
+
+              }
+
+              else if (score >= 90) {
+
+                tier.textContent =
+                  "Exhibition";
+
+              }
+
+              else if (score >= 80) {
+
+                tier.textContent =
+                  "Show Ready";
+
+              }
+
+              else if (score >= 65) {
+
+                tier.textContent =
+                  "Meet Ready";
+
+              }
+
+              else if (score >= 40) {
+
+                tier.textContent =
+                  "Street KLEEN";
+
+              }
+
+              else {
+
+                tier.textContent =
+                  "Off the Lot";
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+  </script>
+
+
+</body>
+
+</html>
