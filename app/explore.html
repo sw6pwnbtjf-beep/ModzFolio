@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -34,7 +32,6 @@
     body {
       background: var(--black);
       color: white;
-
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -51,13 +48,10 @@
     }
 
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     .topbar {
       position: fixed;
-
       top: 0;
       left: 0;
       right: 0;
@@ -101,7 +95,6 @@
 
       font-size: 23px;
       font-weight: 950;
-
       font-style: italic;
       letter-spacing: -1px;
     }
@@ -115,7 +108,6 @@
 
     .feed-toggle {
       display: flex;
-
       gap: 4px;
 
       padding: 4px;
@@ -128,7 +120,8 @@
       border:
         1px solid var(--border);
 
-      backdrop-filter: blur(14px);
+      backdrop-filter:
+        blur(14px);
     }
 
     .feed-toggle button {
@@ -153,9 +146,7 @@
     }
 
 
-    /* =========================
-       FEED
-    ========================= */
+    /* FEED */
 
     .feed {
       height: 100vh;
@@ -214,9 +205,7 @@
     }
 
 
-    /* =========================
-       PROFILE STRIP
-    ========================= */
+    /* PROFILE */
 
     .profile-strip {
       position: absolute;
@@ -256,7 +245,8 @@
       border:
         1px solid rgba(255,255,255,0.28);
 
-      backdrop-filter: blur(14px);
+      backdrop-filter:
+        blur(14px);
 
       color: var(--green);
 
@@ -295,7 +285,8 @@
 
       border-radius: 999px;
 
-      backdrop-filter: blur(14px);
+      backdrop-filter:
+        blur(14px);
 
       font-size: 12px;
       font-weight: 850;
@@ -311,9 +302,7 @@
     }
 
 
-    /* =========================
-       POST CONTENT
-    ========================= */
+    /* POST CONTENT */
 
     .post-content {
       position: absolute;
@@ -386,16 +375,15 @@
       border:
         1px solid rgba(255,255,255,0.14);
 
-      backdrop-filter: blur(12px);
+      backdrop-filter:
+        blur(12px);
 
       font-size: 10px;
       font-weight: 800;
     }
 
 
-    /* =========================
-       KLEEN METER
-    ========================= */
+    /* KLEEN */
 
     .kleen-card {
       margin-top: 16px;
@@ -413,7 +401,12 @@
       border:
         1px solid rgba(255,255,255,0.14);
 
-      backdrop-filter: blur(16px);
+      backdrop-filter:
+        blur(16px);
+
+      transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
     }
 
     .kleen-top {
@@ -452,7 +445,7 @@
       background:
         rgba(255,255,255,0.10);
 
-      overflow: hidden;
+      overflow: visible;
     }
 
     .kleen-fill {
@@ -475,6 +468,9 @@
 
       transition:
         width 0.45s ease;
+
+      transform-origin:
+        left center;
     }
 
     .kleen-bottom {
@@ -488,10 +484,71 @@
       font-size: 10px;
     }
 
+    .kleen-card.kleen-pulse {
+      border-color:
+        rgba(155,244,4,0.70);
 
-    /* =========================
-       ACTION RAIL
-    ========================= */
+      box-shadow:
+        0 0 0 1px rgba(155,244,4,0.12),
+        0 0 26px rgba(155,244,4,0.22);
+    }
+
+    .kleen-card.kleen-pulse .kleen-fill {
+      animation:
+        kleenMeterPulse 0.75s ease;
+    }
+
+    @keyframes kleenMeterPulse {
+
+      0% {
+        transform: scaleY(1);
+
+        filter:
+          brightness(1);
+
+        box-shadow:
+          0 0 16px
+          rgba(155,244,4,0.55);
+      }
+
+      35% {
+        transform: scaleY(1.45);
+
+        filter:
+          brightness(1.9);
+
+        box-shadow:
+          0 0 12px rgba(155,244,4,1),
+          0 0 30px rgba(155,244,4,0.90),
+          0 0 55px rgba(155,244,4,0.50);
+      }
+
+      68% {
+        transform: scaleY(1.16);
+
+        filter:
+          brightness(1.35);
+
+        box-shadow:
+          0 0 18px rgba(155,244,4,0.80),
+          0 0 34px rgba(155,244,4,0.45);
+      }
+
+      100% {
+        transform: scaleY(1);
+
+        filter:
+          brightness(1);
+
+        box-shadow:
+          0 0 16px
+          rgba(155,244,4,0.55);
+      }
+
+    }
+
+
+    /* ACTION RAIL */
 
     .action-rail {
       position: absolute;
@@ -539,7 +596,8 @@
 
       padding: 0;
 
-      backdrop-filter: blur(14px);
+      backdrop-filter:
+        blur(14px);
 
       cursor: pointer;
 
@@ -552,11 +610,9 @@
     }
 
     .rail-button:active {
-      transform: scale(0.88);
+      transform:
+        scale(0.88);
     }
-
-
-    /* CENTERED KLEEN ICON */
 
     .kleen-icon {
       width: 24px;
@@ -565,8 +621,6 @@
       display: block;
 
       fill: currentColor;
-
-      transform-origin: center;
     }
 
     .kleen-vote.active {
@@ -579,7 +633,8 @@
         rgba(155,244,4,0.08);
 
       box-shadow:
-        0 0 24px rgba(155,244,4,0.30);
+        0 0 24px
+        rgba(155,244,4,0.30);
     }
 
     .kleen-action.voted .vote-count {
@@ -592,17 +647,25 @@
     }
 
     @keyframes kleenPop {
+
       0% {
-        transform: scale(1) rotate(0);
+        transform:
+          scale(1)
+          rotate(0);
       }
 
       45% {
-        transform: scale(1.42) rotate(18deg);
+        transform:
+          scale(1.42)
+          rotate(18deg);
       }
 
       100% {
-        transform: scale(1) rotate(0);
+        transform:
+          scale(1)
+          rotate(0);
       }
+
     }
 
 
@@ -619,16 +682,14 @@
         rgba(155,244,4,0.7);
 
       box-shadow:
-        0 0 20px rgba(155,244,4,0.28);
+        0 0 20px
+        rgba(155,244,4,0.28);
     }
 
     .heart {
       display: inline-block;
 
       line-height: 1;
-
-      transition:
-        transform 0.18s ease;
     }
 
     .like-button.pop .heart {
@@ -637,6 +698,7 @@
     }
 
     @keyframes heartPop {
+
       0% {
         transform: scale(1);
       }
@@ -648,6 +710,7 @@
       100% {
         transform: scale(1);
       }
+
     }
 
 
@@ -668,9 +731,106 @@
     }
 
 
-    /* =========================
-       COMMENTS
-    ========================= */
+    /* FOLLOWING EMPTY */
+
+    .following-empty {
+      min-height: 100vh;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        110px 24px
+        100px;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(155,244,4,0.10),
+          transparent 42%
+        );
+    }
+
+    .following-empty.show {
+      display: flex;
+    }
+
+    .following-empty-content {
+      max-width: 360px;
+    }
+
+    .following-empty-icon {
+      width: 68px;
+      height: 68px;
+
+      margin:
+        0 auto 18px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      border:
+        1px solid rgba(155,244,4,0.38);
+
+      color: var(--green);
+
+      font-size: 30px;
+
+      box-shadow:
+        0 0 34px
+        rgba(155,244,4,0.15);
+    }
+
+    .following-empty h2 {
+      font-size: 22px;
+
+      margin-bottom: 8px;
+    }
+
+    .following-empty p {
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.55;
+
+      margin-bottom: 18px;
+    }
+
+    .find-friends-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 44px;
+
+      padding:
+        0 18px;
+
+      border-radius: 999px;
+
+      background:
+        var(--green);
+
+      color: #050505;
+
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 950;
+
+      box-shadow:
+        0 0 24px
+        rgba(155,244,4,0.20);
+    }
+
+
+    /* COMMENTS */
 
     .comment-backdrop {
       position: fixed;
@@ -739,7 +899,8 @@
         transform 0.28s ease;
 
       box-shadow:
-        0 -20px 60px rgba(0,0,0,0.65);
+        0 -20px 60px
+        rgba(0,0,0,0.65);
 
       backdrop-filter:
         blur(20px);
@@ -755,8 +916,7 @@
       height: 4px;
 
       margin:
-        -4px auto
-        13px;
+        -4px auto 13px;
 
       border-radius: 999px;
 
@@ -837,7 +997,8 @@
       width: 34px;
       height: 34px;
 
-      flex: 0 0 34px;
+      flex:
+        0 0 34px;
 
       border-radius: 50%;
 
@@ -922,22 +1083,16 @@
       outline: none;
     }
 
-    .comment-input::placeholder {
-      color: #777;
-    }
-
     .comment-input:focus {
       border-color:
         rgba(155,244,4,0.6);
-
-      box-shadow:
-        0 0 0 2px rgba(155,244,4,0.06);
     }
 
     .comment-submit {
       border: none;
 
-      background: var(--green);
+      background:
+        var(--green);
 
       color: #050505;
 
@@ -952,9 +1107,7 @@
     }
 
 
-    /* =========================
-       TOAST
-    ========================= */
+    /* TOAST */
 
     .toast {
       position: fixed;
@@ -986,13 +1139,11 @@
       border:
         1px solid rgba(155,244,4,0.35);
 
-      color: var(--green);
+      color:
+        var(--green);
 
       font-size: 12px;
       font-weight: 850;
-
-      box-shadow:
-        0 12px 35px rgba(0,0,0,0.5);
 
       opacity: 0;
 
@@ -1001,9 +1152,6 @@
       transition:
         opacity 0.2s ease,
         transform 0.2s ease;
-
-      backdrop-filter:
-        blur(16px);
     }
 
     .toast.show {
@@ -1014,9 +1162,7 @@
     }
 
 
-    /* =========================
-       BOTTOM NAV
-    ========================= */
+    /* BOTTOM NAV */
 
     .bottom-nav {
       position: fixed;
@@ -1050,7 +1196,8 @@
         blur(18px);
 
       box-shadow:
-        0 15px 40px rgba(0,0,0,0.45);
+        0 15px 40px
+        rgba(0,0,0,0.45);
     }
 
     .nav-item {
@@ -1063,7 +1210,7 @@
 
       gap: 3px;
 
-      min-width: 70px;
+      min-width: 60px;
 
       font-size: 10px;
       font-weight: 800;
@@ -1079,6 +1226,7 @@
 
 
     @media (min-width: 850px) {
+
       .post {
         width:
           min(100%, 760px);
@@ -1108,6 +1256,15 @@
         transform:
           translateX(-50%);
       }
+
+      .following-empty {
+        width:
+          min(100%, 760px);
+
+        margin:
+          0 auto;
+      }
+
     }
 
   </style>
@@ -1115,9 +1272,6 @@
 
 
 <body>
-
-
-  <!-- TOP BAR -->
 
   <header class="topbar">
 
@@ -1164,8 +1318,6 @@
   </header>
 
 
-
-  <!-- FEED -->
 
   <main class="feed">
 
@@ -1278,7 +1430,9 @@
 
 
           <div class="kleen-track">
+
             <div class="kleen-fill"></div>
+
           </div>
 
 
@@ -1302,7 +1456,6 @@
 
       <div class="action-rail">
 
-        <!-- KLEEN -->
 
         <div class="rail-action kleen-action">
 
@@ -1310,13 +1463,11 @@
             class="rail-button kleen-vote"
             type="button"
             aria-label="Vote KLEEN"
-            aria-pressed="false"
           >
 
             <svg
               class="kleen-icon"
               viewBox="0 0 24 24"
-              aria-hidden="true"
             >
               <path
                 d="
@@ -1339,14 +1490,11 @@
         </div>
 
 
-        <!-- LIKE -->
-
         <div class="rail-action">
 
           <button
             class="rail-button like-button"
             type="button"
-            aria-label="Like build"
           >
 
             <span class="heart">
@@ -1362,14 +1510,11 @@
         </div>
 
 
-        <!-- COMMENTS -->
-
         <div class="rail-action">
 
           <button
             class="rail-button comment-button"
             type="button"
-            aria-label="Comments"
           >
             💬
           </button>
@@ -1381,20 +1526,16 @@
         </div>
 
 
-        <!-- SHARE -->
-
         <div class="rail-action">
 
           <button
             class="rail-button share-button"
             type="button"
-            aria-label="Share build"
           >
 
             <svg
               class="share-icon"
               viewBox="0 0 24 24"
-              aria-hidden="true"
             >
               <path d="M12 16V3"></path>
               <path d="M7 8l5-5 5 5"></path>
@@ -1523,7 +1664,9 @@
 
 
           <div class="kleen-track">
+
             <div class="kleen-fill"></div>
+
           </div>
 
 
@@ -1552,14 +1695,11 @@
           <button
             class="rail-button kleen-vote"
             type="button"
-            aria-label="Vote KLEEN"
-            aria-pressed="false"
           >
 
             <svg
               class="kleen-icon"
               viewBox="0 0 24 24"
-              aria-hidden="true"
             >
               <path
                 d="
@@ -1588,9 +1728,11 @@
             class="rail-button like-button"
             type="button"
           >
+
             <span class="heart">
               ♡
             </span>
+
           </button>
 
           <span class="like-count">
@@ -1754,7 +1896,9 @@
 
 
           <div class="kleen-track">
+
             <div class="kleen-fill"></div>
+
           </div>
 
 
@@ -1783,14 +1927,11 @@
           <button
             class="rail-button kleen-vote"
             type="button"
-            aria-label="Vote KLEEN"
-            aria-pressed="false"
           >
 
             <svg
               class="kleen-icon"
               viewBox="0 0 24 24"
-              aria-hidden="true"
             >
               <path
                 d="
@@ -1819,9 +1960,11 @@
             class="rail-button like-button"
             type="button"
           >
+
             <span class="heart">
               ♡
             </span>
+
           </button>
 
           <span class="like-count">
@@ -1876,20 +2019,51 @@
     </article>
 
 
+
+    <!-- FOLLOWING EMPTY -->
+
+    <section
+      class="following-empty"
+      id="followingEmpty"
+    >
+
+      <div class="following-empty-content">
+
+        <div class="following-empty-icon">
+          +
+        </div>
+
+        <h2>
+          Your crew is quiet.
+        </h2>
+
+        <p>
+          Follow builds in For You,
+          or find people you already know in Crew.
+        </p>
+
+        <a
+          class="find-friends-button"
+          href="crew.html"
+        >
+          Find Friends
+        </a>
+
+      </div>
+
+    </section>
+
   </main>
 
 
 
-  <!-- COMMENT BACKDROP -->
+  <!-- COMMENTS -->
 
   <div
     class="comment-backdrop"
     id="commentBackdrop"
   ></div>
 
-
-
-  <!-- COMMENT SHEET -->
 
   <section
     class="comment-sheet"
@@ -1960,8 +2134,6 @@
 
 
 
-  <!-- TOAST -->
-
   <div
     class="toast"
     id="toast"
@@ -1979,7 +2151,6 @@
       class="nav-item"
       href="garage.html"
     >
-
       <span class="nav-icon">
         ◉
       </span>
@@ -1987,7 +2158,6 @@
       <span>
         Garage
       </span>
-
     </a>
 
 
@@ -1995,7 +2165,6 @@
       class="nav-item active"
       href="explore.html"
     >
-
       <span class="nav-icon">
         ◈
       </span>
@@ -2003,7 +2172,20 @@
       <span>
         Explore
       </span>
+    </a>
 
+
+    <a
+      class="nav-item"
+      href="crew.html"
+    >
+      <span class="nav-icon">
+        ◎
+      </span>
+
+      <span>
+        Crew
+      </span>
     </a>
 
 
@@ -2011,7 +2193,6 @@
       class="nav-item"
       href="#"
     >
-
       <span class="nav-icon">
         ◯
       </span>
@@ -2019,7 +2200,6 @@
       <span>
         Profile
       </span>
-
     </a>
 
   </nav>
@@ -2027,11 +2207,6 @@
 
 
   <script>
-
-
-    /* =========================
-       HELPERS
-    ========================= */
 
     function formatCount(number) {
 
@@ -2062,6 +2237,7 @@
     }
 
 
+
     function getTier(score) {
 
       if (score >= 98) {
@@ -2090,47 +2266,172 @@
 
 
 
-    /* =========================
-       FEED TOGGLE
-    ========================= */
+    /* FEED FILTERING */
 
-    document
-      .querySelectorAll(
-        ".feed-toggle button"
-      )
-      .forEach(
-        button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              document
-                .querySelectorAll(
-                  ".feed-toggle button"
-                )
-                .forEach(
-                  item =>
-                    item.classList.remove(
-                      "active"
-                    )
-                );
-
-              button.classList.add(
-                "active"
-              );
-
-            }
-          );
-
-        }
+    const feed =
+      document.querySelector(
+        ".feed"
       );
 
 
+    const tabs =
+      document.querySelectorAll(
+        ".feed-toggle button"
+      );
 
-    /* =========================
-       FOLLOW
-    ========================= */
+
+    const forYouTab =
+      tabs[0];
+
+
+    const followingTab =
+      tabs[1];
+
+
+    const followingEmpty =
+      document.getElementById(
+        "followingEmpty"
+      );
+
+
+    function setActiveTab(button) {
+
+      tabs.forEach(
+        tab =>
+          tab.classList.remove(
+            "active"
+          )
+      );
+
+
+      button.classList.add(
+        "active"
+      );
+
+    }
+
+
+
+    function showForYou() {
+
+      document
+        .querySelectorAll(
+          ".post"
+        )
+        .forEach(
+          post => {
+
+            post.style.display =
+              "";
+
+          }
+        );
+
+
+      followingEmpty
+        .classList
+        .remove(
+          "show"
+        );
+
+
+      feed.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+
+    function showFollowing() {
+
+      let visible =
+        0;
+
+
+      document
+        .querySelectorAll(
+          ".post"
+        )
+        .forEach(
+          post => {
+
+            const button =
+              post.querySelector(
+                ".follow-button"
+              );
+
+
+            const following =
+              button
+                .classList
+                .contains(
+                  "following"
+                );
+
+
+            post.style.display =
+              following
+                ? ""
+                : "none";
+
+
+            if (following) {
+              visible++;
+            }
+
+          }
+        );
+
+
+      followingEmpty
+        .classList
+        .toggle(
+          "show",
+          visible === 0
+        );
+
+
+      feed.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+
+    forYouTab.addEventListener(
+      "click",
+      () => {
+
+        setActiveTab(
+          forYouTab
+        );
+
+        showForYou();
+
+      }
+    );
+
+
+    followingTab.addEventListener(
+      "click",
+      () => {
+
+        setActiveTab(
+          followingTab
+        );
+
+        showFollowing();
+
+      }
+    );
+
+
+
+    /* FOLLOW */
 
     document
       .querySelectorAll(
@@ -2139,19 +2440,86 @@
       .forEach(
         button => {
 
+          const post =
+            button.closest(
+              ".post"
+            );
+
+
+          const username =
+            post
+              .querySelector(
+                ".username"
+              )
+              .textContent
+              .trim();
+
+
+          const key =
+            "modzfolio-follow-" +
+            username;
+
+
+          const saved =
+            localStorage
+              .getItem(
+                key
+              ) === "true";
+
+
+          if (saved) {
+
+            button
+              .classList
+              .add(
+                "following"
+              );
+
+
+            button.textContent =
+              "Following";
+
+          }
+
+
           button.addEventListener(
             "click",
             () => {
 
               const following =
-                button.classList.toggle(
-                  "following"
-                );
+                button
+                  .classList
+                  .toggle(
+                    "following"
+                  );
+
 
               button.textContent =
                 following
                   ? "Following"
                   : "Follow";
+
+
+              localStorage
+                .setItem(
+                  key,
+                  String(
+                    following
+                  )
+                );
+
+
+              if (
+                followingTab
+                  .classList
+                  .contains(
+                    "active"
+                  )
+              ) {
+
+                showFollowing();
+
+              }
 
             }
           );
@@ -2161,9 +2529,7 @@
 
 
 
-    /* =========================
-       KLEEN VOTES
-    ========================= */
+    /* KLEEN */
 
     document
       .querySelectorAll(
@@ -2175,58 +2541,76 @@
           const postId =
             post.dataset.post;
 
+
           const button =
             post.querySelector(
               ".kleen-vote"
             );
+
 
           const action =
             post.querySelector(
               ".kleen-action"
             );
 
-          const countText =
+
+          const count =
             post.querySelector(
               ".vote-count"
             );
+
 
           const scoreText =
             post.querySelector(
               ".kleen-score-text"
             );
 
+
           const fill =
             post.querySelector(
               ".kleen-fill"
             );
+
 
           const tier =
             post.querySelector(
               ".kleen-tier"
             );
 
+
+          const card =
+            post.querySelector(
+              ".kleen-card"
+            );
+
+
           const baseScore =
             Number(
               post.dataset.score
             );
 
+
           const baseVotes =
             Number(
-              post.dataset.baseKleen || 0
+              post.dataset.baseKleen
+              || 0
             );
 
-          const storageKey =
+
+          const key =
             "modzfolio-kleen-" +
             postId;
 
 
           let voted =
-            localStorage.getItem(
-              storageKey
-            ) === "true";
+            localStorage
+              .getItem(
+                key
+              ) === "true";
 
 
-          function updateKleenUI() {
+
+          function updateKleen() {
 
             const score =
               Math.min(
@@ -2238,6 +2622,7 @@
                     : 0
                 )
               );
+
 
             const votes =
               baseVotes +
@@ -2264,12 +2649,6 @@
               );
 
 
-            button.setAttribute(
-              "aria-pressed",
-              String(voted)
-            );
-
-
             fill.style.width =
               score + "%";
 
@@ -2284,7 +2663,7 @@
               );
 
 
-            countText.textContent =
+            count.textContent =
               formatCount(
                 votes
               );
@@ -2292,7 +2671,44 @@
           }
 
 
-          updateKleenUI();
+
+          function pulseKleen() {
+
+            card
+              .classList
+              .remove(
+                "kleen-pulse"
+              );
+
+
+            void card.offsetWidth;
+
+
+            card
+              .classList
+              .add(
+                "kleen-pulse"
+              );
+
+
+            setTimeout(
+              () => {
+
+                card
+                  .classList
+                  .remove(
+                    "kleen-pulse"
+                  );
+
+              },
+              800
+            );
+
+          }
+
+
+
+          updateKleen();
 
 
           button.addEventListener(
@@ -2304,8 +2720,10 @@
 
 
               localStorage.setItem(
-                storageKey,
-                String(voted)
+                key,
+                String(
+                  voted
+                )
               );
 
 
@@ -2326,7 +2744,9 @@
                 );
 
 
-              updateKleenUI();
+              updateKleen();
+
+              pulseKleen();
 
             }
           );
@@ -2336,9 +2756,7 @@
 
 
 
-    /* =========================
-       LIKES
-    ========================= */
+    /* LIKES */
 
     document
       .querySelectorAll(
@@ -2351,19 +2769,19 @@
             post.dataset.post;
 
 
-          const likeButton =
+          const button =
             post.querySelector(
               ".like-button"
             );
 
 
           const heart =
-            likeButton.querySelector(
+            button.querySelector(
               ".heart"
             );
 
 
-          const likeCount =
+          const count =
             post.querySelector(
               ".like-count"
             );
@@ -2371,53 +2789,27 @@
 
           const baseLikes =
             Number(
-              post.dataset.baseLikes || 0
+              post.dataset.baseLikes
+              || 0
             );
 
 
-          const storageKey =
+          const key =
             "modzfolio-like-" +
             postId;
 
 
           const liked =
-            localStorage.getItem(
-              storageKey
-            ) === "true";
+            localStorage
+              .getItem(
+                key
+              ) === "true";
 
-
-          function updateLikeUI() {
-
-            const isLiked =
-              likeButton
-                .classList
-                .contains(
-                  "active"
-                );
-
-
-            heart.textContent =
-              isLiked
-                ? "♥"
-                : "♡";
-
-
-            likeCount.textContent =
-              formatCount(
-                baseLikes +
-                (
-                  isLiked
-                    ? 1
-                    : 0
-                )
-              );
-
-          }
 
 
           if (liked) {
 
-            likeButton
+            button
               .classList
               .add(
                 "active"
@@ -2426,15 +2818,45 @@
           }
 
 
-          updateLikeUI();
+
+          function updateLike() {
+
+            const active =
+              button
+                .classList
+                .contains(
+                  "active"
+                );
 
 
-          likeButton.addEventListener(
+            heart.textContent =
+              active
+                ? "♥"
+                : "♡";
+
+
+            count.textContent =
+              formatCount(
+                baseLikes +
+                (
+                  active
+                    ? 1
+                    : 0
+                )
+              );
+
+          }
+
+
+          updateLike();
+
+
+          button.addEventListener(
             "click",
             () => {
 
-              const isLiked =
-                likeButton
+              const active =
+                button
                   .classList
                   .toggle(
                     "active"
@@ -2442,29 +2864,31 @@
 
 
               localStorage.setItem(
-                storageKey,
-                String(isLiked)
+                key,
+                String(
+                  active
+                )
               );
 
 
-              likeButton
+              button
                 .classList
                 .remove(
                   "pop"
                 );
 
 
-              void likeButton.offsetWidth;
+              void button.offsetWidth;
 
 
-              likeButton
+              button
                 .classList
                 .add(
                   "pop"
                 );
 
 
-              updateLikeUI();
+              updateLike();
 
             }
           );
@@ -2474,9 +2898,7 @@
 
 
 
-    /* =========================
-       COMMENTS
-    ========================= */
+    /* COMMENTS */
 
     const commentSheet =
       document.getElementById(
@@ -2520,7 +2942,8 @@
       );
 
 
-    let activePost = null;
+    let activePost =
+      null;
 
 
 
@@ -2538,12 +2961,6 @@
           user: "@boostedmike",
           text:
             "The quad exhaust fits this way better than I expected."
-        },
-
-        {
-          user: "@fitmentdaily",
-          text:
-            "Wheel setup next 👀"
         }
 
       ],
@@ -2555,12 +2972,6 @@
           user: "@lowandslow",
           text:
             "That caption is painfully accurate 😂"
-        },
-
-        {
-          user: "@vtec.jay",
-          text:
-            "Simple Si builds always hit."
         }
 
       ],
@@ -2572,18 +2983,6 @@
           user: "@86culture",
           text:
             "This is how you do an intentional build."
-        },
-
-        {
-          user: "@stanceworks",
-          text:
-            "Fitment is on point."
-        },
-
-        {
-          user: "@garagequeen",
-          text:
-            "94 on the KLEEN meter is deserved."
         }
 
       ]
@@ -2591,7 +2990,8 @@
     };
 
 
-    function getUserComments(
+
+    function getComments(
       postId
     ) {
 
@@ -2603,9 +3003,7 @@
 
 
       if (!stored) {
-
         return [];
-
       }
 
 
@@ -2617,7 +3015,6 @@
 
       }
 
-
       catch {
 
         return [];
@@ -2627,7 +3024,8 @@
     }
 
 
-    function saveUserComments(
+
+    function saveComments(
       postId,
       comments
     ) {
@@ -2644,23 +3042,21 @@
     }
 
 
+
     function updateCommentCount(
       post
     ) {
 
-      const postId =
-        post.dataset.post;
-
-
       const base =
         Number(
-          post.dataset.baseComments || 0
+          post.dataset.baseComments
+          || 0
         );
 
 
-      const added =
-        getUserComments(
-          postId
+      const comments =
+        getComments(
+          post.dataset.post
         );
 
 
@@ -2671,13 +3067,14 @@
         .textContent =
           formatCount(
             base +
-            added.length
+            comments.length
           );
 
     }
 
 
-    function createCommentElement(
+
+    function createComment(
       comment
     ) {
 
@@ -2703,7 +3100,10 @@
 
       avatar.textContent =
         comment.user
-          .replace("@", "")
+          .replace(
+            "@",
+            ""
+          )
           .charAt(0)
           .toUpperCase();
 
@@ -2763,45 +3163,39 @@
     }
 
 
+
     function renderComments() {
 
       if (!activePost) {
-
         return;
-
       }
 
 
-      const postId =
+      const id =
         activePost.dataset.post;
 
 
-      const defaults =
-        sampleComments[
-          postId
-        ] || [];
-
-
-      const userComments =
-        getUserComments(
-          postId
-        );
+      const comments = [
+        ...(
+          sampleComments[id]
+          || []
+        ),
+        ...getComments(
+          id
+        )
+      ];
 
 
       commentList.innerHTML =
         "";
 
 
-      [
-        ...defaults,
-        ...userComments
-      ]
-      .forEach(
+      comments.forEach(
         comment => {
 
           commentList
             .appendChild(
-              createCommentElement(
+              createComment(
                 comment
               )
             );
@@ -2809,11 +3203,8 @@
         }
       );
 
-
-      commentList.scrollTop =
-        commentList.scrollHeight;
-
     }
+
 
 
     function openComments(
@@ -2848,17 +3239,8 @@
           "open"
         );
 
-
-      setTimeout(
-        () => {
-
-          commentInput.focus();
-
-        },
-        250
-      );
-
     }
+
 
 
     function closeComments() {
@@ -2880,11 +3262,8 @@
       activePost =
         null;
 
-
-      commentInput.value =
-        "";
-
     }
+
 
 
     document
@@ -2911,86 +3290,82 @@
       );
 
 
-    commentClose.addEventListener(
-      "click",
-      closeComments
-    );
+    commentClose
+      .addEventListener(
+        "click",
+        closeComments
+      );
 
 
-    commentBackdrop.addEventListener(
-      "click",
-      closeComments
-    );
+    commentBackdrop
+      .addEventListener(
+        "click",
+        closeComments
+      );
 
 
-    commentForm.addEventListener(
-      "submit",
-      event => {
+    commentForm
+      .addEventListener(
+        "submit",
+        event => {
 
-        event.preventDefault();
-
-
-        if (!activePost) {
-
-          return;
-
-        }
+          event.preventDefault();
 
 
-        const text =
-          commentInput
-            .value
-            .trim();
+          if (!activePost) {
+            return;
+          }
 
 
-        if (!text) {
-
-          return;
-
-        }
-
-
-        const postId =
-          activePost.dataset.post;
+          const text =
+            commentInput
+              .value
+              .trim();
 
 
-        const comments =
-          getUserComments(
-            postId
+          if (!text) {
+            return;
+          }
+
+
+          const id =
+            activePost.dataset.post;
+
+
+          const comments =
+            getComments(
+              id
+            );
+
+
+          comments.push({
+
+            user: "@you",
+
+            text: text
+
+          });
+
+
+          saveComments(
+            id,
+            comments
           );
 
 
-        comments.push({
-
-          user: "@you",
-
-          text: text,
-
-          createdAt:
-            Date.now()
-
-        });
+          commentInput.value =
+            "";
 
 
-        saveUserComments(
-          postId,
-          comments
-        );
+          updateCommentCount(
+            activePost
+          );
 
 
-        commentInput.value =
-          "";
+          renderComments();
 
-
-        updateCommentCount(
-          activePost
-        );
-
-
-        renderComments();
-
-      }
-    );
+        }
+      );
 
 
     document
@@ -2998,20 +3373,15 @@
         ".post"
       )
       .forEach(
-        post => {
-
+        post =>
           updateCommentCount(
             post
-          );
-
-        }
+          )
       );
 
 
 
-    /* =========================
-       SHARE
-    ========================= */
+    /* SHARE */
 
     const toast =
       document.getElementById(
@@ -3059,6 +3429,7 @@
     }
 
 
+
     document
       .querySelectorAll(
         ".share-button"
@@ -3074,10 +3445,6 @@
                 button.closest(
                   ".post"
                 );
-
-
-              const postId =
-                post.dataset.post;
 
 
               const nickname =
@@ -3106,10 +3473,10 @@
 
               url.hash =
                 "post-" +
-                postId;
+                post.dataset.post;
 
 
-              const shareData = {
+              const data = {
 
                 title:
                   nickname +
@@ -3135,18 +3502,17 @@
                 ) {
 
                   await navigator.share(
-                    shareData
+                    data
                   );
 
                 }
-
 
                 else {
 
                   await navigator
                     .clipboard
                     .writeText(
-                      shareData.url
+                      data.url
                     );
 
 
@@ -3158,7 +3524,6 @@
 
               }
 
-
               catch (error) {
 
                 if (
@@ -3166,29 +3531,9 @@
                   "AbortError"
                 ) {
 
-                  try {
-
-                    await navigator
-                      .clipboard
-                      .writeText(
-                        shareData.url
-                      );
-
-
-                    showToast(
-                      "Link copied"
-                    );
-
-                  }
-
-
-                  catch {
-
-                    showToast(
-                      "Could not share"
-                    );
-
-                  }
+                  showToast(
+                    "Could not share"
+                  );
 
                 }
 
@@ -3201,15 +3546,13 @@
       );
 
 
-
-    /* ESCAPE CLOSES COMMENTS */
-
     document.addEventListener(
       "keydown",
       event => {
 
         if (
-          event.key === "Escape"
+          event.key ===
+          "Escape"
         ) {
 
           closeComments();
@@ -3219,561 +3562,7 @@
       }
     );
 
-
   </script>
-<style>
-  /* KLEEN METER PULSE */
 
-  .kleen-card {
-    transition:
-      border-color 0.22s ease,
-      box-shadow 0.22s ease;
-  }
-
-  .kleen-fill {
-    transform-origin: left center;
-  }
-
-  .kleen-card.kleen-pulse {
-    border-color:
-      rgba(155, 244, 4, 0.70);
-
-    box-shadow:
-      0 0 0 1px rgba(155, 244, 4, 0.12),
-      0 0 26px rgba(155, 244, 4, 0.22);
-  }
-
-  .kleen-card.kleen-pulse .kleen-fill {
-    animation:
-      kleenMeterPulse 0.75s ease;
-  }
-
-  @keyframes kleenMeterPulse {
-
-    0% {
-      transform:
-        scaleY(1);
-
-      filter:
-        brightness(1);
-
-      box-shadow:
-        0 0 16px
-        rgba(155, 244, 4, 0.55);
-    }
-
-    35% {
-      transform:
-        scaleY(1.45);
-
-      filter:
-        brightness(1.9);
-
-      box-shadow:
-        0 0 12px
-        rgba(155, 244, 4, 1),
-
-        0 0 30px
-        rgba(155, 244, 4, 0.90),
-
-        0 0 55px
-        rgba(155, 244, 4, 0.50);
-    }
-
-    68% {
-      transform:
-        scaleY(1.16);
-
-      filter:
-        brightness(1.35);
-
-      box-shadow:
-        0 0 18px
-        rgba(155, 244, 4, 0.80),
-
-        0 0 34px
-        rgba(155, 244, 4, 0.45);
-    }
-
-    100% {
-      transform:
-        scaleY(1);
-
-      filter:
-        brightness(1);
-
-      box-shadow:
-        0 0 16px
-        rgba(155, 244, 4, 0.55);
-    }
-
-  }
-</style>
-
-
-<script>
-  /*
-    KLEEN METER GLOW EFFECT
-  */
-
-  document
-    .querySelectorAll(
-      ".kleen-vote"
-    )
-    .forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            const post =
-              button.closest(
-                ".post"
-              );
-
-            const meter =
-              post.querySelector(
-                ".kleen-card"
-              );
-
-
-            meter.classList.remove(
-              "kleen-pulse"
-            );
-
-
-            /*
-              Forces the browser
-              to restart the animation
-              every time you tap.
-            */
-
-            void meter.offsetWidth;
-
-
-            meter.classList.add(
-              "kleen-pulse"
-            );
-
-
-            setTimeout(
-              () => {
-
-                meter.classList.remove(
-                  "kleen-pulse"
-                );
-
-              },
-              800
-            );
-
-          }
-        );
-
-      }
-    );
-</script>
-<style>
-  /* FOLLOWING EMPTY STATE */
-
-  .following-empty {
-    min-height: 100vh;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    padding: 40px 24px;
-
-    text-align: center;
-
-    background:
-      radial-gradient(
-        circle at center,
-        rgba(155,244,4,0.08),
-        transparent 45%
-      );
-  }
-
-  .following-empty.show {
-    display: flex;
-  }
-
-  .following-empty-content {
-    max-width: 340px;
-  }
-
-  .following-empty-icon {
-    width: 64px;
-    height: 64px;
-
-    margin: 0 auto 18px;
-
-    border-radius: 50%;
-
-    display: grid;
-    place-items: center;
-
-    border:
-      1px solid rgba(155,244,4,0.35);
-
-    color: var(--green);
-
-    font-size: 28px;
-
-    box-shadow:
-      0 0 30px rgba(155,244,4,0.12);
-  }
-
-  .following-empty h2 {
-    font-size: 22px;
-
-    margin-bottom: 8px;
-  }
-
-  .following-empty p {
-    color: var(--muted);
-
-    font-size: 13px;
-    line-height: 1.5;
-  }
-</style>
-
-
-<script>
-  /*
-    REAL FOR YOU / FOLLOWING FEED
-  */
-
-
-  const feed =
-    document.querySelector(
-      ".feed"
-    );
-
-
-  /*
-    CREATE EMPTY STATE
-  */
-
-  const emptyFollowing =
-    document.createElement(
-      "div"
-    );
-
-
-  emptyFollowing.className =
-    "following-empty";
-
-
-  emptyFollowing.innerHTML = `
-
-    <div class="following-empty-content">
-
-      <div class="following-empty-icon">
-        +
-      </div>
-
-      <h2>
-        Your crew is quiet.
-      </h2>
-
-      <p>
-        Follow some builds in For You
-        and they'll show up here.
-      </p>
-
-    </div>
-
-  `;
-
-
-  feed.appendChild(
-    emptyFollowing
-  );
-
-
-
-  /*
-    SAVE + RESTORE FOLLOWING
-  */
-
-
-  document
-    .querySelectorAll(
-      ".post"
-    )
-    .forEach(
-      post => {
-
-        const username =
-          post
-            .querySelector(
-              ".username"
-            )
-            .textContent
-            .trim();
-
-
-        const followButton =
-          post.querySelector(
-            ".follow-button"
-          );
-
-
-        const key =
-          "modzfolio-follow-" +
-          username;
-
-
-        /*
-          Restore state
-          when the page loads.
-        */
-
-        const savedFollowing =
-          localStorage.getItem(
-            key
-          ) === "true";
-
-
-        if (savedFollowing) {
-
-          followButton
-            .classList
-            .add(
-              "following"
-            );
-
-
-          followButton.textContent =
-            "Following";
-
-        }
-
-
-        /*
-          Your existing Follow code
-          already toggles the button.
-
-          This listener simply saves
-          whatever state it ends up in.
-        */
-
-        followButton.addEventListener(
-          "click",
-          () => {
-
-            setTimeout(
-              () => {
-
-                const following =
-                  followButton
-                    .classList
-                    .contains(
-                      "following"
-                    );
-
-
-                localStorage.setItem(
-                  key,
-                  String(
-                    following
-                  )
-                );
-
-
-                /*
-                  If we're currently on
-                  Following and somebody
-                  is unfollowed, refresh
-                  that filtered feed.
-                */
-
-                const followingTab =
-                  document
-                    .querySelectorAll(
-                      ".feed-toggle button"
-                    )[1];
-
-
-                if (
-                  followingTab
-                    .classList
-                    .contains(
-                      "active"
-                    )
-                ) {
-
-                  showFollowingFeed();
-
-                }
-
-              },
-              0
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-
-  /*
-    FOR YOU
-  */
-
-
-  function showForYouFeed() {
-
-    document
-      .querySelectorAll(
-        ".post"
-      )
-      .forEach(
-        post => {
-
-          post.style.display =
-            "";
-
-        }
-      );
-
-
-    emptyFollowing
-      .classList
-      .remove(
-        "show"
-      );
-
-
-    feed.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-
-
-
-  /*
-    FOLLOWING
-  */
-
-
-  function showFollowingFeed() {
-
-    let visiblePosts =
-      0;
-
-
-    document
-      .querySelectorAll(
-        ".post"
-      )
-      .forEach(
-        post => {
-
-          const followButton =
-            post.querySelector(
-              ".follow-button"
-            );
-
-
-          const following =
-            followButton
-              .classList
-              .contains(
-                "following"
-              );
-
-
-          if (following) {
-
-            post.style.display =
-              "";
-
-            visiblePosts++;
-
-          }
-
-          else {
-
-            post.style.display =
-              "none";
-
-          }
-
-        }
-      );
-
-
-    if (
-      visiblePosts === 0
-    ) {
-
-      emptyFollowing
-        .classList
-        .add(
-          "show"
-        );
-
-    }
-
-    else {
-
-      emptyFollowing
-        .classList
-        .remove(
-          "show"
-        );
-
-    }
-
-
-    feed.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-
-
-
-  /*
-    CONNECT THE TWO TABS
-  */
-
-
-  const feedTabs =
-    document.querySelectorAll(
-      ".feed-toggle button"
-    );
-
-
-  const forYouTab =
-    feedTabs[0];
-
-
-  const followingTab =
-    feedTabs[1];
-
-
-  forYouTab.addEventListener(
-    "click",
-    showForYouFeed
-  );
-
-
-  followingTab.addEventListener(
-    "click",
-    showFollowingFeed
-  );
-
-</script>
 </body>
-
 </html>
