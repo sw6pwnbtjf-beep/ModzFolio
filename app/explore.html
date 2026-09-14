@@ -3374,7 +3374,406 @@
       }
     );
 </script>
+<style>
+  /* FOLLOWING EMPTY STATE */
 
+  .following-empty {
+    min-height: 100vh;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 24px;
+
+    text-align: center;
+
+    background:
+      radial-gradient(
+        circle at center,
+        rgba(155,244,4,0.08),
+        transparent 45%
+      );
+  }
+
+  .following-empty.show {
+    display: flex;
+  }
+
+  .following-empty-content {
+    max-width: 340px;
+  }
+
+  .following-empty-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    border:
+      1px solid rgba(155,244,4,0.35);
+
+    color: var(--green);
+
+    font-size: 28px;
+
+    box-shadow:
+      0 0 30px rgba(155,244,4,0.12);
+  }
+
+  .following-empty h2 {
+    font-size: 22px;
+
+    margin-bottom: 8px;
+  }
+
+  .following-empty p {
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.5;
+  }
+</style>
+
+
+<script>
+  /*
+    REAL FOR YOU / FOLLOWING FEED
+  */
+
+
+  const feed =
+    document.querySelector(
+      ".feed"
+    );
+
+
+  /*
+    CREATE EMPTY STATE
+  */
+
+  const emptyFollowing =
+    document.createElement(
+      "div"
+    );
+
+
+  emptyFollowing.className =
+    "following-empty";
+
+
+  emptyFollowing.innerHTML = `
+
+    <div class="following-empty-content">
+
+      <div class="following-empty-icon">
+        +
+      </div>
+
+      <h2>
+        Your crew is quiet.
+      </h2>
+
+      <p>
+        Follow some builds in For You
+        and they'll show up here.
+      </p>
+
+    </div>
+
+  `;
+
+
+  feed.appendChild(
+    emptyFollowing
+  );
+
+
+
+  /*
+    SAVE + RESTORE FOLLOWING
+  */
+
+
+  document
+    .querySelectorAll(
+      ".post"
+    )
+    .forEach(
+      post => {
+
+        const username =
+          post
+            .querySelector(
+              ".username"
+            )
+            .textContent
+            .trim();
+
+
+        const followButton =
+          post.querySelector(
+            ".follow-button"
+          );
+
+
+        const key =
+          "modzfolio-follow-" +
+          username;
+
+
+        /*
+          Restore state
+          when the page loads.
+        */
+
+        const savedFollowing =
+          localStorage.getItem(
+            key
+          ) === "true";
+
+
+        if (savedFollowing) {
+
+          followButton
+            .classList
+            .add(
+              "following"
+            );
+
+
+          followButton.textContent =
+            "Following";
+
+        }
+
+
+        /*
+          Your existing Follow code
+          already toggles the button.
+
+          This listener simply saves
+          whatever state it ends up in.
+        */
+
+        followButton.addEventListener(
+          "click",
+          () => {
+
+            setTimeout(
+              () => {
+
+                const following =
+                  followButton
+                    .classList
+                    .contains(
+                      "following"
+                    );
+
+
+                localStorage.setItem(
+                  key,
+                  String(
+                    following
+                  )
+                );
+
+
+                /*
+                  If we're currently on
+                  Following and somebody
+                  is unfollowed, refresh
+                  that filtered feed.
+                */
+
+                const followingTab =
+                  document
+                    .querySelectorAll(
+                      ".feed-toggle button"
+                    )[1];
+
+
+                if (
+                  followingTab
+                    .classList
+                    .contains(
+                      "active"
+                    )
+                ) {
+
+                  showFollowingFeed();
+
+                }
+
+              },
+              0
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+
+  /*
+    FOR YOU
+  */
+
+
+  function showForYouFeed() {
+
+    document
+      .querySelectorAll(
+        ".post"
+      )
+      .forEach(
+        post => {
+
+          post.style.display =
+            "";
+
+        }
+      );
+
+
+    emptyFollowing
+      .classList
+      .remove(
+        "show"
+      );
+
+
+    feed.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+
+  /*
+    FOLLOWING
+  */
+
+
+  function showFollowingFeed() {
+
+    let visiblePosts =
+      0;
+
+
+    document
+      .querySelectorAll(
+        ".post"
+      )
+      .forEach(
+        post => {
+
+          const followButton =
+            post.querySelector(
+              ".follow-button"
+            );
+
+
+          const following =
+            followButton
+              .classList
+              .contains(
+                "following"
+              );
+
+
+          if (following) {
+
+            post.style.display =
+              "";
+
+            visiblePosts++;
+
+          }
+
+          else {
+
+            post.style.display =
+              "none";
+
+          }
+
+        }
+      );
+
+
+    if (
+      visiblePosts === 0
+    ) {
+
+      emptyFollowing
+        .classList
+        .add(
+          "show"
+        );
+
+    }
+
+    else {
+
+      emptyFollowing
+        .classList
+        .remove(
+          "show"
+        );
+
+    }
+
+
+    feed.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+
+  /*
+    CONNECT THE TWO TABS
+  */
+
+
+  const feedTabs =
+    document.querySelectorAll(
+      ".feed-toggle button"
+    );
+
+
+  const forYouTab =
+    feedTabs[0];
+
+
+  const followingTab =
+    feedTabs[1];
+
+
+  forYouTab.addEventListener(
+    "click",
+    showForYouFeed
+  );
+
+
+  followingTab.addEventListener(
+    "click",
+    showFollowingFeed
+  );
+
+</script>
 </body>
 
 </html>
