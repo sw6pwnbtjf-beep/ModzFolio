@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -11,6 +12,7 @@
 
   <title>Explore | Modzfolio</title>
 
+
   <style>
 
     * {
@@ -19,20 +21,26 @@
       padding: 0;
     }
 
+
     :root {
+
       --green: #9BF404;
       --black: #050505;
       --panel: #111111;
       --border: rgba(255,255,255,0.12);
       --text: #ffffff;
       --muted: #a5a5a5;
+
     }
+
 
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
+
       background: var(--black);
       color: white;
 
@@ -43,16 +51,28 @@
         sans-serif;
 
       min-height: 100vh;
+
+      overflow: hidden;
+
     }
 
-    button {
+
+    button,
+    input {
+
       font: inherit;
+
     }
 
 
-    /* HEADER */
+
+    /* =========================
+       HEADER
+    ========================= */
+
 
     .topbar {
+
       position: fixed;
 
       top: 0;
@@ -80,34 +100,52 @@
         );
 
       pointer-events: none;
+
     }
+
 
     .topbar > * {
       pointer-events: auto;
     }
 
+
     .brand-logo {
+
       width: 180px;
       max-width: 48vw;
+
       height: auto;
+
       display: block;
+
     }
 
+
     .brand-fallback {
+
       display: none;
 
       font-size: 23px;
       font-weight: 950;
 
       font-style: italic;
+
       letter-spacing: -1px;
+
     }
+
 
     .brand-fallback span {
       color: var(--green);
     }
 
+
+
+    /* FEED TOGGLE */
+
+
     .feed-toggle {
+
       display: flex;
 
       gap: 4px;
@@ -123,10 +161,14 @@
         1px solid var(--border);
 
       backdrop-filter: blur(14px);
+
     }
 
+
     .feed-toggle button {
+
       border: none;
+
       background: transparent;
 
       color: var(--muted);
@@ -139,17 +181,27 @@
       font-weight: 800;
 
       cursor: pointer;
+
     }
+
 
     .feed-toggle button.active {
+
       color: #050505;
+
       background: var(--green);
+
     }
 
 
-    /* FEED */
+
+    /* =========================
+       FEED
+    ========================= */
+
 
     .feed {
+
       height: 100vh;
 
       overflow-y: scroll;
@@ -157,16 +209,21 @@
       scroll-snap-type: y mandatory;
 
       scrollbar-width: none;
+
     }
+
 
     .feed::-webkit-scrollbar {
       display: none;
     }
 
+
     .post {
+
       position: relative;
 
       height: 100vh;
+
       min-height: 650px;
 
       scroll-snap-align: start;
@@ -175,12 +232,16 @@
       background-position: center;
 
       overflow: hidden;
+
     }
 
+
     .post::before {
+
       content: "";
 
       position: absolute;
+
       inset: 0;
 
       background:
@@ -191,27 +252,38 @@
           rgba(0,0,0,0.30) 58%,
           rgba(0,0,0,0.92) 100%
         );
+
     }
 
+
     .post::after {
+
       content: "";
 
       position: absolute;
+
       inset: 0;
 
       box-shadow:
         inset 0 0 100px rgba(0,0,0,0.25);
 
       pointer-events: none;
+
     }
 
 
-    /* PROFILE STRIP */
+
+    /* =========================
+       PROFILE STRIP
+    ========================= */
+
 
     .profile-strip {
+
       position: absolute;
 
       top: 86px;
+
       left: 18px;
       right: 18px;
 
@@ -222,16 +294,22 @@
       justify-content: space-between;
 
       gap: 12px;
+
     }
 
+
     .profile-info {
+
       display: flex;
       align-items: center;
 
       gap: 11px;
+
     }
 
+
     .avatar {
+
       width: 46px;
       height: 46px;
 
@@ -251,17 +329,23 @@
       color: var(--green);
 
       font-weight: 950;
+
     }
 
+
     .username {
+
       font-size: 14px;
       font-weight: 900;
 
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
+
     }
 
+
     .garage-count {
+
       color: #d0d0d0;
 
       font-size: 11px;
@@ -270,9 +354,12 @@
 
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
+
     }
 
+
     .follow-button {
+
       border:
         1px solid rgba(255,255,255,0.25);
 
@@ -291,30 +378,43 @@
       font-weight: 850;
 
       cursor: pointer;
+
     }
 
+
     .follow-button.following {
+
       color: var(--green);
 
       border-color:
         rgba(155,244,4,0.55);
+
     }
 
 
-    /* POST CONTENT */
+
+    /* =========================
+       POST CONTENT
+    ========================= */
+
 
     .post-content {
+
       position: absolute;
 
       left: 18px;
-      right: 86px;
+
+      right: 92px;
 
       bottom: 102px;
 
       z-index: 3;
+
     }
 
+
     .car-nickname {
+
       color: var(--green);
 
       font-size:
@@ -328,9 +428,12 @@
 
       text-shadow:
         0 3px 18px rgba(0,0,0,0.8);
+
     }
 
+
     .car-model {
+
       margin-top: 7px;
 
       font-size: 15px;
@@ -338,12 +441,16 @@
 
       text-shadow:
         0 2px 12px rgba(0,0,0,0.9);
+
     }
 
+
     .caption {
+
       color: #d3d3d3;
 
       font-size: 13px;
+
       line-height: 1.45;
 
       max-width: 520px;
@@ -352,18 +459,28 @@
 
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
+
     }
 
+
+
+    /* TAGS */
+
+
     .post-tags {
+
       display: flex;
       flex-wrap: wrap;
 
       gap: 7px;
 
       margin-top: 12px;
+
     }
 
+
     .tag {
+
       padding: 7px 10px;
 
       border-radius: 999px;
@@ -378,12 +495,18 @@
 
       font-size: 10px;
       font-weight: 800;
+
     }
 
 
-    /* KLEEN */
+
+    /* =========================
+       KLEEN METER
+    ========================= */
+
 
     .kleen-card {
+
       margin-top: 16px;
 
       width:
@@ -400,35 +523,51 @@
         1px solid rgba(255,255,255,0.14);
 
       backdrop-filter: blur(16px);
+
     }
 
+
     .kleen-top {
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       gap: 12px;
 
       margin-bottom: 8px;
+
     }
 
+
     .kleen-label {
+
       font-size: 11px;
+
       font-weight: 950;
 
       letter-spacing: 1.5px;
+
     }
 
+
     .kleen-tier {
+
       color: var(--green);
 
       font-size: 11px;
+
       font-weight: 950;
 
       text-transform: uppercase;
+
     }
 
+
     .kleen-track {
+
       position: relative;
 
       height: 8px;
@@ -439,9 +578,12 @@
         rgba(255,255,255,0.10);
 
       overflow: hidden;
+
     }
 
+
     .kleen-fill {
+
       height: 100%;
 
       width:
@@ -461,10 +603,14 @@
 
       transition:
         width 0.45s ease;
+
     }
 
+
     .kleen-bottom {
+
       display: flex;
+
       justify-content: space-between;
 
       margin-top: 7px;
@@ -472,25 +618,35 @@
       color: var(--muted);
 
       font-size: 10px;
+
     }
 
 
-    /* SIDE BUTTONS */
+
+    /* =========================
+       ACTION RAIL
+    ========================= */
+
 
     .action-rail {
+
       position: absolute;
 
       right: 16px;
+
       bottom: 111px;
 
       z-index: 4;
 
       display: grid;
 
-      gap: 16px;
+      gap: 13px;
+
     }
 
+
     .rail-action {
+
       display: grid;
 
       place-items: center;
@@ -500,11 +656,16 @@
       color: white;
 
       font-size: 10px;
+
       font-weight: 800;
+
     }
 
+
     .rail-button {
+
       width: 49px;
+
       height: 49px;
 
       border-radius: 50%;
@@ -529,14 +690,25 @@
       transition:
         transform 0.16s ease,
         color 0.16s ease,
-        border-color 0.16s ease;
+        border-color 0.16s ease,
+        box-shadow 0.16s ease;
+
     }
+
 
     .rail-button:active {
-      transform: scale(0.9);
+
+      transform: scale(0.88);
+
     }
 
+
+
+    /* KLEEN BUTTON */
+
+
     .kleen-vote.active {
+
       color: var(--green);
 
       border-color:
@@ -544,15 +716,435 @@
 
       box-shadow:
         0 0 18px rgba(155,244,4,0.2);
+
     }
 
 
-    /* BOTTOM NAV */
+
+    /* LIKE BUTTON */
+
+
+    .like-button.active {
+
+      color: var(--green);
+
+      border-color:
+        rgba(155,244,4,0.7);
+
+      box-shadow:
+        0 0 20px rgba(155,244,4,0.28);
+
+    }
+
+
+    .heart {
+
+      display: inline-block;
+
+      transition:
+        transform 0.18s ease;
+
+    }
+
+
+    .like-button.pop .heart {
+
+      animation:
+        heartPop 0.28s ease;
+
+    }
+
+
+    @keyframes heartPop {
+
+      0% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.45);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+
+    }
+
+
+
+    /* =========================
+       COMMENTS
+    ========================= */
+
+
+    .comment-backdrop {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 90;
+
+      background:
+        rgba(0,0,0,0.60);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.25s ease;
+
+    }
+
+
+    .comment-backdrop.open {
+
+      opacity: 1;
+
+      pointer-events: auto;
+
+    }
+
+
+    .comment-sheet {
+
+      position: fixed;
+
+      left: 50%;
+
+      bottom: 0;
+
+      transform:
+        translate(-50%, 105%);
+
+      width:
+        min(100%, 760px);
+
+      height:
+        min(68vh, 620px);
+
+      z-index: 100;
+
+      background:
+        rgba(10,10,10,0.98);
+
+      border:
+        1px solid var(--border);
+
+      border-bottom: none;
+
+      border-radius:
+        24px 24px 0 0;
+
+      padding:
+
+        18px
+        18px
+        max(
+          18px,
+          env(safe-area-inset-bottom)
+        );
+
+      display: flex;
+
+      flex-direction: column;
+
+      transition:
+        transform 0.28s ease;
+
+      box-shadow:
+        0 -20px 60px rgba(0,0,0,0.65);
+
+      backdrop-filter:
+        blur(20px);
+
+    }
+
+
+    .comment-sheet.open {
+
+      transform:
+        translate(-50%, 0);
+
+    }
+
+
+    .comment-handle {
+
+      width: 44px;
+
+      height: 4px;
+
+      margin:
+        -4px auto
+        13px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.2);
+
+    }
+
+
+    .comment-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 16px;
+
+    }
+
+
+    .comment-title {
+
+      font-size: 17px;
+
+      font-weight: 900;
+
+    }
+
+
+    .comment-post-name {
+
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      margin-top: 2px;
+
+    }
+
+
+    .comment-close {
+
+      width: 36px;
+
+      height: 36px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+    }
+
+
+    .comment-list {
+
+      flex: 1;
+
+      overflow-y: auto;
+
+      display: grid;
+
+      align-content: start;
+
+      gap: 12px;
+
+      padding:
+        4px 2px
+        18px;
+
+      scrollbar-width: none;
+
+    }
+
+
+    .comment-list::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .comment-item {
+
+      display: flex;
+
+      gap: 10px;
+
+      text-align: left;
+
+    }
+
+
+    .comment-avatar {
+
+      width: 34px;
+
+      height: 34px;
+
+      flex: 0 0 34px;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border:
+        1px solid rgba(255,255,255,0.1);
+
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+    }
+
+
+    .comment-bubble {
+
+      flex: 1;
+
+      padding:
+        10px 12px;
+
+      border-radius:
+        5px 15px 15px 15px;
+
+      background:
+        rgba(255,255,255,0.055);
+
+      border:
+        1px solid rgba(255,255,255,0.07);
+
+    }
+
+
+    .comment-user {
+
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      margin-bottom: 4px;
+
+    }
+
+
+    .comment-text {
+
+      color: #eeeeee;
+
+      font-size: 13px;
+
+      line-height: 1.4;
+
+      overflow-wrap: anywhere;
+
+    }
+
+
+    .comment-form {
+
+      display: flex;
+
+      gap: 8px;
+
+      padding-top: 12px;
+
+      border-top:
+        1px solid var(--border);
+
+    }
+
+
+    .comment-input {
+
+      flex: 1;
+
+      min-width: 0;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.055);
+
+      color: white;
+
+      border-radius: 999px;
+
+      padding:
+        12px 15px;
+
+      outline: none;
+
+    }
+
+
+    .comment-input::placeholder {
+
+      color: #777;
+
+    }
+
+
+    .comment-input:focus {
+
+      border-color:
+        rgba(155,244,4,0.6);
+
+      box-shadow:
+        0 0 0 2px rgba(155,244,4,0.06);
+
+    }
+
+
+    .comment-submit {
+
+      border: none;
+
+      background: var(--green);
+
+      color: #050505;
+
+      font-weight: 900;
+
+      border-radius: 999px;
+
+      padding:
+        0 18px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    /* =========================
+       BOTTOM NAV
+    ========================= */
+
 
     .bottom-nav {
+
       position: fixed;
 
       left: 14px;
+
       right: 14px;
 
       bottom:
@@ -566,7 +1158,9 @@
       height: 60px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-around;
 
       background:
@@ -582,14 +1176,18 @@
 
       box-shadow:
         0 15px 40px rgba(0,0,0,0.45);
+
     }
 
+
     .nav-item {
+
       color: #949494;
 
       text-decoration: none;
 
       display: grid;
+
       place-items: center;
 
       gap: 3px;
@@ -597,21 +1195,37 @@
       min-width: 70px;
 
       font-size: 10px;
+
       font-weight: 800;
+
     }
+
 
     .nav-icon {
+
       font-size: 18px;
+
     }
 
+
     .nav-item.active {
+
       color: var(--green);
+
     }
+
+
+
+    /* =========================
+       DESKTOP
+    ========================= */
 
 
     @media (min-width: 850px) {
 
+
       .post {
+
         width:
           min(100%, 760px);
 
@@ -622,127 +1236,209 @@
 
         border-right:
           1px solid rgba(255,255,255,0.08);
+
       }
 
+
       .topbar {
+
         width:
           min(100%, 760px);
 
         margin:
           0 auto;
+
       }
 
+
       .bottom-nav {
+
         width: 730px;
+
         left: 50%;
 
         transform:
           translateX(-50%);
+
       }
+
 
     }
 
+
   </style>
 
+
 </head>
+
 
 
 <body>
 
 
-  <!-- TOP BAR -->
+
+  <!-- =========================
+       TOP BAR
+  ========================= -->
+
 
   <header class="topbar">
 
+
     <div>
 
+
       <img
+
         src="modzfolio-wordmark-green.png.png"
+
         alt="Modzfolio"
+
         class="brand-logo"
+
         onerror="
           this.style.display='none';
           document.getElementById('brandFallback').style.display='block';
         "
+
       >
+
 
       <div
+
         class="brand-fallback"
+
         id="brandFallback"
+
       >
+
         MODZ<span>FOLIO</span>
+
       </div>
 
+
     </div>
+
 
 
     <div class="feed-toggle">
 
-      <button
-        class="active"
-        type="button"
-      >
-        For You
-      </button>
 
       <button
+
+        class="active"
+
         type="button"
+
       >
-        Following
+
+        For You
+
       </button>
+
+
+      <button
+
+        type="button"
+
+      >
+
+        Following
+
+      </button>
+
 
     </div>
+
 
   </header>
 
 
 
-  <!-- FEED -->
+  <!-- =========================
+       FEED
+  ========================= -->
+
 
   <main class="feed">
 
 
-    <!-- POST 1 -->
+
+    <!-- =========================
+         POST 1
+         GHOST
+    ========================= -->
+
 
     <article
+
       class="post"
+
       data-post="ghost"
+
       data-score="86"
+
+      data-base-likes="1284"
+
+      data-base-comments="84"
+
       style="
         background-image:
         url('ghost-booty.jpg');
       "
+
     >
+
 
       <div class="profile-strip">
 
+
         <div class="profile-info">
 
+
           <div class="avatar">
+
             K
+
           </div>
+
 
           <div>
 
+
             <div class="username">
+
               @krzly
+
             </div>
+
 
             <div class="garage-count">
+
               1 car in garage
+
             </div>
 
+
           </div>
+
 
         </div>
 
 
+
         <button
+
           class="follow-button"
+
           type="button"
+
         >
+
           Follow
+
         </button>
+
 
       </div>
 
@@ -750,53 +1446,88 @@
 
       <div class="post-content">
 
+
         <div class="car-nickname">
+
           GHOST
+
         </div>
+
 
         <div class="car-model">
+
           2025 Subaru Impreza RS
+
         </div>
 
+
         <div class="caption">
+
           Daily driven. Slowly becoming exactly
           what I pictured when I bought it.
+
         </div>
+
 
 
         <div class="post-tags">
 
+
           <span class="tag">
+
             14 MODS
+
           </span>
 
+
           <span class="tag">
+
             ACTIVE BUILD
+
           </span>
 
+
           <span class="tag">
+
             SUBARU
+
           </span>
+
 
         </div>
 
 
+
         <div
+
           class="kleen-card"
-          style="--kleen-score: 86%;"
+
+          style="
+            --kleen-score: 86%;
+          "
+
         >
+
 
           <div class="kleen-top">
 
+
             <div class="kleen-label">
+
               KLEEN METER
+
             </div>
+
 
             <div class="kleen-tier">
+
               Show Ready
+
             </div>
 
+
           </div>
+
 
 
           <div class="kleen-track">
@@ -806,19 +1537,29 @@
           </div>
 
 
+
           <div class="kleen-bottom">
 
+
             <span>
+
               Community Rating
+
             </span>
 
+
             <span class="kleen-score-text">
+
               86
+
             </span>
+
 
           </div>
 
+
         </div>
+
 
       </div>
 
@@ -826,100 +1567,222 @@
 
       <div class="action-rail">
 
+
+
+        <!-- KLEEN -->
+
+
         <div class="rail-action">
 
+
           <button
+
             class="rail-button kleen-vote"
+
             type="button"
+
+            aria-label="Vote KLEEN"
+
           >
+
             ✦
+
           </button>
+
 
           <span class="vote-count">
+
             1.2K
+
           </span>
+
 
         </div>
 
 
+
+        <!-- LIKE -->
+
+
         <div class="rail-action">
 
+
           <button
-            class="rail-button"
+
+            class="rail-button like-button"
+
             type="button"
+
+            aria-label="Like build"
+
           >
+
+            <span class="heart">
+
+              ♡
+
+            </span>
+
+
+          </button>
+
+
+          <span class="like-count">
+
+            1.3K
+
+          </span>
+
+
+        </div>
+
+
+
+        <!-- COMMENTS -->
+
+
+        <div class="rail-action">
+
+
+          <button
+
+            class="rail-button comment-button"
+
+            type="button"
+
+            aria-label="Comments"
+
+          >
+
             💬
+
           </button>
 
-          <span>
+
+          <span class="comment-count">
+
             84
+
           </span>
 
+
         </div>
+
+
+
+        <!-- SHARE -->
 
 
         <div class="rail-action">
 
+
           <button
-            class="rail-button"
+
+            class="rail-button share-button"
+
             type="button"
+
           >
+
             ↗
+
           </button>
 
+
           <span>
+
             Share
+
           </span>
 
+
         </div>
+
 
       </div>
+
 
     </article>
 
 
 
-    <!-- POST 2 -->
+
+
+    <!-- =========================
+         POST 2
+         MIDNIGHT
+    ========================= -->
+
 
     <article
+
       class="post"
+
       data-post="midnight"
+
       data-score="74"
+
+      data-base-likes="642"
+
+      data-base-comments="31"
+
       style="
         background-image:
         url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=90');
       "
+
     >
+
 
       <div class="profile-strip">
 
+
         <div class="profile-info">
 
+
           <div class="avatar">
+
             J
+
           </div>
+
 
           <div>
 
+
             <div class="username">
+
               @jdmjay
+
             </div>
+
 
             <div class="garage-count">
+
               3 cars in garage
+
             </div>
 
+
           </div>
+
 
         </div>
 
 
+
         <button
+
           class="follow-button"
+
           type="button"
+
         >
+
           Follow
+
         </button>
+
 
       </div>
 
@@ -927,53 +1790,88 @@
 
       <div class="post-content">
 
+
         <div class="car-nickname">
+
           MIDNIGHT
+
         </div>
+
 
         <div class="car-model">
+
           2018 Honda Civic Si
+
         </div>
 
+
         <div class="caption">
+
           Built for canyon nights and questionable
           financial decisions.
+
         </div>
+
 
 
         <div class="post-tags">
 
+
           <span class="tag">
+
             22 MODS
+
           </span>
 
+
           <span class="tag">
+
             STREET BUILD
+
           </span>
 
+
           <span class="tag">
+
             HONDA
+
           </span>
+
 
         </div>
 
 
+
         <div
+
           class="kleen-card"
-          style="--kleen-score: 74%;"
+
+          style="
+            --kleen-score: 74%;
+          "
+
         >
+
 
           <div class="kleen-top">
 
+
             <div class="kleen-label">
+
               KLEEN METER
+
             </div>
+
 
             <div class="kleen-tier">
+
               Meet Ready
+
             </div>
 
+
           </div>
+
 
 
           <div class="kleen-track">
@@ -983,19 +1881,29 @@
           </div>
 
 
+
           <div class="kleen-bottom">
 
+
             <span>
+
               Community Rating
+
             </span>
 
+
             <span class="kleen-score-text">
+
               74
+
             </span>
+
 
           </div>
 
+
         </div>
+
 
       </div>
 
@@ -1003,100 +1911,204 @@
 
       <div class="action-rail">
 
+
+
         <div class="rail-action">
 
+
           <button
+
             class="rail-button kleen-vote"
+
             type="button"
+
           >
+
             ✦
+
           </button>
+
 
           <span class="vote-count">
+
             642
+
           </span>
+
 
         </div>
 
 
+
         <div class="rail-action">
 
+
           <button
-            class="rail-button"
+
+            class="rail-button like-button"
+
             type="button"
+
           >
+
+            <span class="heart">
+
+              ♡
+
+            </span>
+
+
+          </button>
+
+
+          <span class="like-count">
+
+            642
+
+          </span>
+
+
+        </div>
+
+
+
+        <div class="rail-action">
+
+
+          <button
+
+            class="rail-button comment-button"
+
+            type="button"
+
+          >
+
             💬
+
           </button>
 
-          <span>
+
+          <span class="comment-count">
+
             31
+
           </span>
 
+
         </div>
+
 
 
         <div class="rail-action">
 
+
           <button
-            class="rail-button"
+
+            class="rail-button share-button"
+
             type="button"
+
           >
+
             ↗
+
           </button>
 
+
           <span>
+
             Share
+
           </span>
 
+
         </div>
+
 
       </div>
+
 
     </article>
 
 
 
-    <!-- POST 3 -->
+
+
+    <!-- =========================
+         POST 3
+         STATIC
+    ========================= -->
+
 
     <article
+
       class="post"
+
       data-post="static"
+
       data-score="94"
+
+      data-base-likes="3417"
+
+      data-base-comments="219"
+
       style="
         background-image:
         url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=90');
       "
+
     >
+
 
       <div class="profile-strip">
 
+
         <div class="profile-info">
 
+
           <div class="avatar">
+
             M
+
           </div>
+
 
           <div>
 
+
             <div class="username">
+
               @mika.builds
+
             </div>
+
 
             <div class="garage-count">
+
               2 cars in garage
+
             </div>
 
+
           </div>
+
 
         </div>
 
 
+
         <button
+
           class="follow-button"
+
           type="button"
+
         >
+
           Follow
+
         </button>
+
 
       </div>
 
@@ -1104,53 +2116,88 @@
 
       <div class="post-content">
 
+
         <div class="car-nickname">
+
           STATIC
+
         </div>
+
 
         <div class="car-model">
+
           2021 Toyota GR86
+
         </div>
 
+
         <div class="caption">
+
           Simple, low and intentional.
           Nothing on the car is there by accident.
+
         </div>
+
 
 
         <div class="post-tags">
 
+
           <span class="tag">
+
             31 MODS
+
           </span>
 
+
           <span class="tag">
+
             FEATURED
+
           </span>
 
+
           <span class="tag">
+
             TOYOTA
+
           </span>
+
 
         </div>
 
 
+
         <div
+
           class="kleen-card"
-          style="--kleen-score: 94%;"
+
+          style="
+            --kleen-score: 94%;
+          "
+
         >
+
 
           <div class="kleen-top">
 
+
             <div class="kleen-label">
+
               KLEEN METER
+
             </div>
+
 
             <div class="kleen-tier">
+
               Exhibition
+
             </div>
 
+
           </div>
+
 
 
           <div class="kleen-track">
@@ -1160,19 +2207,29 @@
           </div>
 
 
+
           <div class="kleen-bottom">
 
+
             <span>
+
               Community Rating
+
             </span>
 
+
             <span class="kleen-score-text">
+
               94
+
             </span>
+
 
           </div>
 
+
         </div>
+
 
       </div>
 
@@ -1180,54 +2237,122 @@
 
       <div class="action-rail">
 
+
+
         <div class="rail-action">
 
+
           <button
+
             class="rail-button kleen-vote"
+
             type="button"
+
           >
+
             ✦
+
           </button>
+
 
           <span class="vote-count">
+
             3.4K
+
           </span>
+
 
         </div>
 
 
+
         <div class="rail-action">
 
+
           <button
-            class="rail-button"
+
+            class="rail-button like-button"
+
             type="button"
+
           >
+
+            <span class="heart">
+
+              ♡
+
+            </span>
+
+
+          </button>
+
+
+          <span class="like-count">
+
+            3.4K
+
+          </span>
+
+
+        </div>
+
+
+
+        <div class="rail-action">
+
+
+          <button
+
+            class="rail-button comment-button"
+
+            type="button"
+
+          >
+
             💬
+
           </button>
 
-          <span>
+
+          <span class="comment-count">
+
             219
+
           </span>
 
+
         </div>
+
 
 
         <div class="rail-action">
 
+
           <button
-            class="rail-button"
+
+            class="rail-button share-button"
+
             type="button"
+
           >
+
             ↗
+
           </button>
 
+
           <span>
+
             Share
+
           </span>
 
+
         </div>
+
 
       </div>
+
 
     </article>
 
@@ -1236,176 +2361,472 @@
 
 
 
-  <!-- NAVIGATION -->
+  <!-- =========================
+       COMMENT BACKDROP
+  ========================= -->
+
+
+  <div
+
+    class="comment-backdrop"
+
+    id="commentBackdrop"
+
+  ></div>
+
+
+
+  <!-- =========================
+       COMMENT SHEET
+  ========================= -->
+
+
+  <section
+
+    class="comment-sheet"
+
+    id="commentSheet"
+
+  >
+
+
+    <div class="comment-handle"></div>
+
+
+
+    <div class="comment-header">
+
+
+      <div>
+
+
+        <div class="comment-title">
+
+          Comments
+
+        </div>
+
+
+        <div
+
+          class="comment-post-name"
+
+          id="commentPostName"
+
+        ></div>
+
+
+      </div>
+
+
+
+      <button
+
+        class="comment-close"
+
+        id="commentClose"
+
+        type="button"
+
+      >
+
+        ×
+
+      </button>
+
+
+    </div>
+
+
+
+    <div
+
+      class="comment-list"
+
+      id="commentList"
+
+    ></div>
+
+
+
+    <form
+
+      class="comment-form"
+
+      id="commentForm"
+
+    >
+
+
+      <input
+
+        class="comment-input"
+
+        id="commentInput"
+
+        type="text"
+
+        maxlength="240"
+
+        placeholder="Add a comment..."
+
+        autocomplete="off"
+
+      >
+
+
+      <button
+
+        class="comment-submit"
+
+        type="submit"
+
+      >
+
+        Post
+
+      </button>
+
+
+    </form>
+
+
+  </section>
+
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
 
   <nav class="bottom-nav">
 
+
     <a
+
       class="nav-item"
+
       href="garage.html"
+
     >
+
+
       <span class="nav-icon">
+
         ◉
+
       </span>
 
+
       <span>
+
         Garage
+
       </span>
+
+
     </a>
 
 
+
     <a
+
       class="nav-item active"
+
       href="explore.html"
+
     >
+
+
       <span class="nav-icon">
+
         ◈
+
       </span>
 
+
       <span>
+
         Explore
+
       </span>
+
+
     </a>
+
 
 
     <a
+
       class="nav-item"
+
       href="#"
+
     >
+
+
       <span class="nav-icon">
+
         ◯
+
       </span>
 
+
       <span>
+
         Profile
+
       </span>
+
+
     </a>
+
 
   </nav>
 
 
 
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+
   <script>
 
-    /*
-      FOR YOU / FOLLOWING
-    */
+
+    /* =========================
+       HELPERS
+    ========================= */
+
+
+    function formatCount(number) {
+
+
+      if (number >= 1000000) {
+
+        return (
+
+          number / 1000000
+
+        )
+
+        .toFixed(1)
+
+        .replace(
+          ".0",
+          ""
+        )
+
+        + "M";
+
+      }
+
+
+      if (number >= 1000) {
+
+        return (
+
+          number / 1000
+
+        )
+
+        .toFixed(1)
+
+        .replace(
+          ".0",
+          ""
+        )
+
+        + "K";
+
+      }
+
+
+      return String(number);
+
+    }
+
+
+
+    /* =========================
+       FOR YOU / FOLLOWING
+    ========================= */
+
 
     document
+
       .querySelectorAll(
         ".feed-toggle button"
       )
+
       .forEach(
+
         button => {
 
+
           button.addEventListener(
+
             "click",
+
             () => {
 
+
               document
+
                 .querySelectorAll(
                   ".feed-toggle button"
                 )
+
                 .forEach(
+
                   item =>
-                    item.classList.remove(
-                      "active"
-                    )
+
+                    item
+                      .classList
+                      .remove(
+                        "active"
+                      )
+
                 );
 
-              button.classList.add(
-                "active"
-              );
 
-            }
-          );
-
-        }
-      );
-
-
-    /*
-      FOLLOW BUTTONS
-    */
-
-    document
-      .querySelectorAll(
-        ".follow-button"
-      )
-      .forEach(
-        button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              const following =
-                button.classList.toggle(
-                  "following"
-                );
-
-              button.textContent =
-                following
-                ? "Following"
-                : "Follow";
-
-            }
-          );
-
-        }
-      );
-
-
-    /*
-      KLEEN VOTES
-
-      Prototype only.
-
-      Later this comes from
-      the backend/community.
-    */
-
-    document
-      .querySelectorAll(
-        ".kleen-vote"
-      )
-      .forEach(
-        button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              const post =
-                button.closest(
-                  ".post"
-                );
-
-              const active =
-                button.classList.toggle(
+              button
+                .classList
+                .add(
                   "active"
                 );
 
 
+            }
+
+          );
+
+
+        }
+
+      );
+
+
+
+    /* =========================
+       FOLLOW BUTTONS
+    ========================= */
+
+
+    document
+
+      .querySelectorAll(
+        ".follow-button"
+      )
+
+      .forEach(
+
+        button => {
+
+
+          button.addEventListener(
+
+            "click",
+
+            () => {
+
+
+              const following =
+
+                button
+                  .classList
+                  .toggle(
+                    "following"
+                  );
+
+
+              button.textContent =
+
+                following
+
+                  ? "Following"
+
+                  : "Follow";
+
+
+            }
+
+          );
+
+
+        }
+
+      );
+
+
+
+    /* =========================
+       KLEEN VOTES
+    ========================= */
+
+
+    document
+
+      .querySelectorAll(
+        ".kleen-vote"
+      )
+
+      .forEach(
+
+        button => {
+
+
+          button.addEventListener(
+
+            "click",
+
+            () => {
+
+
+              const post =
+
+                button.closest(
+                  ".post"
+                );
+
+
+              const active =
+
+                button
+                  .classList
+                  .toggle(
+                    "active"
+                  );
+
+
               let score =
+
                 Number(
                   post.dataset.score
                 );
 
 
               score +=
+
                 active
-                ? 1
-                : -1;
+
+                  ? 1
+
+                  : -1;
 
 
               score =
+
                 Math.max(
+
                   0,
+
                   Math.min(
                     100,
                     score
                   )
+
                 );
 
 
@@ -1414,23 +2835,28 @@
 
 
               post
+
                 .querySelector(
                   ".kleen-fill"
                 )
+
                 .style
                 .width =
                   score + "%";
 
 
               post
+
                 .querySelector(
                   ".kleen-score-text"
                 )
+
                 .textContent =
                   score;
 
 
               const tier =
+
                 post.querySelector(
                   ".kleen-tier"
                 );
@@ -1443,12 +2869,14 @@
 
               }
 
+
               else if (score >= 90) {
 
                 tier.textContent =
                   "Exhibition";
 
               }
+
 
               else if (score >= 80) {
 
@@ -1457,12 +2885,14 @@
 
               }
 
+
               else if (score >= 65) {
 
                 tier.textContent =
                   "Meet Ready";
 
               }
+
 
               else if (score >= 40) {
 
@@ -1471,6 +2901,7 @@
 
               }
 
+
               else {
 
                 tier.textContent =
@@ -1478,11 +2909,882 @@
 
               }
 
+
             }
+
+          );
+
+
+        }
+
+      );
+
+
+
+    /* =========================
+       LIKES
+    ========================= */
+
+
+    document
+
+      .querySelectorAll(
+        ".post"
+      )
+
+      .forEach(
+
+        post => {
+
+
+          const postId =
+
+            post.dataset.post;
+
+
+          const likeButton =
+
+            post.querySelector(
+              ".like-button"
+            );
+
+
+          const heart =
+
+            likeButton.querySelector(
+              ".heart"
+            );
+
+
+          const likeCount =
+
+            post.querySelector(
+              ".like-count"
+            );
+
+
+          const baseLikes =
+
+            Number(
+              post.dataset.baseLikes || 0
+            );
+
+
+          const storageKey =
+
+            "modzfolio-like-" +
+            postId;
+
+
+          const liked =
+
+            localStorage.getItem(
+              storageKey
+            )
+
+            === "true";
+
+
+          function updateLikeUI() {
+
+
+            const isLiked =
+
+              likeButton
+                .classList
+                .contains(
+                  "active"
+                );
+
+
+            heart.textContent =
+
+              isLiked
+
+                ? "♥"
+
+                : "♡";
+
+
+            likeCount.textContent =
+
+              formatCount(
+
+                baseLikes +
+
+                (
+                  isLiked
+                    ? 1
+                    : 0
+                )
+
+              );
+
+
+          }
+
+
+          if (liked) {
+
+            likeButton
+              .classList
+              .add(
+                "active"
+              );
+
+          }
+
+
+          updateLikeUI();
+
+
+          likeButton.addEventListener(
+
+            "click",
+
+            () => {
+
+
+              const isLiked =
+
+                likeButton
+                  .classList
+                  .toggle(
+                    "active"
+                  );
+
+
+              localStorage.setItem(
+
+                storageKey,
+
+                String(
+                  isLiked
+                )
+
+              );
+
+
+              likeButton
+                .classList
+                .remove(
+                  "pop"
+                );
+
+
+              void likeButton.offsetWidth;
+
+
+              likeButton
+                .classList
+                .add(
+                  "pop"
+                );
+
+
+              updateLikeUI();
+
+
+            }
+
+          );
+
+
+        }
+
+      );
+
+
+
+    /* =========================
+       COMMENTS
+    ========================= */
+
+
+    const commentSheet =
+
+      document.getElementById(
+        "commentSheet"
+      );
+
+
+    const commentBackdrop =
+
+      document.getElementById(
+        "commentBackdrop"
+      );
+
+
+    const commentClose =
+
+      document.getElementById(
+        "commentClose"
+      );
+
+
+    const commentList =
+
+      document.getElementById(
+        "commentList"
+      );
+
+
+    const commentForm =
+
+      document.getElementById(
+        "commentForm"
+      );
+
+
+    const commentInput =
+
+      document.getElementById(
+        "commentInput"
+      );
+
+
+    const commentPostName =
+
+      document.getElementById(
+        "commentPostName"
+      );
+
+
+    let activePost = null;
+
+
+
+    /* SAMPLE COMMENTS */
+
+
+    const sampleComments = {
+
+
+      ghost: [
+
+        {
+          user: "@subie.sam",
+          text:
+            "That rear setup is ridiculously clean."
+        },
+
+        {
+          user: "@boostedmike",
+          text:
+            "The quad exhaust fits this way better than I expected."
+        },
+
+        {
+          user: "@fitmentdaily",
+          text:
+            "Wheel setup next 👀"
+        }
+
+      ],
+
+
+      midnight: [
+
+        {
+          user: "@lowandslow",
+          text:
+            "That caption is painfully accurate 😂"
+        },
+
+        {
+          user: "@vtec.jay",
+          text:
+            "Simple Si builds always hit."
+        }
+
+      ],
+
+
+      static: [
+
+        {
+          user: "@86culture",
+          text:
+            "This is how you do an intentional build."
+        },
+
+        {
+          user: "@stanceworks",
+          text:
+            "Fitment is on point."
+        },
+
+        {
+          user: "@garagequeen",
+          text:
+            "94 on the KLEEN meter is deserved."
+        }
+
+      ]
+
+
+    };
+
+
+
+    function getUserComments(
+      postId
+    ) {
+
+
+      const stored =
+
+        localStorage.getItem(
+
+          "modzfolio-comments-" +
+          postId
+
+        );
+
+
+      if (!stored) {
+
+        return [];
+
+      }
+
+
+      try {
+
+        return JSON.parse(
+          stored
+        );
+
+      }
+
+
+      catch {
+
+        return [];
+
+      }
+
+
+    }
+
+
+
+    function saveUserComments(
+      postId,
+      comments
+    ) {
+
+
+      localStorage.setItem(
+
+        "modzfolio-comments-" +
+        postId,
+
+        JSON.stringify(
+          comments
+        )
+
+      );
+
+
+    }
+
+
+
+    function updateCommentCount(
+      post
+    ) {
+
+
+      const postId =
+
+        post.dataset.post;
+
+
+      const baseCount =
+
+        Number(
+
+          post.dataset
+            .baseComments || 0
+
+        );
+
+
+      const addedComments =
+
+        getUserComments(
+          postId
+        );
+
+
+      post
+
+        .querySelector(
+          ".comment-count"
+        )
+
+        .textContent =
+
+          formatCount(
+
+            baseCount +
+            addedComments.length
+
+          );
+
+
+    }
+
+
+
+    function createCommentElement(
+      comment
+    ) {
+
+
+      const item =
+
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "comment-item";
+
+
+      const avatar =
+
+        document.createElement(
+          "div"
+        );
+
+
+      avatar.className =
+        "comment-avatar";
+
+
+      avatar.textContent =
+
+        comment.user
+
+          .replace(
+            "@",
+            ""
+          )
+
+          .charAt(0)
+
+          .toUpperCase();
+
+
+
+      const bubble =
+
+        document.createElement(
+          "div"
+        );
+
+
+      bubble.className =
+        "comment-bubble";
+
+
+      const user =
+
+        document.createElement(
+          "div"
+        );
+
+
+      user.className =
+        "comment-user";
+
+
+      user.textContent =
+        comment.user;
+
+
+
+      const text =
+
+        document.createElement(
+          "div"
+        );
+
+
+      text.className =
+        "comment-text";
+
+
+      text.textContent =
+        comment.text;
+
+
+
+      bubble.append(
+        user,
+        text
+      );
+
+
+      item.append(
+        avatar,
+        bubble
+      );
+
+
+      return item;
+
+
+    }
+
+
+
+    function renderComments() {
+
+
+      if (!activePost) {
+
+        return;
+
+      }
+
+
+      const postId =
+
+        activePost.dataset.post;
+
+
+      const defaultComments =
+
+        sampleComments[
+          postId
+        ] || [];
+
+
+      const userComments =
+
+        getUserComments(
+          postId
+        );
+
+
+      commentList.innerHTML =
+        "";
+
+
+      const combined = [
+
+        ...defaultComments,
+
+        ...userComments
+
+      ];
+
+
+      combined.forEach(
+
+        comment => {
+
+
+          commentList
+            .appendChild(
+
+              createCommentElement(
+                comment
+              )
+
+            );
+
+
+        }
+
+      );
+
+
+      commentList.scrollTop =
+
+        commentList.scrollHeight;
+
+
+    }
+
+
+
+    function openComments(
+      post
+    ) {
+
+
+      activePost =
+        post;
+
+
+      const nickname =
+
+        post.querySelector(
+          ".car-nickname"
+        );
+
+
+      commentPostName.textContent =
+
+        nickname
+
+          ? nickname.textContent
+
+          : "";
+
+
+      renderComments();
+
+
+      commentSheet
+        .classList
+        .add(
+          "open"
+        );
+
+
+      commentBackdrop
+        .classList
+        .add(
+          "open"
+        );
+
+
+      setTimeout(
+
+        () => {
+
+          commentInput.focus();
+
+        },
+
+        250
+
+      );
+
+
+    }
+
+
+
+    function closeComments() {
+
+
+      commentSheet
+        .classList
+        .remove(
+          "open"
+        );
+
+
+      commentBackdrop
+        .classList
+        .remove(
+          "open"
+        );
+
+
+      activePost =
+        null;
+
+
+      commentInput.value =
+        "";
+
+
+    }
+
+
+
+    document
+
+      .querySelectorAll(
+        ".comment-button"
+      )
+
+      .forEach(
+
+        button => {
+
+
+          button.addEventListener(
+
+            "click",
+
+            () => {
+
+
+              openComments(
+
+                button.closest(
+                  ".post"
+                )
+
+              );
+
+
+            }
+
+          );
+
+
+        }
+
+      );
+
+
+
+    commentClose.addEventListener(
+
+      "click",
+
+      closeComments
+
+    );
+
+
+
+    commentBackdrop.addEventListener(
+
+      "click",
+
+      closeComments
+
+    );
+
+
+
+    document.addEventListener(
+
+      "keydown",
+
+      event => {
+
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeComments();
+
+        }
+
+
+      }
+
+    );
+
+
+
+    commentForm.addEventListener(
+
+      "submit",
+
+      event => {
+
+
+        event.preventDefault();
+
+
+        if (!activePost) {
+
+          return;
+
+        }
+
+
+        const text =
+
+          commentInput
+            .value
+            .trim();
+
+
+        if (!text) {
+
+          return;
+
+        }
+
+
+        const postId =
+
+          activePost.dataset.post;
+
+
+        const comments =
+
+          getUserComments(
+            postId
+          );
+
+
+        comments.push({
+
+          user: "@you",
+
+          text: text,
+
+          createdAt:
+            Date.now()
+
+        });
+
+
+        saveUserComments(
+
+          postId,
+
+          comments
+
+        );
+
+
+        commentInput.value =
+          "";
+
+
+        updateCommentCount(
+          activePost
+        );
+
+
+        renderComments();
+
+
+      }
+
+    );
+
+
+
+    /* INITIAL COMMENT COUNTS */
+
+
+    document
+
+      .querySelectorAll(
+        ".post"
+      )
+
+      .forEach(
+
+        post => {
+
+          updateCommentCount(
+            post
           );
 
         }
+
       );
+
+
 
   </script>
 
