@@ -3221,7 +3221,159 @@
 
 
   </script>
+<style>
+  /* KLEEN METER PULSE */
 
+  .kleen-card {
+    transition:
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .kleen-fill {
+    transform-origin: left center;
+  }
+
+  .kleen-card.kleen-pulse {
+    border-color:
+      rgba(155, 244, 4, 0.70);
+
+    box-shadow:
+      0 0 0 1px rgba(155, 244, 4, 0.12),
+      0 0 26px rgba(155, 244, 4, 0.22);
+  }
+
+  .kleen-card.kleen-pulse .kleen-fill {
+    animation:
+      kleenMeterPulse 0.75s ease;
+  }
+
+  @keyframes kleenMeterPulse {
+
+    0% {
+      transform:
+        scaleY(1);
+
+      filter:
+        brightness(1);
+
+      box-shadow:
+        0 0 16px
+        rgba(155, 244, 4, 0.55);
+    }
+
+    35% {
+      transform:
+        scaleY(1.45);
+
+      filter:
+        brightness(1.9);
+
+      box-shadow:
+        0 0 12px
+        rgba(155, 244, 4, 1),
+
+        0 0 30px
+        rgba(155, 244, 4, 0.90),
+
+        0 0 55px
+        rgba(155, 244, 4, 0.50);
+    }
+
+    68% {
+      transform:
+        scaleY(1.16);
+
+      filter:
+        brightness(1.35);
+
+      box-shadow:
+        0 0 18px
+        rgba(155, 244, 4, 0.80),
+
+        0 0 34px
+        rgba(155, 244, 4, 0.45);
+    }
+
+    100% {
+      transform:
+        scaleY(1);
+
+      filter:
+        brightness(1);
+
+      box-shadow:
+        0 0 16px
+        rgba(155, 244, 4, 0.55);
+    }
+
+  }
+</style>
+
+
+<script>
+  /*
+    KLEEN METER GLOW EFFECT
+  */
+
+  document
+    .querySelectorAll(
+      ".kleen-vote"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const post =
+              button.closest(
+                ".post"
+              );
+
+            const meter =
+              post.querySelector(
+                ".kleen-card"
+              );
+
+
+            meter.classList.remove(
+              "kleen-pulse"
+            );
+
+
+            /*
+              Forces the browser
+              to restart the animation
+              every time you tap.
+            */
+
+            void meter.offsetWidth;
+
+
+            meter.classList.add(
+              "kleen-pulse"
+            );
+
+
+            setTimeout(
+              () => {
+
+                meter.classList.remove(
+                  "kleen-pulse"
+                );
+
+              },
+              800
+            );
+
+          }
+        );
+
+      }
+    );
+</script>
 
 </body>
 
