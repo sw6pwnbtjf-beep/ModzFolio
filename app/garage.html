@@ -6,7 +6,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
   <title>Modzfolio Garage</title>
@@ -19,7 +19,6 @@
       padding: 0;
     }
 
-
     :root {
       --green: #9BF404;
       --black: #070707;
@@ -29,7 +28,6 @@
       --text: #ffffff;
       --muted: #9a9a9a;
     }
-
 
     body {
       background:
@@ -52,78 +50,107 @@
     }
 
 
+    /* MAIN APP */
+
     .app {
       width: min(100%, 1100px);
+
       margin: 0 auto;
-      padding: 24px;
+
+      padding:
+        24px
+        24px
+        105px;
     }
 
+
+    /* TOP BAR */
 
     .topbar {
       display: flex;
+
       align-items: center;
       justify-content: space-between;
+
       margin-bottom: 24px;
     }
 
-
     .brand-logo {
       width: 220px;
+
       max-width: 55vw;
+
       height: auto;
+
       display: block;
     }
-
 
     .profile {
       width: 42px;
       height: 42px;
 
       border-radius: 50%;
-      border: 1px solid var(--border);
 
-      background: var(--panel);
+      border:
+        1px solid var(--border);
+
+      background:
+        var(--panel);
 
       display: grid;
+
       place-items: center;
 
       font-weight: 800;
-      color: var(--green);
+
+      color:
+        var(--green);
     }
 
 
+    /* GARAGE HEADER */
+
     .garage-header {
       display: flex;
+
       align-items: center;
       justify-content: space-between;
 
       gap: 16px;
+
       margin-bottom: 16px;
     }
 
-
     .garage-title {
       font-size: 22px;
+
       font-weight: 800;
     }
-
 
     .add-btn {
       border: none;
 
-      background: var(--green);
-      color: #050505;
+      background:
+        var(--green);
 
-      padding: 12px 18px;
+      color:
+        #050505;
 
-      border-radius: 999px;
+      padding:
+        12px 18px;
+
+      border-radius:
+        999px;
 
       font-weight: 900;
+
       font-size: 14px;
 
       cursor: pointer;
     }
 
+
+    /* VEHICLE CARD */
 
     .vehicle-card {
       background:
@@ -133,15 +160,21 @@
           #0d0d0d
         );
 
-      border: 1px solid var(--border);
-      border-radius: 24px;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        24px;
 
       overflow: hidden;
 
       box-shadow:
-        0 22px 60px rgba(0,0,0,0.35);
+        0 22px 60px
+        rgba(0,0,0,0.35);
     }
 
+
+    /* VEHICLE PHOTO */
 
     .vehicle-photo {
       position: relative;
@@ -156,25 +189,28 @@
         ),
         url("ghost-booty.jpg");
 
-      background-size: cover;
+      background-size:
+        cover;
 
       background-position:
         var(--photo-x, 50%)
         var(--photo-y, 50%);
 
-      background-repeat: no-repeat;
+      background-repeat:
+        no-repeat;
 
       transition:
         outline 0.2s ease,
         filter 0.2s ease;
     }
 
-
     .vehicle-photo.editing {
       outline:
-        2px solid rgba(155,244,4,0.55);
+        2px solid
+        rgba(155,244,4,0.55);
 
-      outline-offset: -2px;
+      outline-offset:
+        -2px;
 
       cursor: grab;
 
@@ -183,32 +219,38 @@
       user-select: none;
     }
 
-
     .vehicle-photo.editing:active {
       cursor: grabbing;
     }
 
 
+    /* FEATURED BADGE */
+
     .vehicle-badge {
       position: absolute;
 
       top: 18px;
+
       left: 18px;
 
       background:
         rgba(5,5,5,0.72);
 
       border:
-        1px solid rgba(255,255,255,0.12);
+        1px solid
+        rgba(255,255,255,0.12);
 
       backdrop-filter:
         blur(12px);
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
-      padding: 9px 13px;
+      padding:
+        9px 13px;
 
       font-size: 12px;
+
       font-weight: 800;
 
       letter-spacing: 1px;
@@ -217,19 +259,25 @@
     }
 
 
+    /* PHOTO EDIT BUTTON */
+
     .photo-edit-button {
       position: absolute;
 
       top: 18px;
+
       right: 18px;
 
       width: 44px;
+
       height: 44px;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       border:
-        1px solid rgba(255,255,255,0.18);
+        1px solid
+        rgba(255,255,255,0.18);
 
       background:
         rgba(0,0,0,0.42);
@@ -242,6 +290,7 @@
       font-size: 21px;
 
       display: grid;
+
       place-items: center;
 
       cursor: pointer;
@@ -254,32 +303,37 @@
         background 0.2s ease;
     }
 
-
     .photo-edit-button:hover {
-      color: var(--green);
+      color:
+        var(--green);
 
       border-color:
         rgba(155,244,4,0.75);
     }
 
-
     .photo-edit-button.active {
-      color: #050505;
+      color:
+        #050505;
 
-      background: var(--green);
+      background:
+        var(--green);
 
-      border-color: var(--green);
+      border-color:
+        var(--green);
     }
 
+
+    /* VEHICLE INFO */
 
     .vehicle-info {
       padding: 22px;
     }
 
-
     .vehicle-name-row {
       display: flex;
+
       justify-content: space-between;
+
       align-items: flex-start;
 
       gap: 20px;
@@ -287,42 +341,50 @@
       margin-bottom: 18px;
     }
 
-
     .nickname {
-      color: var(--green);
+      color:
+        var(--green);
 
       font-size: 30px;
+
       font-weight: 900;
 
       margin-bottom: 4px;
     }
 
-
     .vehicle-model {
-      color: var(--muted);
+      color:
+        var(--muted);
+
       font-size: 15px;
     }
 
-
     .status {
-      color: var(--green);
+      color:
+        var(--green);
 
       border:
-        1px solid rgba(155,244,4,0.35);
+        1px solid
+        rgba(155,244,4,0.35);
 
       background:
         rgba(155,244,4,0.08);
 
-      padding: 8px 12px;
+      padding:
+        8px 12px;
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
       font-size: 12px;
+
       font-weight: 800;
 
       white-space: nowrap;
     }
 
+
+    /* STATS */
 
     .stats {
       display: grid;
@@ -335,32 +397,37 @@
       margin-bottom: 20px;
     }
 
-
     .stat {
-      background: var(--panel-2);
+      background:
+        var(--panel-2);
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
-      border-radius: 16px;
+      border-radius:
+        16px;
 
       padding: 16px;
     }
 
-
     .stat-value {
       font-size: 22px;
+
       font-weight: 900;
 
       margin-bottom: 4px;
     }
 
-
     .stat-label {
-      color: var(--muted);
+      color:
+        var(--muted);
+
       font-size: 12px;
     }
 
+
+    /* BUILD ACTIONS */
 
     .actions {
       display: grid;
@@ -371,36 +438,46 @@
       gap: 10px;
     }
 
-
     .action {
       display: block;
 
       text-align: center;
+
       text-decoration: none;
 
-      padding: 14px 16px;
+      padding:
+        14px 16px;
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       font-weight: 800;
+
       font-size: 14px;
     }
 
-
     .primary {
-      background: var(--green);
-      color: #050505;
-    }
+      background:
+        var(--green);
 
+      color:
+        #050505;
+    }
 
     .secondary {
-      background: #202020;
-      color: white;
+      background:
+        #202020;
+
+      color:
+        white;
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
     }
 
+
+    /* PHOTO EDITOR */
 
     .photo-editor {
       display: none;
@@ -409,59 +486,63 @@
 
       padding: 16px;
 
-      background: var(--panel);
+      background:
+        var(--panel);
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
-      border-radius: 16px;
+      border-radius:
+        16px;
 
       gap: 16px;
     }
-
 
     .photo-editor.open {
       display: grid;
     }
 
-
     .editor-title {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       gap: 12px;
     }
 
-
     .editor-title strong {
       font-size: 15px;
     }
 
-
     .editor-title span {
-      color: var(--green);
+      color:
+        var(--green);
 
       font-size: 11px;
+
       font-weight: 800;
 
       letter-spacing: 1px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
-
 
     .photo-editor label {
       display: grid;
 
       gap: 8px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 13px;
+
       font-weight: 700;
     }
-
 
     .photo-editor input[type="range"] {
       width: 100%;
@@ -470,32 +551,35 @@
         var(--green);
     }
 
-
     .upload-button {
-      background: #202020;
+      background:
+        #202020;
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
-      border-radius: 12px;
+      border-radius:
+        12px;
 
-      padding: 13px 16px;
+      padding:
+        13px 16px;
 
-      color: white !important;
+      color:
+        white !important;
 
       text-align: center;
 
       cursor: pointer;
     }
 
-
     .upload-button input {
       display: none;
     }
 
-
     .photo-editor-hint {
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 12px;
 
@@ -504,25 +588,27 @@
       text-align: center;
     }
 
-
     .reset-photo {
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
       background:
         transparent;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
-      padding: 11px 14px;
+      padding:
+        11px 14px;
 
-      border-radius: 12px;
+      border-radius:
+        12px;
 
       cursor: pointer;
 
       font-weight: 700;
     }
-
 
     .reset-photo:hover {
       color: white;
@@ -531,6 +617,8 @@
         rgba(255,255,255,0.3);
     }
 
+
+    /* QUICK CARDS */
 
     .quick-grid {
       display: grid;
@@ -543,103 +631,162 @@
       margin-top: 22px;
     }
 
-
     .quick-card {
-      background: var(--panel);
+      background:
+        var(--panel);
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
-      border-radius: 18px;
+      border-radius:
+        18px;
 
       padding: 20px;
     }
 
-
     .quick-icon {
       font-size: 24px;
+
       margin-bottom: 12px;
     }
 
-
     .quick-card h3 {
       font-size: 16px;
+
       margin-bottom: 6px;
     }
 
-
     .quick-card p {
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 13px;
+
       line-height: 1.45;
     }
 
 
+    /* NEW BOTTOM NAV */
+
     .bottom-nav {
-      margin-top: 28px;
+      position: fixed;
 
-      padding: 14px;
+      left: 14px;
 
-      border-radius: 18px;
+      right: 14px;
 
-      border:
-        1px solid var(--border);
+      bottom:
+        max(
+          12px,
+          env(safe-area-inset-bottom)
+        );
 
-      background:
-        rgba(12,12,12,0.88);
+      z-index: 50;
+
+      height: 60px;
 
       display: flex;
-      justify-content: space-around;
 
-      position: sticky;
-      bottom: 14px;
+      align-items: center;
+
+      justify-content:
+        space-around;
+
+      background:
+        rgba(8,8,8,0.86);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+      border-radius:
+        20px;
 
       backdrop-filter:
-        blur(16px);
+        blur(18px);
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.45);
     }
 
-
     .nav-item {
-      color: var(--muted);
+      color:
+        #949494;
 
       text-decoration: none;
 
-      font-size: 13px;
-      font-weight: 700;
+      display: grid;
+
+      place-items: center;
+
+      gap: 3px;
+
+      min-width: 60px;
+
+      font-size: 10px;
+
+      font-weight: 800;
     }
 
+    .nav-icon {
+      font-size: 18px;
+    }
 
     .nav-item.active {
-      color: var(--green);
+      color:
+        var(--green);
     }
 
+
+    /* DESKTOP / TABLET */
+
+    @media (min-width: 850px) {
+
+      .bottom-nav {
+        width: 730px;
+
+        left: 50%;
+
+        right: auto;
+
+        transform:
+          translateX(-50%);
+      }
+
+    }
+
+
+    /* MOBILE */
 
     @media (max-width: 700px) {
 
       .app {
-        padding: 18px;
+        padding:
+          18px
+          18px
+          105px;
       }
-
 
       .vehicle-photo {
         min-height: 240px;
       }
 
-
       .stats,
       .quick-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
-
 
       .actions {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
-
       .vehicle-name-row {
-        flex-direction: column;
+        flex-direction:
+          column;
       }
 
     }
@@ -654,10 +801,12 @@
   <div class="app">
 
 
+    <!-- TOP -->
+
     <header class="topbar">
 
       <img
-        src="modzfolio-wordmark-green.png.png"
+        src="modzfolio-wordmark-green.png"
         alt="Modzfolio"
         class="brand-logo"
       >
@@ -670,6 +819,9 @@
     </header>
 
 
+
+    <!-- GARAGE -->
+
     <section>
 
 
@@ -680,7 +832,10 @@
         </div>
 
 
-        <button class="add-btn">
+        <button
+          class="add-btn"
+          type="button"
+        >
           + Add Vehicle
         </button>
 
@@ -688,10 +843,15 @@
 
 
 
+      <!-- GHOST -->
+
       <article class="vehicle-card">
 
 
-        <div class="vehicle-photo">
+        <div
+          class="vehicle-photo"
+          id="vehiclePhoto"
+        >
 
 
           <div class="vehicle-badge">
@@ -743,6 +903,8 @@
 
 
 
+          <!-- STATS -->
+
           <div class="stats">
 
 
@@ -791,6 +953,8 @@
 
 
 
+          <!-- ACTIONS -->
+
           <div class="actions">
 
 
@@ -819,6 +983,8 @@
       </article>
 
 
+
+      <!-- PHOTO EDITOR -->
 
       <div
         class="photo-editor"
@@ -908,6 +1074,8 @@
 
 
 
+      <!-- QUICK FEATURES -->
+
       <div class="quick-grid">
 
 
@@ -922,9 +1090,9 @@
           </h3>
 
           <p>
-            Create a clean
-            public build page
-            for meets and shows.
+            Create a clean public
+            build page for meets
+            and shows.
           </p>
 
         </div>
@@ -977,30 +1145,77 @@
 
 
 
+    <!-- NEW 4-TAB NAV -->
+
     <nav class="bottom-nav">
+
 
       <a
         class="nav-item active"
-        href="#"
+        href="garage.html"
       >
-        Garage
+
+        <span class="nav-icon">
+          ◉
+        </span>
+
+        <span>
+          Garage
+        </span>
+
       </a>
+
+
+
+      <a
+        class="nav-item"
+        href="explore.html"
+      >
+
+        <span class="nav-icon">
+          ◈
+        </span>
+
+        <span>
+          Explore
+        </span>
+
+      </a>
+
+
+
+      <a
+        class="nav-item"
+        href="crew.html"
+      >
+
+        <span class="nav-icon">
+          ◎
+        </span>
+
+        <span>
+          Crew
+        </span>
+
+      </a>
+
 
 
       <a
         class="nav-item"
         href="#"
       >
-        Explore
+
+        <span class="nav-icon">
+          ◯
+        </span>
+
+        <span>
+          Profile
+        </span>
+
       </a>
 
-
-      <a
-        class="nav-item"
-        href="#"
-      >
-        Profile
-      </a>
 
     </nav>
 
@@ -1012,8 +1227,8 @@
   <script>
 
     const photo =
-      document.querySelector(
-        ".vehicle-photo"
+      document.getElementById(
+        "vehiclePhoto"
       );
 
 
@@ -1054,6 +1269,8 @@
 
 
 
+    /* LOAD SAVED PHOTO POSITION */
+
     let x =
       Number(
         localStorage.getItem(
@@ -1070,22 +1287,34 @@
       ) || 50;
 
 
-
-    let editMode = false;
-
-    let dragging = false;
-
-    let startPointerX = 0;
-
-    let startPointerY = 0;
-
-    let startX = x;
-
-    let startY = y;
+    let editMode =
+      false;
 
 
+    let dragging =
+      false;
 
-    function clamp(value) {
+
+    let startPointerX =
+      0;
+
+
+    let startPointerY =
+      0;
+
+
+    let startX =
+      x;
+
+
+    let startY =
+      y;
+
+
+
+    function clamp(
+      value
+    ) {
 
       return Math.max(
         0,
@@ -1113,9 +1342,12 @@
       );
 
 
-      photoX.value = x;
+      photoX.value =
+        x;
 
-      photoY.value = y;
+
+      photoY.value =
+        y;
 
     }
 
@@ -1138,11 +1370,14 @@
 
 
 
+    /* EDIT BUTTON */
+
     editButton.addEventListener(
       "click",
       () => {
 
-        editMode = !editMode;
+        editMode =
+          !editMode;
 
 
         photo.classList.toggle(
@@ -1165,19 +1400,21 @@
 
         editButton.textContent =
           editMode
-          ? "✓"
-          : "✎";
+            ? "✓"
+            : "✎";
 
 
         editButton.setAttribute(
           "aria-pressed",
-          editMode
+          String(editMode)
         );
 
       }
     );
 
 
+
+    /* POSITION SLIDERS */
 
     photoX.addEventListener(
       "input",
@@ -1217,9 +1454,11 @@
 
 
 
+    /* DRAG IMAGE */
+
     photo.addEventListener(
       "pointerdown",
-      (event) => {
+      event => {
 
         if (!editMode) {
           return;
@@ -1235,7 +1474,8 @@
         }
 
 
-        dragging = true;
+        dragging =
+          true;
 
 
         startPointerX =
@@ -1246,9 +1486,12 @@
           event.clientY;
 
 
-        startX = x;
+        startX =
+          x;
 
-        startY = y;
+
+        startY =
+          y;
 
 
         photo.setPointerCapture(
@@ -1262,7 +1505,7 @@
 
     photo.addEventListener(
       "pointermove",
-      (event) => {
+      event => {
 
         if (
           !editMode ||
@@ -1304,13 +1547,15 @@
 
         x =
           clamp(
-            startX - deltaX
+            startX -
+            deltaX
           );
 
 
         y =
           clamp(
-            startY - deltaY
+            startY -
+            deltaY
           );
 
 
@@ -1323,14 +1568,15 @@
 
     photo.addEventListener(
       "pointerup",
-      (event) => {
+      event => {
 
         if (!dragging) {
           return;
         }
 
 
-        dragging = false;
+        dragging =
+          false;
 
 
         if (
@@ -1357,16 +1603,19 @@
       "pointercancel",
       () => {
 
-        dragging = false;
+        dragging =
+          false;
 
       }
     );
 
 
 
+    /* CHOOSE A NEW PHOTO */
+
     photoUpload.addEventListener(
       "change",
-      (event) => {
+      event => {
 
         const file =
           event.target.files[0];
@@ -1406,6 +1655,8 @@
 
 
 
+    /* RESET PHOTO POSITION */
+
     resetPhoto.addEventListener(
       "click",
       () => {
@@ -1423,6 +1674,8 @@
     );
 
 
+
+    /* INITIALIZE */
 
     updatePhotoPosition();
 
