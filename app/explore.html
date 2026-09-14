@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,35 +11,27 @@
 
   <title>Explore | Modzfolio</title>
 
-
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-
     :root {
-
       --green: #9BF404;
       --black: #050505;
       --panel: #111111;
       --border: rgba(255,255,255,0.12);
       --text: #ffffff;
       --muted: #a5a5a5;
-
     }
-
 
     html {
       scroll-behavior: smooth;
     }
 
-
     body {
-
       background: var(--black);
       color: white;
 
@@ -51,28 +42,20 @@
         sans-serif;
 
       min-height: 100vh;
-
       overflow: hidden;
-
     }
-
 
     button,
     input {
-
       font: inherit;
-
     }
-
 
 
     /* =========================
        HEADER
     ========================= */
 
-
     .topbar {
-
       position: fixed;
 
       top: 0;
@@ -100,52 +83,37 @@
         );
 
       pointer-events: none;
-
     }
-
 
     .topbar > * {
       pointer-events: auto;
     }
 
-
     .brand-logo {
-
       width: 180px;
       max-width: 48vw;
-
       height: auto;
-
       display: block;
-
     }
 
-
     .brand-fallback {
-
       display: none;
 
       font-size: 23px;
       font-weight: 950;
 
       font-style: italic;
-
       letter-spacing: -1px;
-
     }
-
 
     .brand-fallback span {
       color: var(--green);
     }
 
 
-
     /* FEED TOGGLE */
 
-
     .feed-toggle {
-
       display: flex;
 
       gap: 4px;
@@ -161,14 +129,10 @@
         1px solid var(--border);
 
       backdrop-filter: blur(14px);
-
     }
 
-
     .feed-toggle button {
-
       border: none;
-
       background: transparent;
 
       color: var(--muted);
@@ -181,27 +145,19 @@
       font-weight: 800;
 
       cursor: pointer;
-
     }
-
 
     .feed-toggle button.active {
-
       color: #050505;
-
       background: var(--green);
-
     }
-
 
 
     /* =========================
        FEED
     ========================= */
 
-
     .feed {
-
       height: 100vh;
 
       overflow-y: scroll;
@@ -209,21 +165,16 @@
       scroll-snap-type: y mandatory;
 
       scrollbar-width: none;
-
     }
-
 
     .feed::-webkit-scrollbar {
       display: none;
     }
 
-
     .post {
-
       position: relative;
 
       height: 100vh;
-
       min-height: 650px;
 
       scroll-snap-align: start;
@@ -232,16 +183,12 @@
       background-position: center;
 
       overflow: hidden;
-
     }
 
-
     .post::before {
-
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
@@ -252,38 +199,29 @@
           rgba(0,0,0,0.30) 58%,
           rgba(0,0,0,0.92) 100%
         );
-
     }
 
-
     .post::after {
-
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       box-shadow:
         inset 0 0 100px rgba(0,0,0,0.25);
 
       pointer-events: none;
-
     }
-
 
 
     /* =========================
        PROFILE STRIP
     ========================= */
 
-
     .profile-strip {
-
       position: absolute;
 
       top: 86px;
-
       left: 18px;
       right: 18px;
 
@@ -294,22 +232,16 @@
       justify-content: space-between;
 
       gap: 12px;
-
     }
 
-
     .profile-info {
-
       display: flex;
       align-items: center;
 
       gap: 11px;
-
     }
 
-
     .avatar {
-
       width: 46px;
       height: 46px;
 
@@ -329,23 +261,17 @@
       color: var(--green);
 
       font-weight: 950;
-
     }
 
-
     .username {
-
       font-size: 14px;
       font-weight: 900;
 
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
-
     }
 
-
     .garage-count {
-
       color: #d0d0d0;
 
       font-size: 11px;
@@ -354,12 +280,9 @@
 
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
-
     }
 
-
     .follow-button {
-
       border:
         1px solid rgba(255,255,255,0.25);
 
@@ -378,43 +301,32 @@
       font-weight: 850;
 
       cursor: pointer;
-
     }
 
-
     .follow-button.following {
-
       color: var(--green);
 
       border-color:
         rgba(155,244,4,0.55);
-
     }
-
 
 
     /* =========================
        POST CONTENT
     ========================= */
 
-
     .post-content {
-
       position: absolute;
 
       left: 18px;
-
       right: 92px;
 
       bottom: 102px;
 
       z-index: 3;
-
     }
 
-
     .car-nickname {
-
       color: var(--green);
 
       font-size:
@@ -428,12 +340,9 @@
 
       text-shadow:
         0 3px 18px rgba(0,0,0,0.8);
-
     }
 
-
     .car-model {
-
       margin-top: 7px;
 
       font-size: 15px;
@@ -441,16 +350,12 @@
 
       text-shadow:
         0 2px 12px rgba(0,0,0,0.9);
-
     }
 
-
     .caption {
-
       color: #d3d3d3;
 
       font-size: 13px;
-
       line-height: 1.45;
 
       max-width: 520px;
@@ -459,28 +364,18 @@
 
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
-
     }
 
-
-
-    /* TAGS */
-
-
     .post-tags {
-
       display: flex;
       flex-wrap: wrap;
 
       gap: 7px;
 
       margin-top: 12px;
-
     }
 
-
     .tag {
-
       padding: 7px 10px;
 
       border-radius: 999px;
@@ -495,18 +390,14 @@
 
       font-size: 10px;
       font-weight: 800;
-
     }
-
 
 
     /* =========================
        KLEEN METER
     ========================= */
 
-
     .kleen-card {
-
       margin-top: 16px;
 
       width:
@@ -523,51 +414,35 @@
         1px solid rgba(255,255,255,0.14);
 
       backdrop-filter: blur(16px);
-
     }
 
-
     .kleen-top {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       gap: 12px;
 
       margin-bottom: 8px;
-
     }
 
-
     .kleen-label {
-
       font-size: 11px;
-
       font-weight: 950;
 
       letter-spacing: 1.5px;
-
     }
 
-
     .kleen-tier {
-
       color: var(--green);
 
       font-size: 11px;
-
       font-weight: 950;
 
       text-transform: uppercase;
-
     }
 
-
     .kleen-track {
-
       position: relative;
 
       height: 8px;
@@ -578,12 +453,9 @@
         rgba(255,255,255,0.10);
 
       overflow: hidden;
-
     }
 
-
     .kleen-fill {
-
       height: 100%;
 
       width:
@@ -603,14 +475,10 @@
 
       transition:
         width 0.45s ease;
-
     }
 
-
     .kleen-bottom {
-
       display: flex;
-
       justify-content: space-between;
 
       margin-top: 7px;
@@ -618,22 +486,17 @@
       color: var(--muted);
 
       font-size: 10px;
-
     }
-
 
 
     /* =========================
        ACTION RAIL
     ========================= */
 
-
     .action-rail {
-
       position: absolute;
 
       right: 16px;
-
       bottom: 111px;
 
       z-index: 4;
@@ -641,12 +504,9 @@
       display: grid;
 
       gap: 13px;
-
     }
 
-
     .rail-action {
-
       display: grid;
 
       place-items: center;
@@ -656,16 +516,11 @@
       color: white;
 
       font-size: 10px;
-
       font-weight: 800;
-
     }
 
-
     .rail-button {
-
       width: 49px;
-
       height: 49px;
 
       border-radius: 50%;
@@ -678,12 +533,13 @@
 
       color: white;
 
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0;
 
       backdrop-filter: blur(14px);
-
-      font-size: 20px;
 
       cursor: pointer;
 
@@ -691,41 +547,72 @@
         transform 0.16s ease,
         color 0.16s ease,
         border-color 0.16s ease,
-        box-shadow 0.16s ease;
-
+        box-shadow 0.16s ease,
+        background 0.16s ease;
     }
-
 
     .rail-button:active {
-
       transform: scale(0.88);
-
     }
 
 
+    /* CENTERED KLEEN ICON */
 
-    /* KLEEN BUTTON */
+    .kleen-icon {
+      width: 24px;
+      height: 24px;
 
+      display: block;
+
+      fill: currentColor;
+
+      transform-origin: center;
+    }
 
     .kleen-vote.active {
-
       color: var(--green);
 
       border-color:
-        rgba(155,244,4,0.7);
+        rgba(155,244,4,0.75);
+
+      background:
+        rgba(155,244,4,0.08);
 
       box-shadow:
-        0 0 18px rgba(155,244,4,0.2);
+        0 0 24px rgba(155,244,4,0.30);
+    }
 
+    .kleen-action.voted .vote-count {
+      color: var(--green);
+    }
+
+    .kleen-vote.pop .kleen-icon {
+      animation:
+        kleenPop 0.34s ease;
+    }
+
+    @keyframes kleenPop {
+      0% {
+        transform: scale(1) rotate(0);
+      }
+
+      45% {
+        transform: scale(1.42) rotate(18deg);
+      }
+
+      100% {
+        transform: scale(1) rotate(0);
+      }
     }
 
 
+    /* LIKE */
 
-    /* LIKE BUTTON */
-
+    .like-button {
+      font-size: 28px;
+    }
 
     .like-button.active {
-
       color: var(--green);
 
       border-color:
@@ -733,30 +620,23 @@
 
       box-shadow:
         0 0 20px rgba(155,244,4,0.28);
-
     }
 
-
     .heart {
-
       display: inline-block;
+
+      line-height: 1;
 
       transition:
         transform 0.18s ease;
-
     }
-
 
     .like-button.pop .heart {
-
       animation:
         heartPop 0.28s ease;
-
     }
 
-
     @keyframes heartPop {
-
       0% {
         transform: scale(1);
       }
@@ -768,18 +648,31 @@
       100% {
         transform: scale(1);
       }
-
     }
 
+
+    /* SHARE */
+
+    .share-icon {
+      width: 23px;
+      height: 23px;
+
+      fill: none;
+
+      stroke: currentColor;
+
+      stroke-width: 2.1;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
 
     /* =========================
        COMMENTS
     ========================= */
 
-
     .comment-backdrop {
-
       position: fixed;
 
       inset: 0;
@@ -795,25 +688,18 @@
 
       transition:
         opacity 0.25s ease;
-
     }
 
-
     .comment-backdrop.open {
-
       opacity: 1;
 
       pointer-events: auto;
-
     }
 
-
     .comment-sheet {
-
       position: fixed;
 
       left: 50%;
-
       bottom: 0;
 
       transform:
@@ -839,7 +725,6 @@
         24px 24px 0 0;
 
       padding:
-
         18px
         18px
         max(
@@ -848,7 +733,6 @@
         );
 
       display: flex;
-
       flex-direction: column;
 
       transition:
@@ -859,22 +743,15 @@
 
       backdrop-filter:
         blur(20px);
-
     }
-
 
     .comment-sheet.open {
-
       transform:
         translate(-50%, 0);
-
     }
 
-
     .comment-handle {
-
       width: 44px;
-
       height: 4px;
 
       margin:
@@ -885,49 +762,32 @@
 
       background:
         rgba(255,255,255,0.2);
-
     }
 
-
     .comment-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       margin-bottom: 16px;
-
     }
-
 
     .comment-title {
-
       font-size: 17px;
-
       font-weight: 900;
-
     }
 
-
     .comment-post-name {
-
       color: var(--green);
 
       font-size: 11px;
-
       font-weight: 800;
 
       margin-top: 2px;
-
     }
 
-
     .comment-close {
-
       width: 36px;
-
       height: 36px;
 
       border: none;
@@ -942,18 +802,14 @@
       font-size: 20px;
 
       cursor: pointer;
-
     }
 
-
     .comment-list {
-
       flex: 1;
 
       overflow-y: auto;
 
       display: grid;
-
       align-content: start;
 
       gap: 12px;
@@ -963,30 +819,22 @@
         18px;
 
       scrollbar-width: none;
-
     }
-
 
     .comment-list::-webkit-scrollbar {
       display: none;
     }
 
-
     .comment-item {
-
       display: flex;
 
       gap: 10px;
 
       text-align: left;
-
     }
 
-
     .comment-avatar {
-
       width: 34px;
-
       height: 34px;
 
       flex: 0 0 34px;
@@ -994,7 +842,6 @@
       border-radius: 50%;
 
       display: grid;
-
       place-items: center;
 
       background:
@@ -1006,14 +853,10 @@
       color: var(--green);
 
       font-size: 11px;
-
       font-weight: 900;
-
     }
 
-
     .comment-bubble {
-
       flex: 1;
 
       padding:
@@ -1027,38 +870,27 @@
 
       border:
         1px solid rgba(255,255,255,0.07);
-
     }
 
-
     .comment-user {
-
       color: var(--green);
 
       font-size: 11px;
-
       font-weight: 900;
 
       margin-bottom: 4px;
-
     }
 
-
     .comment-text {
-
       color: #eeeeee;
 
       font-size: 13px;
-
       line-height: 1.4;
 
       overflow-wrap: anywhere;
-
     }
 
-
     .comment-form {
-
       display: flex;
 
       gap: 8px;
@@ -1067,12 +899,9 @@
 
       border-top:
         1px solid var(--border);
-
     }
 
-
     .comment-input {
-
       flex: 1;
 
       min-width: 0;
@@ -1091,30 +920,21 @@
         12px 15px;
 
       outline: none;
-
     }
-
 
     .comment-input::placeholder {
-
       color: #777;
-
     }
 
-
     .comment-input:focus {
-
       border-color:
         rgba(155,244,4,0.6);
 
       box-shadow:
         0 0 0 2px rgba(155,244,4,0.06);
-
     }
 
-
     .comment-submit {
-
       border: none;
 
       background: var(--green);
@@ -1129,22 +949,79 @@
         0 18px;
 
       cursor: pointer;
-
     }
 
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    .toast {
+      position: fixed;
+
+      left: 50%;
+
+      bottom:
+        max(
+          92px,
+          calc(
+            env(safe-area-inset-bottom)
+            + 82px
+          )
+        );
+
+      z-index: 200;
+
+      transform:
+        translate(-50%, 20px);
+
+      padding:
+        11px 18px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(18,18,18,0.96);
+
+      border:
+        1px solid rgba(155,244,4,0.35);
+
+      color: var(--green);
+
+      font-size: 12px;
+      font-weight: 850;
+
+      box-shadow:
+        0 12px 35px rgba(0,0,0,0.5);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+      backdrop-filter:
+        blur(16px);
+    }
+
+    .toast.show {
+      opacity: 1;
+
+      transform:
+        translate(-50%, 0);
+    }
 
 
     /* =========================
        BOTTOM NAV
     ========================= */
 
-
     .bottom-nav {
-
       position: fixed;
 
       left: 14px;
-
       right: 14px;
 
       bottom:
@@ -1158,9 +1035,7 @@
       height: 60px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-around;
 
       background:
@@ -1176,18 +1051,14 @@
 
       box-shadow:
         0 15px 40px rgba(0,0,0,0.45);
-
     }
 
-
     .nav-item {
-
       color: #949494;
 
       text-decoration: none;
 
       display: grid;
-
       place-items: center;
 
       gap: 3px;
@@ -1195,37 +1066,20 @@
       min-width: 70px;
 
       font-size: 10px;
-
       font-weight: 800;
-
     }
-
 
     .nav-icon {
-
       font-size: 18px;
-
     }
-
 
     .nav-item.active {
-
       color: var(--green);
-
     }
-
-
-
-    /* =========================
-       DESKTOP
-    ========================= */
 
 
     @media (min-width: 850px) {
-
-
       .post {
-
         width:
           min(100%, 760px);
 
@@ -1236,147 +1090,97 @@
 
         border-right:
           1px solid rgba(255,255,255,0.08);
-
       }
 
-
       .topbar {
-
         width:
           min(100%, 760px);
 
         margin:
           0 auto;
-
       }
 
-
       .bottom-nav {
-
         width: 730px;
 
         left: 50%;
 
         transform:
           translateX(-50%);
-
       }
-
-
     }
 
-
   </style>
-
-
 </head>
-
 
 
 <body>
 
 
-
-  <!-- =========================
-       TOP BAR
-  ========================= -->
-
+  <!-- TOP BAR -->
 
   <header class="topbar">
 
-
     <div>
 
-
       <img
-
         src="modzfolio-wordmark-green.png.png"
-
         alt="Modzfolio"
-
         class="brand-logo"
 
         onerror="
           this.style.display='none';
           document.getElementById('brandFallback').style.display='block';
         "
-
       >
-
 
       <div
-
         class="brand-fallback"
-
         id="brandFallback"
-
       >
-
         MODZ<span>FOLIO</span>
-
       </div>
 
-
     </div>
-
 
 
     <div class="feed-toggle">
 
-
       <button
-
         class="active"
-
         type="button"
-
       >
-
         For You
-
       </button>
-
 
       <button
-
         type="button"
-
       >
-
         Following
-
       </button>
-
 
     </div>
-
 
   </header>
 
 
 
-  <!-- =========================
-       FEED
-  ========================= -->
-
+  <!-- FEED -->
 
   <main class="feed">
 
 
-
-    <!-- =========================
-         POST 1
-         GHOST
-    ========================= -->
-
+    <!-- GHOST -->
 
     <article
-
       class="post"
+      id="post-ghost"
 
       data-post="ghost"
 
       data-score="86"
+
+      data-base-kleen="1200"
 
       data-base-likes="1284"
 
@@ -1386,59 +1190,37 @@
         background-image:
         url('ghost-booty.jpg');
       "
-
     >
-
 
       <div class="profile-strip">
 
-
         <div class="profile-info">
 
-
           <div class="avatar">
-
             K
-
           </div>
-
 
           <div>
 
-
             <div class="username">
-
               @krzly
-
             </div>
-
 
             <div class="garage-count">
-
               1 car in garage
-
             </div>
 
-
           </div>
-
 
         </div>
 
 
-
         <button
-
           class="follow-button"
-
           type="button"
-
         >
-
           Follow
-
         </button>
-
 
       </div>
 
@@ -1446,120 +1228,73 @@
 
       <div class="post-content">
 
-
         <div class="car-nickname">
-
           GHOST
-
         </div>
-
 
         <div class="car-model">
-
           2025 Subaru Impreza RS
-
         </div>
-
 
         <div class="caption">
-
           Daily driven. Slowly becoming exactly
           what I pictured when I bought it.
-
         </div>
-
 
 
         <div class="post-tags">
 
-
           <span class="tag">
-
             14 MODS
-
           </span>
 
-
           <span class="tag">
-
             ACTIVE BUILD
-
           </span>
-
 
           <span class="tag">
-
             SUBARU
-
           </span>
-
 
         </div>
 
 
-
         <div
-
           class="kleen-card"
-
-          style="
-            --kleen-score: 86%;
-          "
-
+          style="--kleen-score: 86%;"
         >
-
 
           <div class="kleen-top">
 
-
             <div class="kleen-label">
-
               KLEEN METER
-
             </div>
-
 
             <div class="kleen-tier">
-
               Show Ready
-
             </div>
 
-
           </div>
-
 
 
           <div class="kleen-track">
-
             <div class="kleen-fill"></div>
-
           </div>
-
 
 
           <div class="kleen-bottom">
 
-
             <span>
-
               Community Rating
-
             </span>
-
 
             <span class="kleen-score-text">
-
               86
-
             </span>
-
 
           </div>
 
-
         </div>
-
 
       </div>
 
@@ -1567,160 +1302,130 @@
 
       <div class="action-rail">
 
-
-
         <!-- KLEEN -->
 
-
-        <div class="rail-action">
-
+        <div class="rail-action kleen-action">
 
           <button
-
             class="rail-button kleen-vote"
-
             type="button"
-
             aria-label="Vote KLEEN"
-
+            aria-pressed="false"
           >
 
-            ✦
+            <svg
+              class="kleen-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="
+                  M12 2
+                  C12.7 7.1 16.9 11.3 22 12
+                  C16.9 12.7 12.7 16.9 12 22
+                  C11.3 16.9 7.1 12.7 2 12
+                  C7.1 11.3 11.3 7.1 12 2
+                  Z
+                "
+              />
+            </svg>
 
           </button>
 
-
           <span class="vote-count">
-
             1.2K
-
           </span>
 
-
         </div>
-
 
 
         <!-- LIKE -->
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button like-button"
-
             type="button"
-
             aria-label="Like build"
-
           >
 
             <span class="heart">
-
               ♡
-
             </span>
-
 
           </button>
 
-
           <span class="like-count">
-
             1.3K
-
           </span>
 
-
         </div>
-
 
 
         <!-- COMMENTS -->
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button comment-button"
-
             type="button"
-
             aria-label="Comments"
-
           >
-
             💬
-
           </button>
 
-
           <span class="comment-count">
-
             84
-
           </span>
 
-
         </div>
-
 
 
         <!-- SHARE -->
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button share-button"
-
             type="button"
-
+            aria-label="Share build"
           >
 
-            ↗
+            <svg
+              class="share-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M12 16V3"></path>
+              <path d="M7 8l5-5 5 5"></path>
+              <path d="M5 12v7h14v-7"></path>
+            </svg>
 
           </button>
 
-
           <span>
-
             Share
-
           </span>
-
 
         </div>
 
-
       </div>
-
 
     </article>
 
 
 
-
-
-    <!-- =========================
-         POST 2
-         MIDNIGHT
-    ========================= -->
-
+    <!-- MIDNIGHT -->
 
     <article
-
       class="post"
+      id="post-midnight"
 
       data-post="midnight"
 
       data-score="74"
+
+      data-base-kleen="642"
 
       data-base-likes="642"
 
@@ -1730,59 +1435,37 @@
         background-image:
         url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=90');
       "
-
     >
-
 
       <div class="profile-strip">
 
-
         <div class="profile-info">
 
-
           <div class="avatar">
-
             J
-
           </div>
-
 
           <div>
 
-
             <div class="username">
-
               @jdmjay
-
             </div>
-
 
             <div class="garage-count">
-
               3 cars in garage
-
             </div>
 
-
           </div>
-
 
         </div>
 
 
-
         <button
-
           class="follow-button"
-
           type="button"
-
         >
-
           Follow
-
         </button>
-
 
       </div>
 
@@ -1790,120 +1473,73 @@
 
       <div class="post-content">
 
-
         <div class="car-nickname">
-
           MIDNIGHT
-
         </div>
-
 
         <div class="car-model">
-
           2018 Honda Civic Si
-
         </div>
-
 
         <div class="caption">
-
           Built for canyon nights and questionable
           financial decisions.
-
         </div>
-
 
 
         <div class="post-tags">
 
-
           <span class="tag">
-
             22 MODS
-
           </span>
 
-
           <span class="tag">
-
             STREET BUILD
-
           </span>
-
 
           <span class="tag">
-
             HONDA
-
           </span>
-
 
         </div>
 
 
-
         <div
-
           class="kleen-card"
-
-          style="
-            --kleen-score: 74%;
-          "
-
+          style="--kleen-score: 74%;"
         >
-
 
           <div class="kleen-top">
 
-
             <div class="kleen-label">
-
               KLEEN METER
-
             </div>
-
 
             <div class="kleen-tier">
-
               Meet Ready
-
             </div>
 
-
           </div>
-
 
 
           <div class="kleen-track">
-
             <div class="kleen-fill"></div>
-
           </div>
-
 
 
           <div class="kleen-bottom">
 
-
             <span>
-
               Community Rating
-
             </span>
-
 
             <span class="kleen-score-text">
-
               74
-
             </span>
-
 
           </div>
 
-
         </div>
-
 
       </div>
 
@@ -1911,142 +1547,116 @@
 
       <div class="action-rail">
 
-
-
-        <div class="rail-action">
-
+        <div class="rail-action kleen-action">
 
           <button
-
             class="rail-button kleen-vote"
-
             type="button"
-
+            aria-label="Vote KLEEN"
+            aria-pressed="false"
           >
 
-            ✦
+            <svg
+              class="kleen-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="
+                  M12 2
+                  C12.7 7.1 16.9 11.3 22 12
+                  C16.9 12.7 12.7 16.9 12 22
+                  C11.3 16.9 7.1 12.7 2 12
+                  C7.1 11.3 11.3 7.1 12 2
+                  Z
+                "
+              />
+            </svg>
 
           </button>
-
 
           <span class="vote-count">
-
             642
-
           </span>
-
 
         </div>
 
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button like-button"
-
             type="button"
-
           >
-
             <span class="heart">
-
               ♡
-
             </span>
-
-
           </button>
-
 
           <span class="like-count">
-
             642
-
           </span>
-
 
         </div>
 
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button comment-button"
-
             type="button"
-
           >
-
             💬
-
           </button>
-
 
           <span class="comment-count">
-
             31
-
           </span>
 
-
         </div>
-
 
 
         <div class="rail-action">
 
-
           <button
-
             class="rail-button share-button"
-
             type="button"
-
           >
 
-            ↗
+            <svg
+              class="share-icon"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 16V3"></path>
+              <path d="M7 8l5-5 5 5"></path>
+              <path d="M5 12v7h14v-7"></path>
+            </svg>
 
           </button>
 
-
           <span>
-
             Share
-
           </span>
-
 
         </div>
 
-
       </div>
-
 
     </article>
 
 
 
-
-
-    <!-- =========================
-         POST 3
-         STATIC
-    ========================= -->
-
+    <!-- STATIC -->
 
     <article
-
       class="post"
+      id="post-static"
 
       data-post="static"
 
       data-score="94"
+
+      data-base-kleen="3400"
 
       data-base-likes="3417"
 
@@ -2056,59 +1666,37 @@
         background-image:
         url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=90');
       "
-
     >
-
 
       <div class="profile-strip">
 
-
         <div class="profile-info">
 
-
           <div class="avatar">
-
             M
-
           </div>
-
 
           <div>
 
-
             <div class="username">
-
               @mika.builds
-
             </div>
-
 
             <div class="garage-count">
-
               2 cars in garage
-
             </div>
 
-
           </div>
-
 
         </div>
 
 
-
         <button
-
           class="follow-button"
-
           type="button"
-
         >
-
           Follow
-
         </button>
-
 
       </div>
 
@@ -2116,120 +1704,73 @@
 
       <div class="post-content">
 
-
         <div class="car-nickname">
-
           STATIC
-
         </div>
-
 
         <div class="car-model">
-
           2021 Toyota GR86
-
         </div>
-
 
         <div class="caption">
-
           Simple, low and intentional.
           Nothing on the car is there by accident.
-
         </div>
-
 
 
         <div class="post-tags">
 
-
           <span class="tag">
-
             31 MODS
-
           </span>
 
-
           <span class="tag">
-
             FEATURED
-
           </span>
-
 
           <span class="tag">
-
             TOYOTA
-
           </span>
-
 
         </div>
 
 
-
         <div
-
           class="kleen-card"
-
-          style="
-            --kleen-score: 94%;
-          "
-
+          style="--kleen-score: 94%;"
         >
-
 
           <div class="kleen-top">
 
-
             <div class="kleen-label">
-
               KLEEN METER
-
             </div>
-
 
             <div class="kleen-tier">
-
               Exhibition
-
             </div>
 
-
           </div>
-
 
 
           <div class="kleen-track">
-
             <div class="kleen-fill"></div>
-
           </div>
-
 
 
           <div class="kleen-bottom">
 
-
             <span>
-
               Community Rating
-
             </span>
-
 
             <span class="kleen-score-text">
-
               94
-
             </span>
-
 
           </div>
 
-
         </div>
-
 
       </div>
 
@@ -2237,122 +1778,100 @@
 
       <div class="action-rail">
 
-
-
-        <div class="rail-action">
-
+        <div class="rail-action kleen-action">
 
           <button
-
             class="rail-button kleen-vote"
-
             type="button"
-
+            aria-label="Vote KLEEN"
+            aria-pressed="false"
           >
 
-            ✦
+            <svg
+              class="kleen-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="
+                  M12 2
+                  C12.7 7.1 16.9 11.3 22 12
+                  C16.9 12.7 12.7 16.9 12 22
+                  C11.3 16.9 7.1 12.7 2 12
+                  C7.1 11.3 11.3 7.1 12 2
+                  Z
+                "
+              />
+            </svg>
 
           </button>
-
 
           <span class="vote-count">
-
             3.4K
-
           </span>
-
 
         </div>
 
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button like-button"
-
             type="button"
-
           >
-
             <span class="heart">
-
               ♡
-
             </span>
-
-
           </button>
-
 
           <span class="like-count">
-
             3.4K
-
           </span>
-
 
         </div>
 
 
-
         <div class="rail-action">
 
-
           <button
-
             class="rail-button comment-button"
-
             type="button"
-
           >
-
             💬
-
           </button>
-
 
           <span class="comment-count">
-
             219
-
           </span>
 
-
         </div>
-
 
 
         <div class="rail-action">
 
-
           <button
-
             class="rail-button share-button"
-
             type="button"
-
           >
 
-            ↗
+            <svg
+              class="share-icon"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 16V3"></path>
+              <path d="M7 8l5-5 5 5"></path>
+              <path d="M5 12v7h14v-7"></path>
+            </svg>
 
           </button>
 
-
           <span>
-
             Share
-
           </span>
-
 
         </div>
 
-
       </div>
-
 
     </article>
 
@@ -2361,235 +1880,150 @@
 
 
 
-  <!-- =========================
-       COMMENT BACKDROP
-  ========================= -->
-
+  <!-- COMMENT BACKDROP -->
 
   <div
-
     class="comment-backdrop"
-
     id="commentBackdrop"
-
   ></div>
 
 
 
-  <!-- =========================
-       COMMENT SHEET
-  ========================= -->
-
+  <!-- COMMENT SHEET -->
 
   <section
-
     class="comment-sheet"
-
     id="commentSheet"
-
   >
-
 
     <div class="comment-handle"></div>
 
 
-
     <div class="comment-header">
-
 
       <div>
 
-
         <div class="comment-title">
-
           Comments
-
         </div>
 
-
         <div
-
           class="comment-post-name"
-
           id="commentPostName"
-
         ></div>
-
 
       </div>
 
 
-
       <button
-
         class="comment-close"
-
         id="commentClose"
-
         type="button"
-
       >
-
         ×
-
       </button>
-
 
     </div>
 
 
-
     <div
-
       class="comment-list"
-
       id="commentList"
-
     ></div>
 
 
-
     <form
-
       class="comment-form"
-
       id="commentForm"
-
     >
 
-
       <input
-
         class="comment-input"
-
         id="commentInput"
-
         type="text"
-
         maxlength="240"
-
         placeholder="Add a comment..."
-
         autocomplete="off"
-
       >
 
 
       <button
-
         class="comment-submit"
-
         type="submit"
-
       >
-
         Post
-
       </button>
 
-
     </form>
-
 
   </section>
 
 
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
+  <!-- TOAST -->
 
+  <div
+    class="toast"
+    id="toast"
+  >
+    Link copied
+  </div>
+
+
+
+  <!-- NAV -->
 
   <nav class="bottom-nav">
 
-
     <a
-
       class="nav-item"
-
       href="garage.html"
-
     >
 
-
       <span class="nav-icon">
-
         ◉
-
       </span>
 
-
       <span>
-
         Garage
-
       </span>
-
 
     </a>
 
 
-
     <a
-
       class="nav-item active"
-
       href="explore.html"
-
     >
 
-
       <span class="nav-icon">
-
         ◈
-
       </span>
-
 
       <span>
-
         Explore
-
       </span>
 
-
     </a>
-
 
 
     <a
-
       class="nav-item"
-
       href="#"
-
     >
 
-
       <span class="nav-icon">
-
         ◯
-
       </span>
-
 
       <span>
-
         Profile
-
       </span>
 
-
     </a>
-
 
   </nav>
 
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
 
 
   <script>
@@ -2599,26 +2033,15 @@
        HELPERS
     ========================= */
 
-
     function formatCount(number) {
-
 
       if (number >= 1000000) {
 
         return (
-
           number / 1000000
-
         )
-
         .toFixed(1)
-
-        .replace(
-          ".0",
-          ""
-        )
-
-        + "M";
+        .replace(".0", "") + "M";
 
       }
 
@@ -2626,19 +2049,10 @@
       if (number >= 1000) {
 
         return (
-
           number / 1000
-
         )
-
         .toFixed(1)
-
-        .replace(
-          ".0",
-          ""
-        )
-
-        + "K";
+        .replace(".0", "") + "K";
 
       }
 
@@ -2648,115 +2062,101 @@
     }
 
 
+    function getTier(score) {
+
+      if (score >= 98) {
+        return "Hall of KLEEN";
+      }
+
+      if (score >= 90) {
+        return "Exhibition";
+      }
+
+      if (score >= 80) {
+        return "Show Ready";
+      }
+
+      if (score >= 65) {
+        return "Meet Ready";
+      }
+
+      if (score >= 40) {
+        return "Street KLEEN";
+      }
+
+      return "Off the Lot";
+
+    }
+
+
 
     /* =========================
-       FOR YOU / FOLLOWING
+       FEED TOGGLE
     ========================= */
 
-
     document
-
       .querySelectorAll(
         ".feed-toggle button"
       )
-
       .forEach(
-
         button => {
 
-
           button.addEventListener(
-
             "click",
-
             () => {
 
-
               document
-
                 .querySelectorAll(
                   ".feed-toggle button"
                 )
-
                 .forEach(
-
                   item =>
-
-                    item
-                      .classList
-                      .remove(
-                        "active"
-                      )
-
+                    item.classList.remove(
+                      "active"
+                    )
                 );
 
-
-              button
-                .classList
-                .add(
-                  "active"
-                );
-
+              button.classList.add(
+                "active"
+              );
 
             }
-
           );
 
-
         }
-
       );
 
 
 
     /* =========================
-       FOLLOW BUTTONS
+       FOLLOW
     ========================= */
 
-
     document
-
       .querySelectorAll(
         ".follow-button"
       )
-
       .forEach(
-
         button => {
 
-
           button.addEventListener(
-
             "click",
-
             () => {
 
-
               const following =
-
-                button
-                  .classList
-                  .toggle(
-                    "following"
-                  );
-
+                button.classList.toggle(
+                  "following"
+                );
 
               button.textContent =
-
                 following
-
                   ? "Following"
-
                   : "Follow";
 
-
             }
-
           );
 
-
         }
-
       );
 
 
@@ -2765,158 +2165,173 @@
        KLEEN VOTES
     ========================= */
 
-
     document
-
       .querySelectorAll(
-        ".kleen-vote"
+        ".post"
       )
-
       .forEach(
+        post => {
 
-        button => {
+          const postId =
+            post.dataset.post;
+
+          const button =
+            post.querySelector(
+              ".kleen-vote"
+            );
+
+          const action =
+            post.querySelector(
+              ".kleen-action"
+            );
+
+          const countText =
+            post.querySelector(
+              ".vote-count"
+            );
+
+          const scoreText =
+            post.querySelector(
+              ".kleen-score-text"
+            );
+
+          const fill =
+            post.querySelector(
+              ".kleen-fill"
+            );
+
+          const tier =
+            post.querySelector(
+              ".kleen-tier"
+            );
+
+          const baseScore =
+            Number(
+              post.dataset.score
+            );
+
+          const baseVotes =
+            Number(
+              post.dataset.baseKleen || 0
+            );
+
+          const storageKey =
+            "modzfolio-kleen-" +
+            postId;
+
+
+          let voted =
+            localStorage.getItem(
+              storageKey
+            ) === "true";
+
+
+          function updateKleenUI() {
+
+            const score =
+              Math.min(
+                100,
+                baseScore +
+                (
+                  voted
+                    ? 1
+                    : 0
+                )
+              );
+
+            const votes =
+              baseVotes +
+              (
+                voted
+                  ? 1
+                  : 0
+              );
+
+
+            button
+              .classList
+              .toggle(
+                "active",
+                voted
+              );
+
+
+            action
+              .classList
+              .toggle(
+                "voted",
+                voted
+              );
+
+
+            button.setAttribute(
+              "aria-pressed",
+              String(voted)
+            );
+
+
+            fill.style.width =
+              score + "%";
+
+
+            scoreText.textContent =
+              score;
+
+
+            tier.textContent =
+              getTier(
+                score
+              );
+
+
+            countText.textContent =
+              formatCount(
+                votes
+              );
+
+          }
+
+
+          updateKleenUI();
 
 
           button.addEventListener(
-
             "click",
-
             () => {
 
+              voted =
+                !voted;
 
-              const post =
 
-                button.closest(
-                  ".post"
+              localStorage.setItem(
+                storageKey,
+                String(voted)
+              );
+
+
+              button
+                .classList
+                .remove(
+                  "pop"
                 );
 
 
-              const active =
-
-                button
-                  .classList
-                  .toggle(
-                    "active"
-                  );
+              void button.offsetWidth;
 
 
-              let score =
-
-                Number(
-                  post.dataset.score
+              button
+                .classList
+                .add(
+                  "pop"
                 );
 
 
-              score +=
-
-                active
-
-                  ? 1
-
-                  : -1;
-
-
-              score =
-
-                Math.max(
-
-                  0,
-
-                  Math.min(
-                    100,
-                    score
-                  )
-
-                );
-
-
-              post.dataset.score =
-                score;
-
-
-              post
-
-                .querySelector(
-                  ".kleen-fill"
-                )
-
-                .style
-                .width =
-                  score + "%";
-
-
-              post
-
-                .querySelector(
-                  ".kleen-score-text"
-                )
-
-                .textContent =
-                  score;
-
-
-              const tier =
-
-                post.querySelector(
-                  ".kleen-tier"
-                );
-
-
-              if (score >= 98) {
-
-                tier.textContent =
-                  "Hall of KLEEN";
-
-              }
-
-
-              else if (score >= 90) {
-
-                tier.textContent =
-                  "Exhibition";
-
-              }
-
-
-              else if (score >= 80) {
-
-                tier.textContent =
-                  "Show Ready";
-
-              }
-
-
-              else if (score >= 65) {
-
-                tier.textContent =
-                  "Meet Ready";
-
-              }
-
-
-              else if (score >= 40) {
-
-                tier.textContent =
-                  "Street KLEEN";
-
-              }
-
-
-              else {
-
-                tier.textContent =
-                  "Off the Lot";
-
-              }
-
+              updateKleenUI();
 
             }
-
           );
 
-
         }
-
       );
 
 
@@ -2925,71 +2340,55 @@
        LIKES
     ========================= */
 
-
     document
-
       .querySelectorAll(
         ".post"
       )
-
       .forEach(
-
         post => {
 
-
           const postId =
-
             post.dataset.post;
 
 
           const likeButton =
-
             post.querySelector(
               ".like-button"
             );
 
 
           const heart =
-
             likeButton.querySelector(
               ".heart"
             );
 
 
           const likeCount =
-
             post.querySelector(
               ".like-count"
             );
 
 
           const baseLikes =
-
             Number(
               post.dataset.baseLikes || 0
             );
 
 
           const storageKey =
-
             "modzfolio-like-" +
             postId;
 
 
           const liked =
-
             localStorage.getItem(
               storageKey
-            )
-
-            === "true";
+            ) === "true";
 
 
           function updateLikeUI() {
 
-
             const isLiked =
-
               likeButton
                 .classList
                 .contains(
@@ -2998,28 +2397,20 @@
 
 
             heart.textContent =
-
               isLiked
-
                 ? "♥"
-
                 : "♡";
 
 
             likeCount.textContent =
-
               formatCount(
-
                 baseLikes +
-
                 (
                   isLiked
                     ? 1
                     : 0
                 )
-
               );
-
 
           }
 
@@ -3039,14 +2430,10 @@
 
 
           likeButton.addEventListener(
-
             "click",
-
             () => {
 
-
               const isLiked =
-
                 likeButton
                   .classList
                   .toggle(
@@ -3055,13 +2442,8 @@
 
 
               localStorage.setItem(
-
                 storageKey,
-
-                String(
-                  isLiked
-                )
-
+                String(isLiked)
               );
 
 
@@ -3084,14 +2466,10 @@
 
               updateLikeUI();
 
-
             }
-
           );
 
-
         }
-
       );
 
 
@@ -3100,51 +2478,43 @@
        COMMENTS
     ========================= */
 
-
     const commentSheet =
-
       document.getElementById(
         "commentSheet"
       );
 
 
     const commentBackdrop =
-
       document.getElementById(
         "commentBackdrop"
       );
 
 
     const commentClose =
-
       document.getElementById(
         "commentClose"
       );
 
 
     const commentList =
-
       document.getElementById(
         "commentList"
       );
 
 
     const commentForm =
-
       document.getElementById(
         "commentForm"
       );
 
 
     const commentInput =
-
       document.getElementById(
         "commentInput"
       );
 
 
     const commentPostName =
-
       document.getElementById(
         "commentPostName"
       );
@@ -3154,11 +2524,7 @@
 
 
 
-    /* SAMPLE COMMENTS */
-
-
     const sampleComments = {
-
 
       ghost: [
 
@@ -3222,23 +2588,17 @@
 
       ]
 
-
     };
-
 
 
     function getUserComments(
       postId
     ) {
 
-
       const stored =
-
         localStorage.getItem(
-
           "modzfolio-comments-" +
           postId
-
         );
 
 
@@ -3264,9 +2624,7 @@
 
       }
 
-
     }
-
 
 
     function saveUserComments(
@@ -3274,77 +2632,56 @@
       comments
     ) {
 
-
       localStorage.setItem(
-
         "modzfolio-comments-" +
         postId,
 
         JSON.stringify(
           comments
         )
-
       );
 
-
     }
-
 
 
     function updateCommentCount(
       post
     ) {
 
-
       const postId =
-
         post.dataset.post;
 
 
-      const baseCount =
-
+      const base =
         Number(
-
-          post.dataset
-            .baseComments || 0
-
+          post.dataset.baseComments || 0
         );
 
 
-      const addedComments =
-
+      const added =
         getUserComments(
           postId
         );
 
 
       post
-
         .querySelector(
           ".comment-count"
         )
-
         .textContent =
-
           formatCount(
-
-            baseCount +
-            addedComments.length
-
+            base +
+            added.length
           );
 
-
     }
-
 
 
     function createCommentElement(
       comment
     ) {
 
-
       const item =
-
         document.createElement(
           "div"
         );
@@ -3355,7 +2692,6 @@
 
 
       const avatar =
-
         document.createElement(
           "div"
         );
@@ -3366,22 +2702,13 @@
 
 
       avatar.textContent =
-
         comment.user
-
-          .replace(
-            "@",
-            ""
-          )
-
+          .replace("@", "")
           .charAt(0)
-
           .toUpperCase();
 
 
-
       const bubble =
-
         document.createElement(
           "div"
         );
@@ -3392,7 +2719,6 @@
 
 
       const user =
-
         document.createElement(
           "div"
         );
@@ -3406,9 +2732,7 @@
         comment.user;
 
 
-
       const text =
-
         document.createElement(
           "div"
         );
@@ -3420,7 +2744,6 @@
 
       text.textContent =
         comment.text;
-
 
 
       bubble.append(
@@ -3437,13 +2760,10 @@
 
       return item;
 
-
     }
 
 
-
     function renderComments() {
-
 
       if (!activePost) {
 
@@ -3453,19 +2773,16 @@
 
 
       const postId =
-
         activePost.dataset.post;
 
 
-      const defaultComments =
-
+      const defaults =
         sampleComments[
           postId
         ] || [];
 
 
       const userComments =
-
         getUserComments(
           postId
         );
@@ -3475,67 +2792,44 @@
         "";
 
 
-      const combined = [
-
-        ...defaultComments,
-
+      [
+        ...defaults,
         ...userComments
-
-      ];
-
-
-      combined.forEach(
-
+      ]
+      .forEach(
         comment => {
-
 
           commentList
             .appendChild(
-
               createCommentElement(
                 comment
               )
-
             );
 
-
         }
-
       );
 
 
       commentList.scrollTop =
-
         commentList.scrollHeight;
 
-
     }
-
 
 
     function openComments(
       post
     ) {
 
-
       activePost =
         post;
 
 
-      const nickname =
-
-        post.querySelector(
-          ".car-nickname"
-        );
-
-
       commentPostName.textContent =
-
-        nickname
-
-          ? nickname.textContent
-
-          : "";
+        post
+          .querySelector(
+            ".car-nickname"
+          )
+          .textContent;
 
 
       renderComments();
@@ -3556,24 +2850,18 @@
 
 
       setTimeout(
-
         () => {
 
           commentInput.focus();
 
         },
-
         250
-
       );
-
 
     }
 
 
-
     function closeComments() {
-
 
       commentSheet
         .classList
@@ -3596,97 +2884,48 @@
       commentInput.value =
         "";
 
-
     }
 
 
-
     document
-
       .querySelectorAll(
         ".comment-button"
       )
-
       .forEach(
-
         button => {
 
-
           button.addEventListener(
-
             "click",
-
             () => {
 
-
               openComments(
-
                 button.closest(
                   ".post"
                 )
-
               );
 
-
             }
-
           );
 
-
         }
-
       );
 
 
-
     commentClose.addEventListener(
-
       "click",
-
       closeComments
-
     );
-
 
 
     commentBackdrop.addEventListener(
-
       "click",
-
       closeComments
-
     );
-
-
-
-    document.addEventListener(
-
-      "keydown",
-
-      event => {
-
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          closeComments();
-
-        }
-
-
-      }
-
-    );
-
 
 
     commentForm.addEventListener(
-
       "submit",
-
       event => {
-
 
         event.preventDefault();
 
@@ -3699,7 +2938,6 @@
 
 
         const text =
-
           commentInput
             .value
             .trim();
@@ -3713,12 +2951,10 @@
 
 
         const postId =
-
           activePost.dataset.post;
 
 
         const comments =
-
           getUserComments(
             postId
           );
@@ -3737,11 +2973,8 @@
 
 
         saveUserComments(
-
           postId,
-
           comments
-
         );
 
 
@@ -3756,24 +2989,15 @@
 
         renderComments();
 
-
       }
-
     );
 
 
-
-    /* INITIAL COMMENT COUNTS */
-
-
     document
-
       .querySelectorAll(
         ".post"
       )
-
       .forEach(
-
         post => {
 
           updateCommentCount(
@@ -3781,9 +3005,219 @@
           );
 
         }
-
       );
 
+
+
+    /* =========================
+       SHARE
+    ========================= */
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    let toastTimer;
+
+
+    function showToast(
+      message
+    ) {
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toast.textContent =
+        message;
+
+
+      toast
+        .classList
+        .add(
+          "show"
+        );
+
+
+      toastTimer =
+        setTimeout(
+          () => {
+
+            toast
+              .classList
+              .remove(
+                "show"
+              );
+
+          },
+          1800
+        );
+
+    }
+
+
+    document
+      .querySelectorAll(
+        ".share-button"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            async () => {
+
+              const post =
+                button.closest(
+                  ".post"
+                );
+
+
+              const postId =
+                post.dataset.post;
+
+
+              const nickname =
+                post
+                  .querySelector(
+                    ".car-nickname"
+                  )
+                  .textContent
+                  .trim();
+
+
+              const model =
+                post
+                  .querySelector(
+                    ".car-model"
+                  )
+                  .textContent
+                  .trim();
+
+
+              const url =
+                new URL(
+                  window.location.href
+                );
+
+
+              url.hash =
+                "post-" +
+                postId;
+
+
+              const shareData = {
+
+                title:
+                  nickname +
+                  " | ModzFolio",
+
+                text:
+                  "Check out " +
+                  nickname +
+                  " — " +
+                  model +
+                  " on ModzFolio.",
+
+                url:
+                  url.toString()
+
+              };
+
+
+              try {
+
+                if (
+                  navigator.share
+                ) {
+
+                  await navigator.share(
+                    shareData
+                  );
+
+                }
+
+
+                else {
+
+                  await navigator
+                    .clipboard
+                    .writeText(
+                      shareData.url
+                    );
+
+
+                  showToast(
+                    "Link copied"
+                  );
+
+                }
+
+              }
+
+
+              catch (error) {
+
+                if (
+                  error.name !==
+                  "AbortError"
+                ) {
+
+                  try {
+
+                    await navigator
+                      .clipboard
+                      .writeText(
+                        shareData.url
+                      );
+
+
+                    showToast(
+                      "Link copied"
+                    );
+
+                  }
+
+
+                  catch {
+
+                    showToast(
+                      "Could not share"
+                    );
+
+                  }
+
+                }
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+
+    /* ESCAPE CLOSES COMMENTS */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeComments();
+
+        }
+
+      }
+    );
 
 
   </script>
