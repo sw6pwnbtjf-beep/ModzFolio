@@ -1,1 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>Profile | Modzfolio</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    :root {
+      --green: #9BF404;
+      --black: #050505;
+      --panel: #101010;
+      --panel-2: #171717;
+      --border: rgba(255,255,255,0.11);
+      --text: #ffffff;
+      --muted: #999999;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(155,244,4,0.10),
+          transparent 30%
+        ),
+        #050505;
+
+      color: white;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      padding-bottom: 95px;
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+
+    button {
+      cursor: pointer;
+    }
+
+
+
+    /* =========================
+       PAGE
+    ========================= */
+
+
+    .page-shell {
+      width:
+        min(100%, 760px);
+
+      margin:
+        0 auto;
+
+      padding:
+        calc(
+          18px +
+          env(safe-area-inset-top)
+        )
+        18px
+        28px;
+    }
+
+
+
+    /* =========================
+       TOP BAR
+    ========================= */
+
+
+    .topbar {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 26px;
+    }
+
+
+    .brand-logo {
+      width: 175px;
+
+      max-width: 48vw;
+
+      height: auto;
+
+      display: block;
+    }
+
+
+    .brand-fallback {
+      display: none;
+
+      font-size: 23px;
+
+      font-weight: 950;
+
+      font-style: italic;
+
+      letter-spacing: -1px;
+    }
+
+
+    .brand-fallback span {
+      color:
+        var(--green);
+    }
+
+
+    .top-actions {
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+    }
+
+
+    .icon-button {
+      width: 40px;
+      height: 40px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color: white;
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 17px;
+
+      transition:
+        border-color 0.18s ease,
+        color 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease;
+    }
+
+
+    .icon-button:active {
+      transform:
+        scale(0.92);
+    }
+
+
+    .icon-button:hover {
+      color:
+        var(--green);
+
+      border-color:
+        rgba(155,244,4,0.45);
+    }
+
+
+
+    /* =========================
+       PROFILE HERO
+    ========================= */
+
+
+    .profile-hero {
+      padding:
+        22px;
+
+      border-radius:
+        24px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.055),
+          rgba(255,255,255,0.018)
+        );
+
+      box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.25);
+    }
+
+
+    .owner-row {
+      display: flex;
+
+      align-items: center;
+
+      gap: 18px;
+    }
+
+
+    .owner-photo-wrap {
+      position: relative;
+
+      flex:
+        0 0 auto;
+    }
+
+
+    .owner-photo {
+      width: 112px;
+      height: 112px;
+
+      border-radius:
+        50%;
+
+      object-fit: cover;
+
+      display: block;
+
+      background:
+        #0c0c0c;
+
+      border:
+        2px solid
+        rgba(155,244,4,0.55);
+
+      box-shadow:
+        0 0 0 5px
+        rgba(155,244,4,0.05),
+        0 0 32px
+        rgba(155,244,4,0.15);
+    }
+
+
+    .owner-photo-placeholder {
+      width: 112px;
+      height: 112px;
+
+      border-radius:
+        50%;
+
+      display: grid;
+
+      place-items: center;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #242424,
+          #0a0a0a
+        );
+
+      border:
+        2px solid
+        rgba(155,244,4,0.55);
+
+      color:
+        var(--green);
+
+      font-size: 38px;
+
+      font-weight: 950;
+
+      box-shadow:
+        0 0 0 5px
+        rgba(155,244,4,0.05),
+        0 0 32px
+        rgba(155,244,4,0.15);
+    }
+
+
+    .owner-copy {
+      min-width: 0;
+
+      flex: 1;
+    }
+
+
+    .display-name {
+      font-size:
+        clamp(26px, 6vw, 38px);
+
+      line-height: 1;
+
+      font-weight: 950;
+
+      letter-spacing:
+        -1.5px;
+    }
+
+
+    .username {
+      color:
+        var(--green);
+
+      margin-top:
+        5px;
+
+      font-size:
+        14px;
+
+      font-weight:
+        850;
+    }
+
+
+    .member-line {
+      color:
+        #7f7f7f;
+
+      margin-top:
+        5px;
+
+      font-size:
+        11px;
+    }
+
+
+    .location {
+      color:
+        #b6b6b6;
+
+      margin-top:
+        8px;
+
+      font-size:
+        12px;
+    }
+
+
+    .bio {
+      margin-top:
+        18px;
+
+      color:
+        #d1d1d1;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.55;
+    }
+
+
+
+    /* =========================
+       OWNER STATUS
+    ========================= */
+
+
+    .owner-status {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+
+      margin-top:
+        18px;
+    }
+
+
+    .status-chip {
+      padding:
+        11px 12px;
+
+      border-radius:
+        14px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border:
+        1px solid var(--border);
+    }
+
+
+    .status-label {
+      color:
+        #777;
+
+      font-size:
+        9px;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.8px;
+    }
+
+
+    .status-value {
+      color:
+        white;
+
+      margin-top:
+        4px;
+
+      font-size:
+        11px;
+
+      font-weight:
+        850;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
+
+      text-overflow:
+        ellipsis;
+    }
+
+
+    .status-value.green {
+      color:
+        var(--green);
+    }
+
+
+
+    /* =========================
+       SOCIALS
+    ========================= */
+
+
+    .social-section {
+      margin-top:
+        18px;
+
+      padding-top:
+        16px;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .social-label {
+      color:
+        #777;
+
+      font-size:
+        9px;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1px;
+
+      text-transform:
+        uppercase;
+
+      margin-bottom:
+        10px;
+    }
+
+
+    .social-links {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap:
+        8px;
+    }
+
+
+    .social-link {
+      display: none;
+
+      align-items: center;
+
+      gap:
+        6px;
+
+      padding:
+        8px 11px;
+
+      border-radius:
+        999px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.11);
+
+      background:
+        rgba(255,255,255,0.035);
+
+      color:
+        white;
+
+      text-decoration:
+        none;
+
+      font-size:
+        10px;
+
+      font-weight:
+        850;
+
+      transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+    }
+
+
+    .social-link.visible {
+      display:
+        inline-flex;
+    }
+
+
+    .social-link:hover {
+      color:
+        var(--green);
+
+      border-color:
+        rgba(155,244,4,0.45);
+    }
+
+
+    .social-dot {
+      width:
+        20px;
+
+      height:
+        20px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        #1c1c1c;
+
+      color:
+        var(--green);
+
+      font-size:
+        8px;
+
+      font-weight:
+        950;
+    }
+
+
+    .social-empty {
+      color:
+        #6f6f6f;
+
+      font-size:
+        11px;
+    }
+
+
+
+    /* =========================
+       PROFILE STATS
+    ========================= */
+
+
+    .stats-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      gap:
+        8px;
+
+      margin-top:
+        16px;
+    }
+
+
+    .stat-card {
+      padding:
+        14px 8px;
+
+      text-align:
+        center;
+
+      border-radius:
+        15px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.025);
+    }
+
+
+    .stat-number {
+      font-size:
+        17px;
+
+      font-weight:
+        950;
+    }
+
+
+    .stat-title {
+      color:
+        #818181;
+
+      margin-top:
+        3px;
+
+      font-size:
+        9px;
+
+      font-weight:
+        750;
+    }
+
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+
+    .section {
+      margin-top:
+        26px;
+    }
+
+
+    .section-header {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+      margin-bottom:
+        12px;
+    }
+
+
+    .section-title {
+      font-size:
+        16px;
+
+      font-weight:
+        950;
+    }
+
+
+    .section-subtitle {
+      color:
+        #777;
+
+      font-size:
+        10px;
+
+      margin-top:
+        3px;
+    }
+
+
+    .section-action {
+      border:
+        none;
+
+      background:
+        transparent;
+
+      color:
+        var(--green);
+
+      font-size:
+        11px;
+
+      font-weight:
+        900;
+    }
+
+
+
+    /* =========================
+       FEATURED BUILD
+    ========================= */
+
+
+    .featured-build {
+      overflow:
+        hidden;
+
+      border-radius:
+        22px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        #0c0c0c;
+    }
+
+
+    .build-photo {
+      position:
+        relative;
+
+      min-height:
+        300px;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,0.96),
+          rgba(0,0,0,0.04) 62%
+        ),
+        url("ghost-booty.jpg");
+
+      background-size:
+        cover;
+
+      background-position:
+        center;
+    }
+
+
+    .featured-label {
+      position:
+        absolute;
+
+      top:
+        16px;
+
+      left:
+        16px;
+
+      padding:
+        8px 11px;
+
+      border-radius:
+        
