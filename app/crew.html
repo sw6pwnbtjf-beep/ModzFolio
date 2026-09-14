@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>Crew | Modzfolio</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    :root {
+      --green: #9BF404;
+      --black: #050505;
+      --panel: #101010;
+      --border: rgba(255,255,255,0.11);
+      --muted: #9b9b9b;
+    }
+
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(155,244,4,0.08),
+          transparent 34%
+        ),
+        #050505;
+
+      color: white;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      padding-bottom: 92px;
+    }
+
+
+    button,
+    input {
+      font: inherit;
+    }
+
+
+    .page-shell {
+      width:
+        min(100%, 760px);
+
+      margin:
+        0 auto;
+
+      padding:
+        calc(
+          18px +
+          env(safe-area-inset-top)
+        )
+        18px
+        24px;
+    }
+
+
+    /* HEADER */
+
+
+    .header {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 16px;
+
+      margin-bottom: 22px;
+    }
+
+
+    .brand-logo {
+      width: 175px;
+
+      max-width: 50vw;
+
+      height: auto;
+
+      display: block;
+    }
+
+
+    .brand-fallback {
+      display: none;
+
+      font-size: 23px;
+      font-weight: 950;
+
+      font-style: italic;
+
+      letter-spacing: -1px;
+    }
+
+
+    .brand-fallback span {
+      color: var(--green);
+    }
+
+
+    .invite-button {
+      border:
+        1px solid
+        rgba(155,244,4,0.34);
+
+      background:
+        rgba(155,244,4,0.08);
+
+      color: var(--green);
+
+      border-radius: 999px;
+
+      padding:
+        9px 13px;
+
+      font-size: 11px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+
+    /* INTRO */
+
+
+    .eyebrow {
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 950;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 7px;
+    }
+
+
+    h1 {
+      font-size:
+        clamp(34px, 7vw, 52px);
+
+      line-height: 1;
+
+      letter-spacing: -2px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .intro {
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.55;
+
+      max-width: 560px;
+
+      margin-bottom: 22px;
+    }
+
+
+    /* SEARCH */
+
+
+    .search-wrap {
+      position: sticky;
+
+      top: 0;
+
+      z-index: 20;
+
+      padding:
+        10px 0 12px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(5,5,5,0.98) 76%,
+          rgba(5,5,5,0)
+        );
+    }
+
+
+    .search-box {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      height: 50px;
+
+      padding:
+        0 15px;
+
+      border-radius: 16px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(17,17,17,0.92);
+
+      backdrop-filter:
+        blur(16px);
+    }
+
+
+    .search-icon {
+      color: var(--green);
+
+      font-size: 18px;
+
+      line-height: 1;
+    }
+
+
+    .search-input {
+      flex: 1;
+
+      min-width: 0;
+
+      background: transparent;
+
+      border: none;
+
+      color: white;
+
+      outline: none;
+
+      font-size: 14px;
+    }
+
+
+    .search-input::placeholder {
+      color: #727272;
+    }
+
+
+    /* FILTERS */
+
+
+    .filters {
+      display: flex;
+
+      gap: 8px;
+
+      overflow-x: auto;
+
+      padding:
+        2px 0 14px;
+
+      scrollbar-width: none;
+    }
+
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .filter {
+      flex:
+        0 0 auto;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.035);
+
+      color: #a5a5a5;
+
+      border-radius: 999px;
+
+      padding:
+        8px 12px;
+
+      font-size: 11px;
+
+      font-weight: 850;
+
+      cursor: pointer;
+    }
+
+
+    .filter.active {
+      color: #050505;
+
+      border-color:
+        var(--green);
+
+      background:
+        var(--green);
+    }
+
+
+    /* PEOPLE */
+
+
+    .section-title {
+      display: flex;
+
+      align-items: end;
+
+      justify-content: space-between;
+
+      margin:
+        6px 0 12px;
+    }
+
+
+    .section-title h2 {
+      font-size: 15px;
+
+      font-weight: 950;
+    }
+
+
+    .section-title span {
+      color: #747474;
+
+      font-size: 10px;
+    }
+
+
+    .people-list {
+      display: grid;
+
+      gap: 10px;
+    }
+
+
+    .person-card {
+      display: grid;
+
+      grid-template-columns:
+        50px
+        minmax(0,1fr)
+        auto;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 13px;
+
+      border-radius: 18px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+    }
+
+
+    .person-card.hidden {
+      display: none;
+    }
+
+
+    .person-avatar {
+      width: 50px;
+      height: 50px;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      background: #0c0c0c;
+
+      border:
+        1px solid
+        rgba(155,244,4,0.35);
+
+      color: var(--green);
+
+      font-weight: 950;
+
+      box-shadow:
+        0 0 24px
+        rgba(155,244,4,0.08);
+    }
+
+
+    .person-copy {
+      min-width: 0;
+    }
+
+
+    .person-name {
+      font-size: 13px;
+
+      font-weight: 900;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    .person-handle {
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      margin-top: 2px;
+    }
+
+
+    .person-meta {
+      color: #8f8f8f;
+
+      font-size: 10px;
+
+      margin-top: 5px;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    /* FRIEND BUTTON */
+
+
+    .crew-action {
+      min-width: 86px;
+
+      border-radius: 999px;
+
+      padding:
+        9px 12px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+      background:
+        rgba(255,255,255,0.05);
+
+      color: white;
+
+      font-size: 10px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      transition:
+        all 0.18s ease;
+    }
+
+
+    .crew-action.pending {
+      color: #c7c7c7;
+
+      border-color:
+        rgba(255,255,255,0.12);
+    }
+
+
+    .crew-action.friends {
+      color: #050505;
+
+      background:
+        var(--green);
+
+      border-color:
+        var(--green);
+    }
+
+
+    /* NO RESULTS */
+
+
+    .no-results {
+      display: none;
+
+      text-align: center;
+
+      padding:
+        46px 18px;
+
+      color: var(--muted);
+    }
+
+
+    .no-results.show {
+      display: block;
+    }
+
+
+    .no-results strong {
+      display: block;
+
+      color: white;
+
+      margin-bottom: 6px;
+
+      font-size: 16px;
+    }
+
+
+    /* FUTURE FEATURE */
+
+
+    .tip-card {
+      margin-top: 18px;
+
+      padding: 16px;
+
+      border-radius: 18px;
+
+      border:
+        1px solid
+        rgba(155,244,4,0.18);
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(155,244,4,0.10),
+          transparent 44%
+        ),
+        rgba(255,255,255,0.025);
+    }
+
+
+    .tip-title {
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 950;
+
+      margin-bottom: 5px;
+    }
+
+
+    .tip-text {
+      color: #9f9f9f;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+    }
+
+
+    /* TOAST */
+
+
+    .toast {
+      position: fixed;
+
+      left: 50%;
+
+      bottom: 92px;
+
+      z-index: 200;
+
+      transform:
+        translate(-50%, 18px);
+
+      padding:
+        10px 16px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(18,18,18,0.96);
+
+      border:
+        1px solid
+        rgba(155,244,4,0.35);
+
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        0.2s ease;
+    }
+
+
+    .toast.show {
+      opacity: 1;
+
+      transform:
+        translate(-50%, 0);
+    }
+
+
+    /* NAV */
+
+
+    .bottom-nav {
+      position: fixed;
+
+      left: 14px;
+      right: 14px;
+
+      bottom:
+        max(
+          12px,
+          env(safe-area-inset-bottom)
+        );
+
+      z-index: 50;
+
+      height: 60px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-around;
+
+      background:
+        rgba(8,8,8,0.86);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+      border-radius: 20px;
+
+      backdrop-filter:
+        blur(18px);
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.45);
+    }
+
+
+    .nav-item {
+      color: #949494;
+
+      text-decoration: none;
+
+      display: grid;
+
+      place-items: center;
+
+      gap: 3px;
+
+      min-width: 60px;
+
+      font-size: 10px;
+
+      font-weight: 800;
+    }
+
+
+    .nav-icon {
+      font-size: 18px;
+    }
+
+
+    .nav-item.active {
+      color: var(--green);
+    }
+
+
+    @media (min-width: 850px) {
+
+      .bottom-nav {
+        width: 730px;
+
+        left: 50%;
+
+        transform:
+          translateX(-50%);
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <main class="page-shell">
+
+
+    <header class="header">
+
+      <div>
+
+        <img
+          src="modzfolio-wordmark-green.png.png"
+          alt="Modzfolio"
+          class="brand-logo"
+
+          onerror="
+            this.style.display='none';
+            document.getElementById('brandFallback').style.display='block';
+          "
+        >
+
+
+        <div
+          class="brand-fallback"
+          id="brandFallback"
+        >
+          MODZ<span>FOLIO</span>
+        </div>
+
+      </div>
+
+
+      <button
+        class="invite-button"
+        id="inviteButton"
+        type="button"
+      >
+        Invite Friend
+      </button>
+
+    </header>
+
+
+
+    <div class="eyebrow">
+      Crew
+    </div>
+
+
+    <h1>
+      Find your people.
+    </h1>
+
+
+    <p class="intro">
+      Explore is for discovering builds.
+      Crew is where you find the people you actually know.
+      Search by name or @username,
+      send a request,
+      and build your real-world circle.
+    </p>
+
+
+
+    <div class="search-wrap">
+
+      <label class="search-box">
+
+        <span class="search-icon">
+          ⌕
+        </span>
+
+
+        <input
+          class="search-input"
+          id="crewSearch"
+          type="search"
+          placeholder="Search name or @username"
+          autocomplete="off"
+        >
+
+      </label>
+
+    </div>
+
+
+
+    <div class="filters">
+
+      <button
+        class="filter active"
+        type="button"
+        data-filter="all"
+      >
+        All
+      </button>
+
+
+      <button
+        class="filter"
+        type="button"
+        data-filter="friends"
+      >
+        Friends
+      </button>
+
+
+      <button
+        class="filter"
+        type="button"
+        data-filter="pending"
+      >
+        Pending
+      </button>
+
+
+      <button
+        class="filter"
+        type="button"
+        data-filter="suggested"
+      >
+        Suggested
+      </button>
+
+    </div>
+
+
+
+    <div class="section-title">
+
+      <h2>
+        People on ModzFolio
+      </h2>
+
+      <span>
+        Prototype
+      </span>
+
+    </div>
+
+
+
+    <section
+      class="people-list"
+      id="peopleList"
+    >
+
+
+      <article
+        class="person-card"
+        data-user="alex"
+        data-name="Alex Rivera"
+        data-handle="@alex.r"
+        data-category="suggested"
+      >
+
+        <div class="person-avatar">
+          A
+        </div>
+
+
+        <div class="person-copy">
+
+          <div class="person-name">
+            Alex Rivera
+          </div>
+
+          <div class="person-handle">
+            @alex.r
+          </div>
+
+          <div class="person-meta">
+            2020 WRX · 18 mods · Tampa
+          </div>
+
+        </div>
+
+
+        <button
+          class="crew-action"
+          type="button"
+        >
+          Add Friend
+        </button>
+
+      </article>
+
+
+
+      <article
+        class="person-card"
+        data-user="jordan"
+        data-name="Jordan Lee"
+        data-handle="@jlee.builds"
+        data-category="suggested"
+      >
+
+        <div class="person-avatar">
+          J
+        </div>
+
+
+        <div class="person-copy">
+
+          <div class="person-name">
+            Jordan Lee
+          </div>
+
+          <div class="person-handle">
+            @jlee.builds
+          </div>
+
+          <div class="person-meta">
+            2024 GR Corolla · 9 mods · Orlando
+          </div>
+
+        </div>
+
+
+        <button
+          class="crew-action"
+          type="button"
+        >
+          Add Friend
+        </button>
+
+      </article>
+
+
+
+      <article
+        class="person-card"
+        data-user="maria"
+        data-name="Maria Santos"
+        data-handle="@msantos"
+        data-category="friends"
+      >
+
+        <div class="person-avatar">
+          M
+        </div>
+
+
+        <div class="person-copy">
+
+          <div class="person-name">
+            Maria Santos
+          </div>
+
+          <div class="person-handle">
+            @msantos
+          </div>
+
+          <div class="person-meta">
+            2019 Civic Type R · 27 mods · Miami
+          </div>
+
+        </div>
+
+
+        <button
+          class="crew-action friends"
+          type="button"
+        >
+          Friends
+        </button>
+
+      </article>
+
+
+
+      <article
+        class="person-card"
+        data-user="devon"
+        data-name="Devon Clarke"
+        data-handle="@devon.c"
+        data-category="suggested"
+      >
+
+        <div class="person-avatar">
+          D
+        </div>
+
+
+        <div class="person-copy">
+
+          <div class="person-name">
+            Devon Clarke
+          </div>
+
+          <div class="person-handle">
+            @devon.c
+          </div>
+
+          <div class="person-meta">
+            2022 BRZ · 12 mods
+          </div>
+
+        </div>
+
+
+        <button
+          class="crew-action"
+          type="button"
+        >
+          Add Friend
+        </button>
+
+      </article>
+
+
+
+      <article
+        class="person-card"
+        data-user="sam"
+        data-name="Sam Torres"
+        data-handle="@samt"
+        data-category="pending"
+      >
+
+        <div class="person-avatar">
+          S
+        </div>
+
+
+        <div class="person-copy">
+
+          <div class="person-name">
+            Sam Torres
+          </div>
+
+          <div class="person-handle">
+            @samt
+          </div>
+
+          <div class="person-meta">
+            2021 Golf R · 15 mods
+          </div>
+
+        </div>
+
+
+        <button
+          class="crew-action pending"
+          type="button"
+        >
+          Pending
+        </button>
+
+      </article>
+
+
+    </section>
+
+
+
+    <div
+      class="no-results"
+      id="noResults"
+    >
+
+      <strong>
+        No one found.
+      </strong>
+
+      Try a different name
+      or @username.
+
+    </div>
+
+
+
+    <div class="tip-card">
+
+      <div class="tip-title">
+        NEXT: CAR-MEET MODE
+      </div>
+
+      <div class="tip-text">
+        Later we can add a personal QR code
+        so someone can scan your ModzFolio profile
+        at a meet and add you instantly.
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+
+  <div
+    class="toast"
+    id="toast"
+  >
+    Friend request sent
+  </div>
+
+
+
+  <nav class="bottom-nav">
+
+
+    <a
+      class="nav-item"
+      href="garage.html"
+    >
+
+      <span class="nav-icon">
+        ◉
+      </span>
+
+      <span>
+        Garage
+      </span>
+
+    </a>
+
+
+    <a
+      class="nav-item"
+      href="explore.html"
+    >
+
+      <span class="nav-icon">
+        ◈
+      </span>
+
+      <span>
+        Explore
+      </span>
+
+    </a>
+
+
+    <a
+      class="nav-item active"
+      href="crew.html"
+    >
+
+      <span class="nav-icon">
+        ◎
+      </span>
+
+      <span>
+        Crew
+      </span>
+
+    </a>
+
+
+    <a
+      class="nav-item"
+      href="#"
+    >
+
+      <span class="nav-icon">
+        ◯
+      </span>
+
+      <span>
+        Profile
+      </span>
+
+    </a>
+
+
+  </nav>
+
+
+
+  <script>
+
+    const cards =
+      [
+        ...document.querySelectorAll(
+          ".person-card"
+        )
+      ];
+
+
+    const search =
+      document.getElementById(
+        "crewSearch"
+      );
+
+
+    const filters =
+      [
+        ...document.querySelectorAll(
+          ".filter"
+        )
+      ];
+
+
+    const noResults =
+      document.getElementById(
+        "noResults"
+      );
+
+
+    const inviteButton =
+      document.getElementById(
+        "inviteButton"
+      );
+
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    let activeFilter =
+      "all";
+
+
+    let toastTimer;
+
+
+
+    function showToast(
+      message
+    ) {
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toast.textContent =
+        message;
+
+
+      toast
+        .classList
+        .add(
+          "show"
+        );
+
+
+      toastTimer =
+        setTimeout(
+          () => {
+
+            toast
+              .classList
+              .remove(
+                "show"
+              );
+
+          },
+          1700
+        );
+
+    }
+
+
+
+    function storageKey(
+      userId
+    ) {
+
+      return (
+        "modzfolio-crew-" +
+        userId
+      );
+
+    }
+
+
+
+    function getState(
+      card
+    ) {
+
+      const saved =
+        localStorage.getItem(
+          storageKey(
+            card.dataset.user
+          )
+        );
+
+
+      return (
+        saved ||
+        card.dataset.category
+      );
+
+    }
+
+
+
+    function applyState(
+      card,
+      state
+    ) {
+
+      card.dataset.category =
+        state;
+
+
+      const button =
+        card.querySelector(
+          ".crew-action"
+        );
+
+
+      button
+        .classList
+        .remove(
+          "pending",
+          "friends"
+        );
+
+
+      if (
+        state ===
+        "friends"
+      ) {
+
+        button.textContent =
+          "Friends";
+
+
+        button
+          .classList
+          .add(
+            "friends"
+          );
+
+      }
+
+
+      else if (
+        state ===
+        "pending"
+      ) {
+
+        button.textContent =
+          "Pending";
+
+
+        button
+          .classList
+          .add(
+            "pending"
+          );
+
+      }
+
+
+      else {
+
+        button.textContent =
+          "Add Friend";
+
+      }
+
+    }
+
+
+
+    cards.forEach(
+      card => {
+
+        applyState(
+          card,
+          getState(
+            card
+          )
+        );
+
+
+        card
+          .querySelector(
+            ".crew-action"
+          )
+          .addEventListener(
+            "click",
+            () => {
+
+              const current =
+                card.dataset.category;
+
+
+              let next;
+
+
+              if (
+                current ===
+                "suggested"
+              ) {
+
+                next =
+                  "pending";
+
+
+                showToast(
+                  "Friend request sent"
+                );
+
+              }
+
+
+              else if (
+                current ===
+                "pending"
+              ) {
+
+                next =
+                  "suggested";
+
+
+                showToast(
+                  "Request cancelled"
+                );
+
+              }
+
+
+              else {
+
+                next =
+                  "friends";
+
+
+                showToast(
+                  "Already in your Crew"
+                );
+
+              }
+
+
+              localStorage.setItem(
+                storageKey(
+                  card.dataset.user
+                ),
+                next
+              );
+
+
+              applyState(
+                card,
+                next
+              );
+
+
+              filterPeople();
+
+            }
+          );
+
+      }
+    );
+
+
+
+    function filterPeople() {
+
+      const query =
+        search
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      let visible =
+        0;
+
+
+      cards.forEach(
+        card => {
+
+          const name =
+            card.dataset.name
+              .toLowerCase();
+
+
+          const handle =
+            card.dataset.handle
+              .toLowerCase();
+
+
+          const category =
+            card.dataset.category;
+
+
+          const matchesSearch =
+            !query ||
+            name.includes(
+              query
+            ) ||
+            handle.includes(
+              query
+            );
+
+
+          const matchesFilter =
+            activeFilter ===
+              "all"
+            ||
+            category ===
+              activeFilter;
+
+
+          const show =
+            matchesSearch &&
+            matchesFilter;
+
+
+          card
+            .classList
+            .toggle(
+              "hidden",
+              !show
+            );
+
+
+          if (show) {
+            visible++;
+          }
+
+        }
+      );
+
+
+      noResults
+        .classList
+        .toggle(
+          "show",
+          visible === 0
+        );
+
+    }
+
+
+
+    search.addEventListener(
+      "input",
+      filterPeople
+    );
+
+
+
+    filters.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            filters.forEach(
+              item =>
+                item
+                  .classList
+                  .remove(
+                    "active"
+                  )
+            );
+
+
+            button
+              .classList
+              .add(
+                "active"
+              );
+
+
+            activeFilter =
+              button.dataset.filter;
+
+
+            filterPeople();
+
+          }
+        );
+
+      }
+    );
+
+
+
+    inviteButton
+      .addEventListener(
+        "click",
+        async () => {
+
+          const shareData = {
+
+            title:
+              "Join me on ModzFolio",
+
+            text:
+              "Find me on ModzFolio and add me to your Crew.",
+
+            url:
+              window.location.origin
+              ||
+              "https://modzfolio.com"
+
+          };
+
+
+          try {
+
+            if (
+              navigator.share
+            ) {
+
+              await navigator.share(
+                shareData
+              );
+
+            }
+
+
+            else if (
+              navigator.clipboard
+            ) {
+
+              await navigator
+                .clipboard
+                .writeText(
+                  shareData.url
+                );
+
+
+              showToast(
+                "Invite link copied"
+              );
+
+            }
+
+
+            else {
+
+              showToast(
+                "Invite ready"
+              );
+
+            }
+
+          }
+
+
+          catch (error) {
+
+            if (
+              error.name !==
+              "AbortError"
+            ) {
+
+              showToast(
+                "Could not share"
+              );
+
+            }
+
+          }
+
+        }
+      );
+
+
+    filterPeople();
+
+  </script>
+
+</body>
+
+</html>
